@@ -10,7 +10,6 @@
 
     <%-- ログインしている場合（セッションにユーザー情報がある） --%>
     <c:when test="${not empty session_user}">
-        <%-- セッション内のユーザーオブジェクト（例：User型）から username を表示 --%>
         <span>ようこそ、${session_user.username} さん</span>
         <a href="${pageContext.request.contextPath}/accounts/logout">ログアウト</a>
     </c:when>
