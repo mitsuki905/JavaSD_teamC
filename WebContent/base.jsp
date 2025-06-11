@@ -59,7 +59,7 @@
 		    <%-- <c:if test="${not empty session_user}"> --%>
 		        <div class="user-info">
 		            <%-- <span>${session_user} 様</span> --%>
-		            <span>大原　太郎様</span>
+		            <span>大原　太郎１様</span>
 		            <a href="${pageContext.request.contextPath}/accounts/logout">ログアウト</a>
 		        </div>
 		    <%-- </c:if> --%>
