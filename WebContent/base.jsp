@@ -10,6 +10,7 @@
 	            font-family: sans-serif;
 	        }
 
+			/* ヘッダー部分 */
 	        .header {
 	            background: linear-gradient(to right, #f0f8ff, #e6f0ff);
 	            padding: 15px 20px;
@@ -36,23 +37,32 @@
 	        .user-info a {
 	            color: #007bff;
 	            text-decoration: none;
-	        }
-
-	        .user-info a:hover {
 	            text-decoration: underline;
 	        }
+
+	        .sidebar {
+				position: fixed;
+				top: 0;
+				left: 0;
+			    width: 25%;
+			    padding: 20px;
+			    border-right: 1px solid #000;
+			    height: 100vh;
+			    box-sizing: border-box;
+			}
 	    </style>
 	</head>
 
 	<body>
 		<div class="header">
 		    <h1>得点管理システム</h1>
-		    <c:if test="${not empty session_user}">
+		    <%-- <c:if test="${not empty session_user}"> --%>
 		        <div class="user-info">
-		            <span>${session_user} 様</span>
+		            <%-- <span>${session_user} 様</span> --%>
+		            <span>大原　太郎様</span>
 		            <a href="${pageContext.request.contextPath}/accounts/logout">ログアウト</a>
 		        </div>
-		    </c:if>
+		    <%-- </c:if> --%>
 		</div>
 
 		<c:import url="/menu.jsp"/>
