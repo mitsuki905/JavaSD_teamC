@@ -1,5 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 
 <!DOCTYPE html>
 <html>
@@ -42,15 +42,17 @@ body {
 	text-decoration: underline;
 }
 
-   .footer {
+.footer {
+	width: 100%;
+	position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+	text-align: center;
+	background-color: #f0f0f0;
+}
 
-     text-align: center;
-     background-color: #f0f0f0;
-
-   }
-   .footer .container p {
-     text-align: center;
-   }
+.footer .container p {
+	text-align: center;
+}
 </style>
 </head>
 
@@ -70,6 +72,7 @@ body {
 
 	<div class="footer">
 		<p>© 2025 TIC</p>
-		<p>大原学園</p></div>
+		<p>大原学園</p>
+	</div>
 </body>
 </html>
