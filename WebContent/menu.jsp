@@ -1,20 +1,7 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="css/style.css">
-<!-- <style>
-	.sidebar {
-		position: fixed;
-	    width: 20%;
-	    padding: 20px;
-	    border-right: 1px solid #ebe8e8;
-	    height: 100vh;
-	    box-sizing: border-box;
-	}
 
-	ul {
-		list-style: none;
-	}
-</style> -->
+<link rel="stylesheet" href="css/style.css">
 
 <div class="sidebar">
 	<nav>

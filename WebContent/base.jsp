@@ -3,10 +3,9 @@
 
 <!DOCTYPE html>
 <html>
-	<head><link rel="stylesheet" href="css/main.css">
+	<head>
 	<title>得点管理システム</title>
-
-
+	<link rel="stylesheet" href="css/style.css">
 	</head>
 
 	<body>
@@ -22,7 +21,6 @@
 		</div>
 
 		<c:import url="/menu.jsp" />
-		<h2>メニュー</h2>
 		${ param.body }
 
 		<%-- 見た目を優先してsmallタグに変更 --%>>
