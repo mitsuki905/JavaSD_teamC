@@ -20,8 +20,10 @@
 			<%-- </c:if> --%>
 		</div>
 
-		<c:import url="/menu.jsp" />
-		${ param.body }
+			<c:import url="/menu.jsp" />
+		<div class="contents">
+			${ param.body }
+		</div>
 
 		<%-- 見た目を優先してsmallタグに変更 --%>>
 		<div class="footer">
