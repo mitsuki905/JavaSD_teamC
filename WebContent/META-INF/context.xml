@@ -4,13 +4,13 @@
 
 <Context reloadable="true">
 	<Resource
-		name="jdbc/kouka"
+		name="jdbc/JavaSD"
 		auth="Container"
 		type="javax.sql.DataSource"
 		driverClassName="org.h2.Driver"
-		url="jdbc:h2:tcp://localhost/~/kouka"
+		url="jdbc:h2:tcp://localhost/~/JavaSD"
 		username="sa"
 		password=""
 	/>
-	
+
 </Context>
