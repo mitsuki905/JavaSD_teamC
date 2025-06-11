@@ -12,12 +12,26 @@ body {
 }
 
 /* メニューページのボックス */
-.box_red {
-	width: 160px;
+.box-container {
+    display: grid;
+	grid-template-columns: repeat(3, 300px); /* 3列固定幅 */
+	gap: 30px; /* ボックス間の余白 */
+	justify-content: center; /* 中央に寄せる */
+	margin-top: 50px;
+    }
+
+/* .text {
+	font-color: #000000;
+} */
+
+.box_red,
+.box_green,
+.box_blue {
+	width: 250px;
 	height: 120px;
-	color: white;
+	color: black;
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 20px;
 	text-align: center;
 	line-height: 1.5;
 	border-radius: 10px;
@@ -28,48 +42,15 @@ body {
 	align-items: center;
 	flex-direction: column;
 	transition: transform 0.2s;
+	list-style: none;
+
 }
 
-.box_green {
-	width: 160px;
-	height: 120px;
-	color: white;
-	font-weight: bold;
-	font-size: 16px;
-	text-align: center;
-	line-height: 1.5;
-	border-radius: 10px;
-	padding: 20px;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	transition: transform 0.2s;
-}
-.box_blue {
-	width: 160px;
-	height: 120px;
-	color: white;
-	font-weight: bold;
-	font-size: 16px;
-	text-align: center;
-	line-height: 1.5;
-	border-radius: 10px;
-	padding: 20px;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	transition: transform 0.2s;
-}
-.box-container {
-	display: flex;
-	gap: 30px; /* ボックス間の余白 */
-	justify-content: center; /* 横中央寄せ */
-	padding: 40px 0;
-}
+.box_red { background-color: #ffaaaa; }
+.box_green { background-color: #b7ffb7; }
+.box_blue { background-color: #d6c4f0; }
+
+
 
 
 /* 共通部分(ヘッダー) */
