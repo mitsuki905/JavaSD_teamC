@@ -75,6 +75,7 @@ public class TeacherDao extends DAO {
 		}
 		else if(teacher.getPassword() == password){
 
+		// ｄｂ上にあるログインする人の情報を返す
 			return teacher;
 		}
 		else{
