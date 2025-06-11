@@ -1,6 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../mycss/style.css">
 <c:import url="/base.jsp">
 
 	<c:param name="body">
