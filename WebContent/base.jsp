@@ -5,7 +5,7 @@
 <html>
 	<head>
 	<title>得点管理システム</title>
-	<link rel="stylesheet" href="mycss/style.css">
+	<link rel="stylesheet" href="css/style.css">
 	</head>
 
 	<body>
@@ -19,10 +19,9 @@
 				</div>
 			<%-- </c:if> --%>
 		</div>
-
 			<c:import url="/menu.jsp" />
 		<div class="contents">
-			${ param.body }
+			${ param.body
 		</div>
 
 		<%-- 見た目を優先してsmallタグに変更 --%>>
