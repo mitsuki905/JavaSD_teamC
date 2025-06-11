@@ -5,7 +5,21 @@
 
 	<c:param name="body">
 
-		<h2 style="background-color: #f0f0f0;">メニュー</h2>
+		<h2 style="background-color: #f0f0f0;">　メニュー</h2>
+
+		<div class="box_red">
+		<li><a href="${pageContext.request.contextPath}/student/student_list">学生管理</a></li>
+		</div>
+
+		<div class="box_green">
+		<li>成績管理</li>
+		<li><a href="${pageContext.request.contextPath}/test/">成績登録</a></li>
+		<li><a href="${pageContext.request.contextPath}/main/deleteselect">成績参照</a></li>
+		</div>
+
+		<div class="box_blue">
+		<li><a href="${pageContext.request.contextPath}/main/deleteselect">科目管理</a></li>
+		</div>
 
 	</c:param>
 
