@@ -9,6 +9,13 @@ body {
 
 .contents {
 	margin-left: 21%;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+/* ログイン画面用：sidebarなしで全幅表示 */
+.contents.full-width {
+	margin-left: 0;
 }
 
 /* メニューページのボックス */
@@ -18,7 +25,7 @@ body {
 	gap: 30px;
 	justify-content: center;
 	margin-top: 50px;
-    }
+}
 
 .box_red,
 .box_green,
@@ -39,7 +46,6 @@ body {
 	flex-direction: column;
 	transition: transform 0.2s;
 	list-style: none;
-
 }
 
 .box_red { background-color: #ffaaaa; }
@@ -74,7 +80,6 @@ body {
 
 .user-info a {
 	color: #007bff;
-	text-decoration: none;
 	text-decoration: underline;
 }
 
@@ -89,7 +94,6 @@ body {
 	height: calc(100vh - 60px);
 	box-sizing: border-box;
 }
-
 
 ul {
 	list-style: none;

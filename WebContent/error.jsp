@@ -6,7 +6,7 @@
 
 <c:param name="body">
 
-<p>エラーが発生しました</p>
+	<p>エラーが発生しました</p>
 
 </c:param>
 

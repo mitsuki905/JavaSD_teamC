@@ -13,18 +13,19 @@
 			<h1>得点管理システム</h1>
 
 			<%-- ログインができたときの処理 --%>
-			<c:if test="${not empty session_user}">
+			<%-- <c:if test="${not empty session_user}"> --%>
 				<div class="user-info">
-					<span>${session_user} 様</span>
+					<%-- <span>${session_user} 様</span> --%>
+					<span>大原　太郎様</span>
 					<a href="${pageContext.request.contextPath}/accounts/logout">ログアウト</a>
 				</div>
-			</c:if>
+			<%-- </c:if> --%>
 		</div>
 
 			<%-- ログインページでは共通メニュー画面が表示されない --%>
-			<c:if test="${not empty session_user}">
+			<%-- <c:if test="${not empty session_user}"> --%>
 				<c:import url="/menu.jsp" />
-			</c:if>
+			<%-- </c:if> --%>
 
 		<div class="contents">
 			${ param.body}

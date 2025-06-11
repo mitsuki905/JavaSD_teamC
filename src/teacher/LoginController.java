@@ -24,7 +24,7 @@ public class LoginController extends CommonServlet {
 		HttpSession session = req.getSession();
 
 //		画面から送られてきた値を取得する
-		String id = req.getParameter("id");
+		String id = req.getParameter("userId");
 		String password = req.getParameter("password");
 
 
@@ -43,10 +43,10 @@ public class LoginController extends CommonServlet {
 
         } else {
             // 認証失敗時：入力されたログイン名を再表示用にセット
-            req.setAttribute("id", id);
+            req.setAttribute("userId", id);
 
             // エラーメッセージをリクエストに追加（JSP側で表示用）
-            req.setAttribute("errorMessage", "idまたはパスワードが違います");
+            req.setAttribute("errorMessage", "ログインに失敗しました。idまたはパスワードが正しくありません");
 
             // ログイン画面に戻る（入力ミスを修正して再試行させる）
             req.getRequestDispatcher("login.jsp").forward(req, resp);

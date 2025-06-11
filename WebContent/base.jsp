@@ -3,38 +3,43 @@
 
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 	<title>得点管理システム</title>
 	<link rel="stylesheet" href="css/style.css">
-	</head>
+	<c:if test="${empty session_user}">
+		<style>
+			.contents {
+				margin-left: 0 !important;
+			}
+		</style>
+	</c:if>
+</head>
 
-	<body>
-		<div class="header">
-			<h1>得点管理システム</h1>
+<body>
+	<div class="header">
+		<h1>得点管理システム</h1>
 
-			<%-- ログインができたときの処理 --%>
-			<%-- <c:if test="${not empty session_user}"> --%>
-				<div class="user-info">
-					<%-- <span>${session_user} 様</span> --%>
-					<span>大原　太郎様</span>
-					<a href="${pageContext.request.contextPath}/accounts/logout">ログアウト</a>
-				</div>
-			<%-- </c:if> --%>
-		</div>
+		<c:if test="${not empty teacher}">
+			<div class="user-info">
+				<span>${teacher} 様</span>
+				<a href="${pageContext.request.contextPath}/accounts/logout">ログアウト</a>
+			</div>
+		</c:if>
+	</div>
 
-			<%-- ログインページでは共通メニュー画面が表示されない --%>
-			<%-- <c:if test="${not empty session_user}"> --%>
-				<c:import url="/menu.jsp" />
-			<%-- </c:if> --%>
+	<%-- ログイン時だけサイドバーを表示 --%>
+	<c:if test="${not empty teacher}">
+		<c:import url="/menu.jsp" />
+	</c:if>
 
-		<div class="contents">
-			${ param.body}
-		</div>
+	<%-- teacherが空(＝ログインしていない)時 body部分を画面いっぱいにする --%>
+	<div class="contents <c:if test='${empty teacher}'>full-width</c:if>">
+		${ param.body}
+	</div>
 
-		<%-- 見た目を優先してsmallタグに変更 --%>
-		<div class="footer">
-			<small>© 2025 TIC</small><br>
-			<small>大原学園</small>
-		</div>
-	</body>
+	<div class="footer">
+		<small>© 2025 TIC</small><br>
+		<small>大原学園</small>
+	</div>
+</body>
 </html>

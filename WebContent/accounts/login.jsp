@@ -6,19 +6,20 @@
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-<c:import url="/base1.jsp">
+<c:import url="/base.jsp">
   <c:param name="body">
-	<main class="form-signin" style="max-width: 500px; padding-top: 40px; margin-left: 190; padding-left: 0;">
-      <form method="post" action="${pageContext.request.contextPath}/accounts/login">
+    <main class="form-signin" style="max-width: 500px; padding-top: 40px; margin: 0 auto; padding: 2rem;">
+      <form id="loginForm" method="post" action="/accounts/login">
         <h1 class="h3 mb-3 fw-bold text-center">ログイン</h1>
+        <li style="list-style: none;">${ errorMessage }</li>
 
         <div class="form-floating mb-2">
-          <input type="text" class="form-control" id="floatingInput" name="userId" placeholder="id">
+          <input type="text" class="form-control" id="floatingInput" name="userId" value="${ login }">
           <label for="floatingInput">ID</label>
         </div>
 
         <div class="form-floating mb-2">
-          <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password123">
+          <input type="password" class="form-control" id="floatingPassword" name="password">
           <label for="floatingPassword">パスワード</label>
         </div>
 
@@ -38,6 +39,38 @@
       document.getElementById('showPassword').addEventListener('change', function () {
         const pw = document.getElementById('floatingPassword');
         pw.type = this.checked ? 'text' : 'password';
+      });
+
+      // フォーム送信前にバリデーション
+      document.getElementById('loginForm').addEventListener('submit', function (e) {
+        const userId = document.getElementById('floatingInput');
+        const password = document.getElementById('floatingPassword');
+
+        // 以前のエラーを削除
+        document.querySelectorAll('.error-msg').forEach(el => el.remove());
+
+        let hasError = false;
+
+        if (userId.value.trim() === '') {
+          showError(userId, 'このフィールドを入力してください。');
+          hasError = true;
+        }
+
+        if (password.value.trim() === '') {
+          showError(password, 'このフィールドを入力してください。');
+          hasError = true;
+        }
+
+        if (hasError) {
+          e.preventDefault(); // 送信を中止
+        }
+
+        function showError(inputElement, message) {
+          const error = document.createElement('div');
+          error.className = 'error-msg text-danger mt-1';
+          error.textContent = message;
+          inputElement.parentNode.appendChild(error);
+        }
       });
     </script>
   </c:param>
