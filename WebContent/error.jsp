@@ -7,7 +7,6 @@
 <c:param name="body">
 
 <p>エラーが発生しました</p>
-<p>詳細はコンソールを確認</p>
 
 </c:param>
 
