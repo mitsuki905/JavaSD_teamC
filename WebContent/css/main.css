@@ -1,0 +1,47 @@
+body {
+	font-family: sans-serif;
+}
+
+.header {
+	background: linear-gradient(to right, #f0f8ff, #e6f0ff);
+	padding: 15px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header h1 {
+	margin: 0;
+	font-size: 24px;
+	color: #333;
+}
+
+.user-info {
+	font-size: 14px;
+	text-align: right;
+}
+
+.user-info span {
+	margin-right: 10px;
+}
+
+.user-info a {
+	color: #007bff;
+	text-decoration: none;
+}
+
+.user-info a:hover {
+	text-decoration: underline;
+}
+
+.footer {
+	width: 100%;
+	position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+	text-align: center;
+	background-color: #f0f0f0;
+}
+
+.footer .container p {
+	text-align: center;
+}
