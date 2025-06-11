@@ -1,60 +1,56 @@
-/* base.jsp */
-<section>
+/* baseファイルのCSS */
 
-	body {
-		font-family: sans-serif;
-	}
+body {
+	font-family: sans-serif;
+}
 
-	.header {
-		background: linear-gradient(to right, #f0f8ff, #e6f0ff);
-		padding: 15px 20px;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
+.header {
+	background: linear-gradient(to right, #f0f8ff, #e6f0ff);
+	padding: 15px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
 
-	.header h1 {
-		margin: 0;
-		font-size: 24px;
-		color: #333;
-	}
+.header h1 {
+	margin: 0;
+	font-size: 24px;
+	color: #333;
+}
 
-	.user-info {
-		font-size: 14px;
-		text-align: right;
-	}
+.user-info {
+	font-size: 14px;
+	text-align: right;
+}
 
-	.user-info span {
-		margin-right: 10px;
-	}
+.user-info span {
+	margin-right: 10px;
+}
 
-	.user-info a {
-		color: #007bff;
-		text-decoration: none;
-		text-decoration: underline;
-	}
+.user-info a {
+	color: #007bff;
+	text-decoration: none;
+	text-decoration: underline;
+}
 
-	.footer {
-		width: 100%;
-		position: absolute;
-		bottom: 0;
-		text-align: center;
-		background-color: #f0f0f0;
-	}
-</section>
+.footer {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	background-color: #f0f0f0;
+}
 
-/* menu.jsp*/
-<section>
-	.sidebar {
-		position: fixed;
-		width: 20%;
-		padding: 20px;
-		border-right: 1px solid #ebe8e8;
-		height: 100vh;
-		box-sizing: border-box;
-	}
+/* menuのCSS */
+.sidebar {
+	position: fixed;
+	width: 20%;
+	padding: 20px;
+	border-right: 1px solid #ebe8e8;
+	height: 100vh;
+	box-sizing: border-box;
+}
 
-	ul {
-		list-style: none;
-	}
-</section>
+ul {
+	list-style: none;
+}
