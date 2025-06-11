@@ -2,8 +2,17 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
+	.sidebar {
+		position: fixed;
+	    width: 20%;
+	    padding: 20px;
+	    border-right: 1px solid #ebe8e8;
+	    height: 100vh;
+	    box-sizing: border-box;
+	}
+
 	ul {
-	list-style: none;
+		list-style: none;
 	}
 </style>
 
