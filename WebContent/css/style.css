@@ -7,6 +7,11 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+
+}
+
+body h2 {
+	margin-left: 21%;
 }
 
 .header {
@@ -50,13 +55,15 @@ body {
 /* menuのCSS */
 .sidebar {
 	position: fixed;
+	top: 60px;
+	left: 0;
 	width: 20%;
 	padding: 20px;
 	border-right: 1px solid #ebe8e8;
-	height: 100vh;
+	height: calc(100vh - 60px);
 	box-sizing: border-box;
-	position: relative;
 }
+
 
 ul {
 	list-style: none;
