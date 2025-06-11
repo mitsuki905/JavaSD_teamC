@@ -8,17 +8,17 @@
 
 <c:import url="/base1.jsp">
   <c:param name="body">
-    <main class="form-signin w-100 m-auto" style="max-width: 300px; padding-top: 40px;">
-      <form method="post" action="${pageContext.request.contextPath}/login">
+    <main class="form-signin w-100 m-auto" style="max-width: 500px; padding-top: 40px;">
+      <form method="get" action="${pageContext.request.contextPath}/main">
         <h1 class="h3 mb-3 fw-bold text-center">ログイン</h1>
 
         <div class="form-floating mb-2">
-          <input type="text" class="form-control" id="floatingInput" name="userId" placeholder="admin">
+          <input type="text" class="form-control" id="floatingInput" name="userId" placeholder="ID" >
           <label for="floatingInput">ID</label>
         </div>
 
         <div class="form-floating mb-2">
-          <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password123">
+          <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
           <label for="floatingPassword">パスワード</label>
         </div>
 
@@ -29,7 +29,7 @@
           </label>
         </div>
 
-        <button class="btn btn-primary w-100 py-2" type="submit">ログイン</button>
+        <button class="btn btn-primary w-100 py-2" style="max-width: 200px; type="submit">ログイン</button>
 
 
       </form>
