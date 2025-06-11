@@ -64,6 +64,13 @@ body {
 	flex-direction: column;
 	transition: transform 0.2s;
 }
+.box-container {
+	display: flex;
+	gap: 30px; /* ボックス間の余白 */
+	justify-content: center; /* 横中央寄せ */
+	padding: 40px 0;
+}
+
 
 /* 共通部分(ヘッダー) */
 .header {
