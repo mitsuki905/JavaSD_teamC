@@ -9,7 +9,7 @@ import bean.Teacher;
 import dao.TeacherDao;
 import tool.CommonServlet;
 
-@WebServlet(urlPatterns = { "/login" })
+@WebServlet(urlPatterns = { "/accounts/login" })
 public class LoginController extends CommonServlet {
 
 	@Override
@@ -35,10 +35,11 @@ public class LoginController extends CommonServlet {
 
 		if (teacher != null) {
             // 認証成功時：ユーザー情報をセッションに保存
-            session.setAttribute("teacherr", teacher);
+            session.setAttribute("teacher", teacher);
 
             // ログイン成功後、メイン画面（/main）にリダイレクト（ブラウザにURLを再要求させる）
             resp.sendRedirect(req.getContextPath() + "/main");
+
 
         } else {
             // 認証失敗時：入力されたログイン名を再表示用にセット

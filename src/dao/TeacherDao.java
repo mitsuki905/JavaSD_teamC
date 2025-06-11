@@ -29,9 +29,7 @@ public class TeacherDao extends DAO {
 			    school.setCd(rs1.getString("cd"));
 			    school.setName(rs1.getString("name"));
 			}
-			else{
-				return null;
-			}
+
 
 			/*データベースから名前が一致しているデータがあるか
 			 * 調べて一致した名前があればオブジェクトを作る。
@@ -73,7 +71,7 @@ public class TeacherDao extends DAO {
 
 			return null;
 		}
-		else if(teacher.getPassword() == password){
+		else if(teacher.getPassword().equals(password)){
 
 		// ｄｂ上にあるログインする人の情報を返す
 			return teacher;

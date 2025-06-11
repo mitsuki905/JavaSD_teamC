@@ -6,7 +6,7 @@
 
 	<c:param name="body">
 
-		<form action="login" method="post">
+		<form action="/JavaSD/accounts/login" method="post">
 
       			<%-- 学生番号の入力（必須） --%>
       			<label>id：</label>
