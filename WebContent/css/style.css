@@ -13,8 +13,23 @@ body {
 
 /* メニューページのボックス */
 .box_red {
-
+	width: 160px;
+  height: 120px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  line-height: 1.5;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: transform 0.2s;
 }
+
 .box_green {
 
 }
