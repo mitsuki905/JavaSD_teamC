@@ -14,15 +14,11 @@ body {
 /* メニューページのボックス */
 .box-container {
     display: grid;
-	grid-template-columns: repeat(3, 300px); /* 3列固定幅 */
-	gap: 30px; /* ボックス間の余白 */
-	justify-content: center; /* 中央に寄せる */
+	grid-template-columns: repeat(3, 300px);
+	gap: 30px;
+	justify-content: center;
 	margin-top: 50px;
     }
-
-/* .text {
-	font-color: #000000;
-} */
 
 .box_red,
 .box_green,
@@ -95,6 +91,7 @@ body {
 	height: calc(100vh - 60px);
 	box-sizing: border-box;
 }
+
 
 ul {
 	list-style: none;
