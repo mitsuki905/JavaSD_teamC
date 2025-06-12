@@ -8,7 +8,7 @@ import java.util.List;
 
 import bean.School;
 import bean.Subject;
-import bean.TestListSubject; // TestListStudentではなくTestListSubjectをインポート
+import bean.TestListSubject;
 
 public class TestListSubjectDao extends DAO {
 
@@ -42,7 +42,7 @@ public class TestListSubjectDao extends DAO {
             if (rSet.getObject("TEST_NO") != null) {
                 int testNo = rSet.getInt("TEST_NO");
                 int point = rSet.getInt("POINT");
-                // Beanに追加したputPointメソッドを使って、Mapに値を追加
+                // テストの結果を追加
                 currentStudent.putPoint(testNo, point);
             }
         }
@@ -53,16 +53,16 @@ public class TestListSubjectDao extends DAO {
      * 学生のテストリストを検索する。型不一致を修正済み。
      */
     public List<TestListSubject> filter(int entYear, String classNum, Subject subject, School school) throws Exception {
-        // 戻り値の型をTestListSubjectのリストに修正
-        List<TestListSubject> list = new ArrayList<>();
 
+        List<TestListSubject> list = new ArrayList<>();
+        //SQLを結合する
         StringBuilder sql = new StringBuilder(baseSql);
         List<String> whereClauses = new ArrayList<>();
         List<Object> params = new ArrayList<>();
 
         whereClauses.add("s.SCHOOL_CD = ?");
         params.add(school.getCd());
-
+        //条件に応じてWHERE句を組み立てる
         if (entYear != 0) {
             whereClauses.add("s.ENT_YEAR = ?");
             params.add(entYear);
@@ -75,13 +75,13 @@ public class TestListSubjectDao extends DAO {
             whereClauses.add("t.SUBJECT_CD = ?");
             params.add(subject.getCd());
         }
-
+        //最終的にここで組み立てを行う
         if (!whereClauses.isEmpty()) {
             sql.append(" WHERE ").append(String.join(" AND ", whereClauses));
         }
 
         sql.append(" ORDER BY s.ENT_YEAR, s.CLASS_NUM, s.NO");
-
+        //DBに接続
         try (
             Connection con = getConnection();
             PreparedStatement st = con.prepareStatement(sql.toString())
