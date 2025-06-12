@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 import bean.School;
 
@@ -16,5 +17,6 @@ public class ClassNumDao extends DAO {
 		} catch (Exception e){
 
 		}
+		return null;
 	}
 }
