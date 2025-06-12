@@ -64,7 +64,7 @@
 
                     <%-- ボタンエリア --%>
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-secondary">登録して終了</button><br><br>
+                        <button type="submit" class="btn btn-secondary">登録して終了</button><br>
                         <a href="${pageContext.request.contextPath}/student/student_list" class="ms-3">戻る</a>
                     </div>
 
