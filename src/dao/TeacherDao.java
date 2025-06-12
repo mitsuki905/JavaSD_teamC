@@ -14,27 +14,17 @@ public class TeacherDao extends DAO {
 
 		Teacher teacher = null;
 		School school = null;
+		SchoolDao dao = new SchoolDao();
+
 
 		try {
 			Connection con = getConnection();
-
-			//データベースから学校情報を持ってきてSchoolオブジェクトを作る
-			String sqlschool = "SELECT * FROM SCHOOL";
-
-			PreparedStatement st1 = con.prepareStatement(sqlschool);
-			ResultSet rs1 = st1.executeQuery();
-
-			if (rs1.next()) {
-			    school = new School();
-			    school.setCd(rs1.getString("cd"));
-			    school.setName(rs1.getString("name"));
-			}
 
 
 			/*データベースから名前が一致しているデータがあるか
 			 * 調べて一致した名前があればオブジェクトを作る。
 			 */
-			String sql = "SELECT * FROM TEACHER WHERE ID =?";
+			String sql = "SELECT * FROM TEACHER WHERE ID = ?";
 
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1,id);
@@ -46,6 +36,9 @@ public class TeacherDao extends DAO {
 				teacher.setId(rs.getString("id"));
 				teacher.setPassword(rs.getString("password"));
 				teacher.setName(rs.getString("name"));
+				// teacherにあるschool_cdから学校をget関数でインスタンス化
+				school = dao.get(rs.getString("school_cd"));
+
 				teacher.setSchool(school);
 
 			}
