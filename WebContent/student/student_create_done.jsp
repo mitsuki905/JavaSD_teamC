@@ -1,7 +1,7 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="../css/style.css">
-<c:import url="/base.jsp">
+<c:import url="/base1.jsp">
 
 	<c:param name="body">
 
@@ -10,7 +10,7 @@
 
 		<br><br>
 		<a href="${pageContext.request.contextPath}/student_create">戻る</a>
-		<a href="${pageContext.request.contextPath}/studebt/student_list" class="link-spacing">学生一覧</a>
+		<a href="${pageContext.request.contextPath}/studebt/student_list" class="link-spacing" >学生一覧</a>
 	</c:param>
 
 </c:import>
