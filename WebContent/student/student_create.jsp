@@ -15,7 +15,7 @@
 
 		<%-- フォーム本体 --%>
 		<div class="card-body">
-			<form action="【フォームの送信先URL】" method="post">
+			<form action="/student/student_create_done" method="post">
 
 				<%-- 入学年度 --%>
 				<div class="mb-3">
@@ -37,14 +37,14 @@
 				<div class="mb-3">
 					<label for="studentId" class="form-label">学生番号</label> <input
 						type="text" class="form-control" id="studentId" name="studentId"
-						placeholder="学生番号を入力してください">
+						placeholder="学生番号を入力してください" required>
 				</div>
 
 				<%-- 氏名 --%>
 				<div class="mb-3">
 					<label for="student_name" class="form-label">氏名</label> <input
 						type="text" class="form-control" id="student_name"
-						name="class_num" placeholder="氏名を入力してください">
+						name="class_num" placeholder="氏名を入力してください" required>
 				</div>
 
 				<%-- クラス --%>
@@ -64,14 +64,12 @@
 				<div class="mt-4">
 					<button type="submit" class="btn btn-secondary">登録して終了</button>
 					<br>
-					<br> <a
-						href="${pageContext.request.contextPath}/student/student_list"
-						class="ms-3">戻る</a>
+					<br> <a href="${pageContext.request.contextPath}/main"class="ms-3">戻る</a>
 				</div>
 
 			</form>
 		</div>
-	</div>
+
 
 	</c:param>
 </c:import>
