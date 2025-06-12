@@ -6,13 +6,6 @@
 <head>
 	<title>得点管理システム</title>
 	<link rel="stylesheet" href="css/style.css">
-	<c:if test="${empty session_user}">
-		<style>
-			.contents {
-				margin-left: 0 !important;
-			}
-		</style>
-	</c:if>
 </head>
 
 <body>
@@ -21,7 +14,7 @@
 
 		<c:if test="${not empty teacher}">
 			<div class="user-info">
-				<span>${teacher} 様</span>
+				<span>${teacher.name} 様</span>
 				<a href="${pageContext.request.contextPath}/accounts/logout">ログアウト</a>
 			</div>
 		</c:if>

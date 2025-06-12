@@ -4,24 +4,26 @@ body {
 	margin: 0;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .contents {
-	margin-left: 21%;
+	margin-left: 20%;
 	padding: 20px;
 	box-sizing: border-box;
+	width: 80%;
 }
 
 /* ログイン画面用：sidebarなしで全幅表示 */
 .contents.full-width {
 	margin-left: 0;
+	width: 100%;
 }
 
-/* メニューページのボックス */
+/* メニューページ(main.jsp)のボックス */
 .box-container {
     display: grid;
-	grid-template-columns: repeat(3, 300px);
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 	gap: 30px;
 	justify-content: center;
 	margin-top: 50px;
@@ -30,7 +32,6 @@ body {
 .box_red,
 .box_green,
 .box_blue {
-	width: 250px;
 	height: 120px;
 	color: black;
 	font-weight: bold;
@@ -52,6 +53,13 @@ body {
 .box_green { background-color: #b7ffb7; }
 .box_blue { background-color: #d6c4f0; }
 
+/* リンク間の空欄(student_create.jsp) */
+.link-spacing {
+  margin-left: 2em;
+}
+
+
+/*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  */
 
 /* 共通部分(ヘッダー) */
 .header {
@@ -61,6 +69,7 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	position: relative;
+	z-index: 10;
 }
 
 .header h1 {
@@ -86,27 +95,55 @@ body {
 /* 共通部分(メニュー) */
 .sidebar {
 	position: fixed;
-	top: 60px;
+	top: 71px;
 	left: 0;
 	width: 20%;
 	padding: 20px;
 	border-right: 1px solid #ebe8e8;
-	height: calc(100vh - 60px);
+	height: calc(100vh - 71px);
 	box-sizing: border-box;
+	background-color: #fff;
 }
 
 ul {
 	list-style: none;
+    padding-left: 0;
 }
 
 /* 共通部分(フッター) */
 .footer {
 	width: 100%;
-	position: absolute;
+    position: relative;
+    margin-top: auto;
 	bottom: 0;
 	text-align: center;
 	background-color: #f0f0f0;
+    padding: 10px 0;
 }
 
 
+/* 追加：レスポンシブ対応のためのメディアクエリ */
+@media (max-width: 992px) {
+    /* タブレットサイズになったらサイドバーを細くする */
+    .sidebar {
+        width: 15%;
+    }
+    .contents {
+        width: 85%;
+        margin-left: 15%;
+    }
+}
 
+@media (max-width: 768px) {
+    /* スマホサイズになったらサイドバーを非表示にし、コンテンツを全幅にする */
+    .sidebar {
+        display: none;
+    }
+    .contents {
+        width: 100%;
+        margin-left: 0;
+    }
+    .header h1 {
+        font-size: 20px;
+    }
+}
