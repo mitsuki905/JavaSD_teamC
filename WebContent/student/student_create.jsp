@@ -26,6 +26,7 @@
 							<option value="${year}"<c:if test="${year == entYear}">selected</c:if>>${year}</option>
 						</c:forEach>
 					</select>
+
 				</div>
 
 				<%-- 学生番号 --%>
@@ -44,8 +45,8 @@
 
 				<%-- クラス --%>
 				<div class="mb-3">
-					<label for="class" class="form-label">クラス</label> <select
-						class="form-select" id="class_num" name="class_num">
+					<label for="class" class="form-label">クラス</label>
+					<select class="form-select" id="class_num" name="class_num">
 						<c:forEach var="classItem" items="${classList}">
 							<option value="${classItem.classNum}"
 								<c:if test="${classItem.classNum == classNum}">selected</c:if>>
