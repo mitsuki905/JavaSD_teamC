@@ -11,6 +11,7 @@ import bean.Subject;
 
 public class SubjectDao extends DAO {
 
+// 指定した科目を取得する関数
 	public Subject get(String cd,School school){
 		Subject subject =null;
 
@@ -39,7 +40,7 @@ public class SubjectDao extends DAO {
 			}return subject;
 	}
 
-
+//  科目をリスト型で返す
 	public List<Subject> filter(School school) {
 	    List<Subject> list = new ArrayList<>();
 
@@ -64,9 +65,7 @@ public class SubjectDao extends DAO {
 	    return list;
 	}
 
-
-
-
+//	科目追加　科目更新
 	public boolean save(Subject subject)  {
 		boolean flag = false;
 		try (Connection con = getConnection()) {
@@ -104,9 +103,9 @@ public class SubjectDao extends DAO {
 		return flag;
 	}
 
+//	科目削除
 	public boolean delete(Subject subject) {
 		boolean flag = false;
-		Subject subget = get(subject.getCd(), subject.getSchool());
 
 		try (Connection con = getConnection()){
 			String sql = "DELETE * FROM SUBJECT WHERE CD = ? ";
