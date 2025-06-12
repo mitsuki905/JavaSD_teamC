@@ -10,23 +10,23 @@ import bean.Student;
 
 public class StudentDao extends DAO {
 
-	
+
 	public Student get(String no){
-		
+
 		Student student = null;
 		School school = null;
-		
-		
+
+
 		try {
 			Connection con = getConnection();
 			String sql = "select * from STUDENT where NO = ?";
-			
+
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, no);
 			ResultSet rs = st.executeQuery();
-			
+
 			if(rs.next()){
-				
+
 				student = new Student();
 				student.setNo(rs.getString("no"));
 				student.setName(rs.getString("name"));
@@ -38,20 +38,21 @@ public class StudentDao extends DAO {
 			else {
 				return null;
 			}
-			
-			
+
+
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		
+
 		return student;
 	}
-	
-	public List<Student> filter(School school, int entYear, String classNum, boolean isAttend) {
-		
-		List list = 
-		
+
+
+	public List<Student> insertfilter(School school, int entYear, String classNum, boolean isAttend) {
+
+
+
 	}
-	
+
 }
