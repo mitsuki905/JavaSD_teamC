@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 import bean.School;
 import bean.Student;
@@ -34,10 +35,9 @@ public class StudentDao extends DAO {
 				student.setisAttend(rs.getBoolean("isattend"));
 				student.setSchool(school);
 			}
-			
-			
-			
-			
+			else {
+				return null;
+			}
 			
 			
 		} catch (Exception e) {
@@ -45,6 +45,12 @@ public class StudentDao extends DAO {
 			e.printStackTrace();
 		}
 		
+		return student;
+	}
+	
+	public List<Student> filter(School school, int entYear, String classNum, boolean isAttend) {
+		
+		List list = 
 		
 	}
 	
