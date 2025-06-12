@@ -18,7 +18,7 @@ public class TestListSubjectDao extends DAO {
                          + "LEFT JOIN TEST t ON s.NO = t.STUDENT_NO AND s.SCHOOL_CD = t.SCHOOL_CD";
 
     /**
-     * ResultSetをTestListSubjectのリストに変換する。バグを修正済み。
+     * ResultSetをTestListSubjectのリストに変換する。
      */
     private List<TestListSubject> postFilter(ResultSet rSet) throws Exception {
         List<TestListSubject> list = new ArrayList<>();
@@ -50,7 +50,7 @@ public class TestListSubjectDao extends DAO {
     }
 
     /**
-     * 学生のテストリストを検索する。型不一致を修正済み。
+     * 学生のテストリストを検索する。
      */
     public List<TestListSubject> filter(int entYear, String classNum, Subject subject, School school) throws Exception {
 
