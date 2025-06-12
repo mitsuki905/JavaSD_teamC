@@ -48,14 +48,7 @@
 				</div>
 
 				<%-- クラス --%>
-				<!-- <div class="mb-3">
-                        <label for="class" class="form-label">クラス</label>
-                        <select class="form-select" id="class" name="classId">
-                            <option value="101" selected>101</option>
-                            <option value="102">102</option>
-                            <option value="103">103</option>
-                        </select>
-                    </div> -->
+
 				<div class="mb-3">
 					<label for="class" class="form-label">クラス</label> <select
 						class="form-select" id="class_num" name="class_num">
