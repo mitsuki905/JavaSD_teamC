@@ -10,7 +10,7 @@ import tool.CommonServlet;
  * トップページ（メイン画面）を表示するコントローラ。
  * URLパターン /main にマッピングされている。
  */
-@WebServlet(urlPatterns = { "/main/main" })
+@WebServlet(urlPatterns = { "/main" })
 public class IndexController extends CommonServlet {
 
     @Override

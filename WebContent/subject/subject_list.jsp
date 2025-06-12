@@ -7,6 +7,33 @@
 
 		<h2 style="background-color: #f0f0f0;">　科目管理</h2>
 
+		<div class="text-end mb-2">
+			<a href="${pageContext.request.contextPath}/subject/subject_update">新規登録</a>
+		</div>
+
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<%-- テーブルの型 --%>
+				<thead>
+					<tr>
+						<th>科目コード</th>
+						<th>科目名</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<%-- Java側から渡された subject リストをループ処理 --%>
+					<c:forEach var="subject" items="${subject}">
+						<tr>
+							<td>${subject.entYear}</td>
+							<td>${subject.no}</td>
+							<td><a href="${pageContext.request.contextPath}/subject/subject_update">変更</a></td>
+							<td><a href="${pageContext.request.contextPath}/subject/subject_delete">削除</a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 
 	</c:param>
 
