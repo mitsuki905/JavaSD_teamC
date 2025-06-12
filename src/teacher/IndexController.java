@@ -15,7 +15,7 @@ public class IndexController extends CommonServlet {
 
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        req.getRequestDispatcher("/main.jsp").forward(req, resp);
+        req.getRequestDispatcher("/main/main.jsp").forward(req, resp);
     }
 
     @Override

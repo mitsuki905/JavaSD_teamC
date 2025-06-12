@@ -10,7 +10,7 @@
   <c:param name="body">
   	<%-- ログインフォームの適応範囲 --%>
     <main class="form-signin" style="max-width: 500px; padding-top: 40px; margin: 0 auto; padding: 2rem;">
-      <form id="loginForm" method="post" action="/accounts/login">
+      <form id="loginForm" method="post" action="/JavaSD/accounts/loginexe">
 
         <h1 class="h3 mb-3 fw-bold text-center" style="background-color: #f0f0f0;">ログイン</h1>
         <ul>

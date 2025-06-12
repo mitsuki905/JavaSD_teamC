@@ -39,7 +39,7 @@ public class LoginExecuteController extends CommonServlet {
 	            session.setAttribute("teacher", teacher);
 
 	            // ログイン成功後、メイン画面（/main）にリダイレクト（ブラウザにURLを再要求させる）
-	            resp.sendRedirect(req.getContextPath() + "/main");
+	            resp.sendRedirect(req.getContextPath() + "/main/main");
 
 
 	        } else {
@@ -49,6 +49,7 @@ public class LoginExecuteController extends CommonServlet {
 	            // エラーメッセージをリクエストに追加（JSP側で表示用）
 	            req.setAttribute("errorMessage", "ログインに失敗しました。idまたはパスワードが正しくありません");
 
+	            System.out.println("error");
 	            // ログイン画面に戻る（入力ミスを修正して再試行させる）
 	            req.getRequestDispatcher("login.jsp").forward(req, resp);
 	        }
