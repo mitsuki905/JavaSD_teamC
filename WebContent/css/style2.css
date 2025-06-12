@@ -1,0 +1,101 @@
+/* ページ全体の基本設定 */
+body {
+    font-family: 'Helvetica Neue', 'Arial', 'Hiragino Sans', 'Meiryo', sans-serif;
+    background-color: #f0f2f5; /* 背景色 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* フォーム全体を囲むコンテナ */
+.login-container {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 450px;
+    overflow: hidden; /* 角丸を維持するため */
+}
+
+/* ① 見出し「ログイン」 */
+.login-header {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.login-header h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 22px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* フォーム本体部分 */
+.login-body {
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* ②, ③ 入力フィールド */
+.login-body input[type="text"],
+.login-body input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #dce4ec;
+    background-color: #f7fafc; /* 画像に合わせた薄い青色 */
+    border-radius: 6px;
+    box-sizing: border-box; /* paddingを含めて幅を100%にする */
+}
+
+/* 入力フィールドのプレースホルダー（入力前の薄い文字）のスタイル */
+.login-body input::placeholder {
+    color: #8a9cb1;
+}
+
+/* ④, ⑤ パスワード表示オプション */
+.form-options {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+/* ④ チェックボックス */
+.form-options input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+/* ⑤ 「パスワードを表示」ラベル */
+.form-options label {
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+}
+
+/* ⑥ ログインボタン */
+.login-body button {
+    width: 100%;
+    padding: 14px;
+    background-color: #007bff; /* 青色 */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease; /* ホバー時のアニメーション */
+}
+
+/* ボタンにカーソルを合わせた時の色の変化 */
+.login-body button:hover {
+    background-color: #0056b3;
+}
