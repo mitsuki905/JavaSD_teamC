@@ -11,7 +11,6 @@ public class SchoolDao extends DAO {
 	public School get(String no){
 		School school = null;
 
-
 		try{
 			Connection con = getConnection();
 			String sql = "SELECT * FROM SCHOOL WHERE CD = ?";
