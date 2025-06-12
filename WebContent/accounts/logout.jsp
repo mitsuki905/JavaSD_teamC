@@ -12,5 +12,4 @@
 		<a href="${pageContext.request.contextPath}/accounts/login">ログイン</a>
 
 	</c:param>
-
 </c:import>

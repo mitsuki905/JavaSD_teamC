@@ -1,16 +1,12 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
+<c:import url="/base.jsp">
 
-<c:import url="/base1.jsp">
 	<c:param name="body">
 
-
-            <%-- ヘッダー：学生情報登録 --%>
+	    <%-- ヘッダー：学生情報登録 --%>
 		<h2 style="background-color: #f0f0f0;">学生情報登録</h2>
 
 		<%-- フォーム本体 --%>
@@ -21,14 +17,13 @@
 				<div class="mb-3">
 					<label for="ent_year" class="form-label">入学年度</label>
 					<%--
-                            Java側で request.setAttribute("yearList", ...) のように渡された
-                            年リスト（yearList）をループして<option>を生成します。
-                        --%>
+	                      Java側で request.setAttribute("yearList", ...) のように渡された
+	                      年リスト（yearList）をループして<option>を生成します。
+	                 --%>
 					<select class="form-select" id="ent_year" name="ent_year">
 						<c:forEach var="year" items="${yearList}">
 							<%-- 編集画面などで初期値を選択状態にするためのif文 --%>
-							<option value="${year}"
-								<c:if test="${year == entYear}">selected</c:if>>${year}</option>
+							<option value="${year}"<c:if test="${year == entYear}">selected</c:if>>${year}</option>
 						</c:forEach>
 					</select>
 				</div>
@@ -48,7 +43,6 @@
 				</div>
 
 				<%-- クラス --%>
-
 				<div class="mb-3">
 					<label for="class" class="form-label">クラス</label> <select
 						class="form-select" id="class_num" name="class_num">
@@ -69,7 +63,6 @@
 
 			</form>
 		</div>
-
 
 	</c:param>
 </c:import>
