@@ -27,14 +27,16 @@
           <label for="floatingPassword">パスワード</label>
         </div>
 
-        <div class="form-check text-start my-3" style="">
+        <div class="form-check my-3 d-flex justify-content-center">
           <input class="form-check-input" type="checkbox" id="showPassword">
           <label class="form-check-label" for="showPassword">
             パスワードを表示
           </label>
         </div>
 
-        <button class="btn btn-primary w-100 py-2"  style="max-width: 200px; " type="submit">ログイン</button>
+        <div class="text-center">
+            <button class="btn btn-primary w-50 py-2" style="max-width: 300px;" type="submit">ログイン</button>
+        </div>
       </form>
     </main>
 
