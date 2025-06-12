@@ -51,7 +51,7 @@
 						</div>
 					</div>
 
-					<div class="col-md-2">
+					<div class="col-md-2 d-flex justify-content-end">
 						<button type="submit" class="btn btn-secondary">絞り込み</button>
 					</div>
 				</div>
