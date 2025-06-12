@@ -19,12 +19,16 @@
 
                     <%-- 入学年度 --%>
                     <div class="mb-3">
-                        <label for="enrollmentYear" class="form-label">入学年度</label>
-                        <select class="form-select" id="enrollmentYear" name="enrollmentYear">
-                            <option selected>---------</option>
-                            <option value="2024">2024</option>
-                            <option value="2023">2023</option>
-                            <option value="2022">2022</option>
+                        <label for="ent_year" class="form-label">入学年度</label>
+                        <%--
+                            Java側で request.setAttribute("yearList", ...) のように渡された
+                            年リスト（yearList）をループして<option>を生成します。
+                        --%>
+                        <select class="form-select" id="ent_year" name="ent_year">
+                            <c:forEach var="year" items="${yearList}">
+                                <%-- 編集画面などで初期値を選択状態にするためのif文 --%>
+                                <option value="${year}" <c:if test="${year == entYear}">selected</c:if>>${year}</option>
+                            </c:forEach>
                         </select>
                     </div>
 
@@ -60,7 +64,7 @@
 
                     <%-- ボタンエリア --%>
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-secondary">登録して終了</button><br>
+                        <button type="submit" class="btn btn-secondary">登録して終了</button><br><br>
                         <a href="${pageContext.request.contextPath}/student/student_list" class="ms-3">戻る</a>
                     </div>
 
