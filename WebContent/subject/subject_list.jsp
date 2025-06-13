@@ -23,16 +23,29 @@
 				</thead>
 				<tbody>
 					<%-- Java側から渡された subject リストをループ処理 --%>
-					<c:forEach var="subject" items="${subject}">
-							<input type="hidden" name="cd" value="${subject.cd}">
-							<input type="hidden" name="name" value="${subject.name}">
-						<tr>
-							<td>${subject.cd}</td>
-							<td>${subject.name}</td>
-							<td><a href="${pageContext.request.contextPath}/subject/subject_update">変更</a></td>
-							<td><a href="${pageContext.request.contextPath}/subject/subject_delete">削除</a></td>
-						</tr>
-					</c:forEach>
+					<form action="/subject/subject_update" method="post">
+						<c:forEach var="subject" items="${subject}">
+								<input type="hidden" name="cd" value="${subject.cd}">
+								<input type="hidden" name="name" value="${subject.name}">
+							<tr>
+								<td>${subject.cd}</td>
+								<td>${subject.name}</td>
+								<td><a href="${pageContext.request.contextPath}/subject/subject_update">変更</a></td>
+							</tr>
+						</c:forEach>
+					</form>
+
+					<form action="/subject/subject_delete" method="post">
+						<c:forEach var="subject" items="${subject}">
+								<input type="hidden" name="cd" value="${subject.cd}">
+								<input type="hidden" name="name" value="${subject.name}">
+							<tr>
+								<td>${subject.cd}</td>
+								<td>${subject.name}</td>
+								<td><a href="${pageContext.request.contextPath}/subject/subject_delete">削除</a></td>
+							</tr>
+						</c:forEach>
+					</form>
 				</tbody>
 			</table>
 		</div>

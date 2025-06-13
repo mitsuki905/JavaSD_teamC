@@ -79,40 +79,42 @@
 	      <p>該当する学生は見つかりませんでした</p>
 	    </c:if>
 
-		<div class="table-responsive">
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th>入学年度</th>
-						<th>クラス</th>
-						<th>学生番号</th>
-						<th>氏名</th>
-						<th>点数</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
+		<form action="test/test_" method="post">
+			<div class="table-responsive">
+				<table class="table table-striped table-hover">
+					<p>科目：${ subject.name }(${ subject.num }回)</p>
+					<thead>
+						<tr>
+							<th>入学年度</th>
+							<th>クラス</th>
+							<th>学生番号</th>
+							<th>氏名</th>
+							<th>点数</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="student" items="${students}">
+							<tr>
+								<td>${student.entyear}</td>
+								<input type="hidden" name="entyear" value="${entyear}">
+								<td>${student.no}</td>
+								<input type="hidden" name="no" value="${no}">
+								<td>${student.classNum}</td>
+								<input type="hidden" name="classNum" value="${classNum}">
+								<td>${student.name}</td>
+								<input type="hidden" name=name value="${name}">
+								<input type="text" name="point_${ 学生番号 }">
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 
-<%--
-				      <hr>
-				      商品名の表示
-				      <h3>${ product.name }</h3>
-
-				      商品説明の表示
-				      <p>${ product.description }</p>
-
-				      価格と在庫の表示
-				      <p>価格：￥${ product.price } / 在庫：${ product.stock }</p>
-
-
-
-				          <p>
-				            <a href="/Sample/main/detail?id=${product.id}">▶ 商品詳細</a>
-				          </p> --%>
-
-				</tbody>
-			</table>
-		</div>
+				<%-- ボタンエリア --%>
+				<div class="mt-4">
+					<button type="submit" class="btn btn-secondary">登録して終了</button>
+				</div>
+			</div>
 	</c:forEach>
 
 	</c:param>
