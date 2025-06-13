@@ -26,6 +26,7 @@ public class TestDao extends DAO {
      * テーブル構造の変更があった場合にこの部分のみを修正すれば済むようにしています。
      * カラム名には別名(AS)を付けて、ResultSetから取り出す際のキーを明確にしています。
      */
+
     private String baseSql = "SELECT "
                            + "  t.point, t.no as test_no, "
                            + "  s.no as student_no, s.name as student_name, s.ent_year, s.class_num, "

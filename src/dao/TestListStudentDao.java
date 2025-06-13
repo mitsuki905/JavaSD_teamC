@@ -19,6 +19,7 @@ import bean.TestListStudent;
 
 public class TestListStudentDao extends DAO {
 
+
     /**
      * このDAOで使用するSQLの骨格部分。
      * testテーブルとsubjectテーブルをJOINして、科目名(subject_name)を取得できるようにしています。
