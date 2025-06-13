@@ -33,7 +33,6 @@
 					        <td><a href="${pageContext.request.contextPath}/subject/subject_delete?cd=${subject.cd}">削除</a></td>
 					    </tr>
 					</c:forEach>
-
 				</tbody>
 			</table>
 		</div>
