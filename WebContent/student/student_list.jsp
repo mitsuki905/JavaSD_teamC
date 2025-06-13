@@ -24,33 +24,51 @@
 							<option value="0">--------</option>
 							<c:forEach var="year" items="${yearList}">
 								<option value="${year}"
-									<c:if test="${year == fEntYear}">selected</c:if>>${year}</option>
+										<c:if test="${year == fEntYear}">selected</c:if>>${year}
+									</option>
 							</c:forEach>
 						</select>
 					</div>
 
 					<div class="col-md-3">
-						<label for="f_class_num" class="form-label">クラス</label> <select
-							name="f_class_num" id="f_class_num" class="form-select">
-							<option value="0">--------</option>
+						<label  for="f_class_num"
+							    class="form-label">クラス
+						</label>
+						<select name="f2"
+								id="f2"
+								class="form-select">
+								<option value="0">
+									--------
+								</option>
 							<c:forEach var="classItem" items="${classList}">
 								<option value="${classItem.classNum}"
-									<c:if test="${classItem.classNum == fClassNum}">selected</c:if>>${classItem.classNum}</option>
+										<c:if test="${classItem.classNum == fClassNum}">selected
+										</c:if>>${classItem.classNum}
+									</option>
 							</c:forEach>
 						</select>
 					</div>
 
 					<div class="col-md-2">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="is_attend"
-								id="is_attend" value="true"
-								<c:if test="${isAttend}">checked</c:if>> <label
-								class="form-check-label" for="is_attend">在学中</label>
+							<input  class="form-check-input"
+									type="checkbox"
+									name="f3"
+									id="f3"
+									value="true"
+							<c:if test="${isattend}">
+								checked
+							</c:if>>
+							<label class="form-check-label" for="is_attend">
+								在学中
+							</label>
 						</div>
 					</div>
 
 					<div class="col-md-2 d-flex justify-content-end">
-						<button type="submit" class="btn btn-secondary">絞り込み</button>
+						<button type="submit"
+								class="btn btn-secondary">絞り込み
+						</button>
 					</div>
 				</div>
 			</form>
@@ -78,15 +96,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<%-- Java側から渡された students リストをループ処理 --%>
 					<c:forEach var="student" items="${students}">
 						<tr>
-							<td>${student.entYear}</td>
+							<td>${student.entyear}</td>
+							<input type="hidden" name="entyear" value="${entyear}">
 							<td>${student.no}</td>
+							<input type="hidden" name="no" value="${no}">
 							<td>${student.name}</td>
 							<td>${student.classNum}</td>
-							<td><c:if test="${student.isAttend}">○</c:if> <c:if
-									test="${!student.isAttend}">×</c:if></td>
+							<td><c:if test="${student.isattend}">○</c:if>
+								<c:if test="${!student.isattend}">×</c:if></td>
 							<td><a href="${pageContext.request.contextPath}/student/student_update">変更</a></td>
 						</tr>
 					</c:forEach>

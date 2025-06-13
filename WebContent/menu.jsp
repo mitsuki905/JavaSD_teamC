@@ -10,7 +10,7 @@
 <div class="sidebar">
 	<nav>
     <ul>
-		<li><a href="${pageContext.request.contextPath}/main">メニュー</a></li>
+		<li><a href="${pageContext.request.contextPath}/main/main">メニュー</a></li>
 		<li><a href="${pageContext.request.contextPath}/student/student_list">学生管理</a></li>
 		<li>成績管理</li>
 		<li><a href="${pageContext.request.contextPath}/test/"

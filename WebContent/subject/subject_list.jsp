@@ -26,6 +26,8 @@
 					<c:forEach var="subject" items="${subject}">
 						<tr>
 							<td>${subject.cd}</td>
+							<input type="hidden" name="cd" value="${subject.cd}">
+							<input type="hidden" name="name" value="${subject.name}">
 							<td>${subject.name}</td>
 							<td><a href="${pageContext.request.contextPath}/subject/subject_update">変更</a></td>
 							<td><a href="${pageContext.request.contextPath}/subject/subject_delete">削除</a></td>
