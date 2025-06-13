@@ -38,18 +38,20 @@
 
 
 				<%-- 学生番号 --%>
+				<%-- 学生番号 --%>
 				<div class="mb-3">
-					<label for="studentId" class="form-label">
+					<%-- labelのfor属性をinputのidと一致させる --%>
+					<label for="no" class="form-label">
 						学生番号
 					</label>
-					<!-- エラーを出したときに入力されたを保持する -->
 					<input type="text"
 							class="form-control"
 							id="no"
 							name="no"
 							value="${no}"
 							placeholder="学生番号を入力してください"
-					required>
+							maxlength="10" <%-- 最大10文字に制限 --%>
+							required> <%-- 必須入力 --%>
 
 					<c:if test="${not empty error_student_id}">
 						<div class="text-warning mt-1">
@@ -57,6 +59,9 @@
 						</div>
 					</c:if>
 				</div>
+
+
+
 				<!-- エラーを出したときに入力されたを保持する -->
 				<%-- 氏名 --%>
 				<div class="mb-3">
@@ -69,6 +74,7 @@
 							name="name"
 							value="${name}"
 							placeholder="氏名を入力してください"
+							maxlength="30"
 					required>
 				</div>
 

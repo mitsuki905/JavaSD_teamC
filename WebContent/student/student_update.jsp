@@ -51,6 +51,7 @@
 						id="name"
 						name="name"
 						value="${student.name}"
+						maxlength="30"
 					required>
 				</div>
 

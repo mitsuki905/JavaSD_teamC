@@ -111,8 +111,10 @@
 				<tbody>
 					<c:forEach var="student" items="${students}">
 						<tr>
-							<td>${student.entYear}</td>
+							<td>${student.entyear}</td>
+							<input type="hidden" name="entyear" value="${entyear}">
 							<td>${student.no}</td>
+							<input type="hidden" name="no" value="${no}">
 							<td>${student.name}</td>
 							<td>${student.classNum}</td>
 							<td><c:if test="${student.isattend}">○</c:if>
