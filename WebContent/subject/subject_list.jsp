@@ -1,7 +1,7 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="../css/style.css">
-<c:import url="/base1.jsp">
+<c:import url="/base.jsp">
 
 	<c:param name="body">
 
@@ -23,16 +23,30 @@
 				</thead>
 				<tbody>
 					<%-- Java側から渡された subject リストをループ処理 --%>
-					<c:forEach var="subject" items="${subject}">
-					    <tr>
-					        <td>${subject.cd}</td>
-					        <td>${subject.name}</td>
-					        <%-- 変更リンクのURLにパラメータとして科目コード(cd)を追加 --%>
-					        <td><a href="${pageContext.request.contextPath}/subject/subject_update?cd=${subject.cd}">変更</a></td>
-					        <%-- 削除リンクも同様 --%>
-					        <td><a href="${pageContext.request.contextPath}/subject/subject_delete?cd=${subject.cd}">削除</a></td>
-					    </tr>
-					</c:forEach>
+					<form action="/subject/subject_update" method="post">
+						<c:forEach var="subject" items="${subject}">
+								<input type="hidden" name="cd" value="${subject.cd}">
+								<input type="hidden" name="name" value="${subject.name}">
+							<tr>
+								<td>${subject.cd}</td>
+								<td>${subject.name}</td>
+								<td><a href="${pageContext.request.contextPath}/subject/subject_update">変更</a></td>
+							</tr>
+						</c:forEach>
+					</form>
+
+					<form action="/subject/subject_delete" method="post">
+						<c:forEach var="subject" items="${subject}">
+								<input type="hidden" name="cd" value="${subject.cd}">
+								<input type="hidden" name="name" value="${subject.name}">
+							<tr>
+								<td>${subject.cd}</td>
+								<td>${subject.name}</td>
+								<td><a href="${pageContext.request.contextPath}/subject/subject_delete">削除</a></td>
+							</tr>
+						</c:forEach>
+					</form>
+
 				</tbody>
 			</table>
 		</div>
