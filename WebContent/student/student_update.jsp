@@ -23,7 +23,7 @@
 				<%-- 変更不可 --%>
 				<div class="mb-3">
 					<br> <label class="form-label">入学年度</label>
-					<p class="form-control-plaintext"readonly>${student.ent_year}</p>
+					<p class="form-control-plaintext" readonly>${student.ent_year}</p>
 				</div>
 
 				<%-- 学生番号 変更不可 --%>
@@ -57,11 +57,11 @@
 
 
 				<%-- 在学中チェックボックス (文字の右側に配置) --%>
-				<div class="form-check form-check-reverse mb-4">
-					<input class="form-check-input" type="checkbox" id="is_attend"
+				<div class="d-flex align-items-center mb-4">
+					<label for="is_attend" class="me-2">在学中</label> <input
+						class="form-check-input" type="checkbox" id="is_attend"
 						name="is_attend" value="true"
-						<c:if test="${student.isAttend}">checked</c:if>>
-					<label class="form-check-label" for="is_attend">在学中</label>
+						<c:if test="${student.isattend}">checked</c:if>>
 				</div>
 
 

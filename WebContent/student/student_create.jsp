@@ -25,7 +25,7 @@
 
 						<c:forEach var="year" items="${yearList}">
 							<option value="${year}"
-								<c:if test="${year == entYear}">selected</c:if>>${year}</option>
+								<c:if test="${year == ent_year}">selected</c:if>>${year}</option>
 						</c:forEach>
 					</select>
 					<!-- エラー表示 -->
@@ -73,7 +73,7 @@
 				<%-- ボタンエリア --%>
 				<div class="mt-4">
 					<button type="submit" class="btn btn-secondary" name="end">登録して終了</button>
-					<a href="${pageContext.request.contextPath}/main"
+					<a href="${pageContext.request.contextPath}/main/main"
 						class="d-block mt-2">戻る</a>
 				</div>
 			</form>
