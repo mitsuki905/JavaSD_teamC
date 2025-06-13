@@ -25,8 +25,8 @@
 					<%-- Java側から渡された subject リストをループ処理 --%>
 					<c:forEach var="subject" items="${subject}">
 						<tr>
-							<td>${subject.entYear}</td>
-							<td>${subject.no}</td>
+							<td>${subject.cd}</td>
+							<td>${subject.name}</td>
 							<td><a href="${pageContext.request.contextPath}/subject/subject_update">変更</a></td>
 							<td><a href="${pageContext.request.contextPath}/subject/subject_delete">削除</a></td>
 						</tr>
