@@ -22,7 +22,6 @@
 					name="cd"
 					value="${cd}"
 					readonly>
-				<input type="hidden" name="cd" value="${cd}" readonly>
 			</div>
 
 			<%-- 科目名 --%>

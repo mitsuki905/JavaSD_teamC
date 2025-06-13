@@ -26,7 +26,6 @@
 					maxlength="3"
 					placeholder="科目コードを入力してください"
 					required>
-				<input type="hidden" name="cd" value="${cd}" readonly>
 			</div>
 
 			<%-- 科目名 --%>
