@@ -15,12 +15,12 @@
 
 
 		<div class="bg-light p-3 rounded mb-4">
-			<form action="studentList.action" method="get">
+			<form action="/student/student_list" method="post">
 				<div class="row g-3 align-items-end">
 
 					<div class="col-md-3">
 						<label for="f_ent_year" class="form-label">入学年度</label> <select
-							name="f_ent_year" id="f_ent_year" class="form-select">
+							name="f1" id="f_ent_year" class="form-select">
 							<option value="0">--------</option>
 							<c:forEach var="year" items="${yearList}">
 								<option value="${year}"
@@ -31,7 +31,7 @@
 
 					<div class="col-md-3">
 						<label for="f_class_num" class="form-label">クラス</label> <select
-							name="f_class_num" id="f_class_num" class="form-select">
+							name="f2" id="f_class_num" class="form-select">
 							<option value="0">--------</option>
 							<c:forEach var="classItem" items="${classList}">
 								<option value="${classItem.classNum}"
@@ -42,9 +42,9 @@
 
 					<div class="col-md-2">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="is_attend"
+							<input class="form-check-input" type="checkbox" name="f3"
 								id="is_attend" value="true"
-								<c:if test="${isAttend}">checked</c:if>> <label
+								<c:if test="${isattend}">checked</c:if>> <label
 								class="form-check-label" for="is_attend">在学中</label>
 						</div>
 					</div>
@@ -85,8 +85,8 @@
 							<td>${student.no}</td>
 							<td>${student.name}</td>
 							<td>${student.classNum}</td>
-							<td><c:if test="${student.isAttend}">○</c:if> <c:if
-									test="${!student.isAttend}">×</c:if></td>
+							<td><c:if test="${student.isattend}">○</c:if> <c:if
+									test="${!student.isattend}">×</c:if></td>
 							<td><a href="${pageContext.request.contextPath}/student/student_update">変更</a></td>
 						</tr>
 					</c:forEach>
