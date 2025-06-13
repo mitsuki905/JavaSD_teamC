@@ -1,5 +1,6 @@
 package subject;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import bean.Subject;
 import dao.SubjectDao;
 import tool.CommonServlet;
 
+@WebServlet(urlPatterns = { "/subject/subject_update_execute" })
 public class SubjectUpdateExecuteController extends CommonServlet {
 
 	@Override
