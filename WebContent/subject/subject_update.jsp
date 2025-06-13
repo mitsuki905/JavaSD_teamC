@@ -9,7 +9,7 @@
 
 		<%-- フォーム本体 --%>
 		<div class="card-body">
-			<form action="${pageContext.request.contextPath}/subject/subject_create_done" method="post">
+			<form action="${pageContext.request.contextPath}/subject/subject_update_execute" method="post">
 			<br>
 
 			<%-- 科目コード --%>

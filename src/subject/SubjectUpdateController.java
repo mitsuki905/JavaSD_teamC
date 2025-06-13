@@ -17,6 +17,9 @@ public class SubjectUpdateController extends CommonServlet {
 		String name = req.getParameter("name");
 
 		req.setAttribute("cd", cd);
+		req.setAttribute("name", name);
+		
+
 
 	}
 
