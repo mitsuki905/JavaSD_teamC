@@ -67,7 +67,7 @@
 								<c:if test="${classItem.classNum == classNum}">selected</c:if>>${classItem.classNum}</option>
 						</c:forEach>
 					</select>
-					<%-- クラスの未選択エラーも表示する場合はここに同様に追加 --%>
+
 				</div>
 
 				<%-- ボタンエリア --%>
