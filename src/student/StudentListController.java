@@ -21,55 +21,68 @@ import tool.CommonServlet;
 public class StudentListController extends CommonServlet {
 
     @Override
-    public void get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, Exception {
+    protected void get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, Exception {
+        post(req, resp);
+    }
 
-        // --- 1. 準備 (常に実行) ---
+    @Override
+    protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+
+        req.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         School school = (School) session.getAttribute("school");
-
         StudentDao studentDao = new StudentDao();
         ClassNumDao classNumDao = new ClassNumDao();
 
-        // --- 2. 変数の初期化 ---
-        // ★★★★★ 最初は空のリストを用意する ★★★★★
         List<Student> students = new ArrayList<>();
-
         int fEntYear = 0;
         String fClassNum = "0";
-        boolean isAttend = false; // デフォルトはfalseにしておく
+        boolean isAttend = false;
 
-        // --- 3. 検索が実行されたかどうかを判断 ---
         String entYearStr = req.getParameter("f_ent_year");
-
-        // ★★★★★ f_ent_yearパラメータがあれば、検索が実行されたとみなす ★★★★★
         boolean isSearching = (entYearStr != null);
 
-        // --- 4. 検索が実行された場合のみ、DBに問い合わせる ---
         if (isSearching) {
-            // リクエストからパラメータを取得
-            String classNumStr = req.getParameter("f_class_num");
-            String isAttendStr = req.getParameter("is_attend");
+            String classNumStr = req.getParameter("f2");
+            String isAttendStr = req.getParameter("f3");
 
-            if (!entYearStr.isEmpty()) {
+            if (entYearStr != null && !entYearStr.isEmpty()) {
                 fEntYear = Integer.parseInt(entYearStr);
             }
             if (classNumStr != null && !classNumStr.isEmpty()) {
                 fClassNum = classNumStr;
             }
-            isAttend = (isAttendStr != null); // チェックボックスがONなら"true"、OFFならnull
+            isAttend = (isAttendStr != null);
 
-            // 条件に応じてDAOを呼び出し、studentsリストを上書きする
-            if (fEntYear != 0 && !fClassNum.equals("0")) {
-                students = studentDao.filter(school, fEntYear, fClassNum, isAttend);
-            } else if (fEntYear != 0) {
-                students = studentDao.filter(school, fEntYear, isAttend);
+            // ★★★★★ ここからロジックを修正 ★★★★★
+
+            if (fEntYear != 0) {
+                // 入学年度が指定されている場合 (クラス指定の有無で分岐)
+                if (!fClassNum.equals("0")) {
+                    // 入学年度とクラスの両方を指定
+                    // 呼び出し: filter(School, int, String, boolean) -> これはDAOに存在する
+                    students = studentDao.filter(school, fEntYear, fClassNum, isAttend);
+                } else {
+                    // 入学年度のみ指定
+                    // 呼び出し: filter(School, int, boolean) -> これはDAOに存在する
+                    students = studentDao.filter(school, fEntYear, isAttend);
+                }
             } else {
+                // 入学年度が指定されていない場合
+                // この場合、クラスが指定されていても無視し、在学フラグのみで絞り込む
+                // これにより、存在しないメソッドを呼び出すことを回避する
+
+                // (もしクラスのみで絞り込んだ場合にエラーメッセージを出したいならここに記述)
+                // if (!fClassNum.equals("0")) {
+                //     req.setAttribute("error", "クラスで絞り込む場合は、入学年度も選択してください。");
+                // }
+
+                // 呼び出し: filter(School, boolean) -> これはDAOに存在する
                 students = studentDao.filter(school, isAttend);
             }
+            // ★★★★★ 修正はここまで ★★★★★
         }
 
-        // --- 5. JSPに渡すデータをセット (常に実行) ---
-        // ドロップダウンリスト用のデータは常に必要
         List<Integer> yearList = new ArrayList<>();
         int currentYear = LocalDate.now().getYear();
         for (int i = currentYear - 10; i <= currentYear; i++) {
@@ -79,22 +92,11 @@ public class StudentListController extends CommonServlet {
 
         req.setAttribute("yearList", yearList);
         req.setAttribute("classList", classList);
-
-        // 検索結果（空 or データ入り）をセット
         req.setAttribute("students", students);
-
-        // 検索条件をフォームに維持するために値をセット
         req.setAttribute("fEntYear", fEntYear);
         req.setAttribute("fClassNum", fClassNum);
-        req.setAttribute("isAttend", isAttend);
+        req.setAttribute("isattend", isAttend);
 
-        // --- 6. JSPへフォワード ---
         req.getRequestDispatcher("/student/student_list.jsp").forward(req, resp);
-    }
-
-    @Override
-    protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-
-
     }
 }

@@ -15,7 +15,7 @@
 
 
 		<div class="bg-light p-3 rounded mb-4">
-			<form action="/student/student_list" method="post">
+			<form action="${pageContext.request.contextPath}/student/student_list" method="post">
 				<div class="row g-3 align-items-end">
 
 					<div class="col-md-3">
