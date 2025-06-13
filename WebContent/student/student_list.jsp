@@ -97,17 +97,20 @@
 				</thead>
 				<tbody>
 					<c:forEach var="student" items="${students}">
-						<tr>
-							<td>${student.entyear}</td>
-							<input type="hidden" name="entyear" value="${entyear}">
-							<td>${student.no}</td>
-							<input type="hidden" name="no" value="${no}">
-							<td>${student.name}</td>
-							<td>${student.classNum}</td>
-							<td><c:if test="${student.isattend}">○</c:if>
-								<c:if test="${!student.isattend}">×</c:if></td>
-							<td><a href="${pageContext.request.contextPath}/student/student_update">変更</a></td>
-						</tr>
+					    <tr>
+					        <td>${student.entyear}</td>
+					        <td>${student.no}</td>
+					        <td>${student.name}</td>
+					        <td>${student.classNum}</td>
+					        <td>
+					            <c:if test="${student.isattend}">○</c:if>
+					            <c:if test="${!student.isattend}">×</c:if>
+					        </td>
+					        <%-- 変更リンクのURLに、キーとなるentyearとnoをパラメータとして追加 --%>
+					        <td>
+					            <a href="${pageContext.request.contextPath}/student/student_update?entyear=${student.entyear}&no=${student.no}">変更</a>
+					        </td>
+					    </tr>
 					</c:forEach>
 				</tbody>
 			</table>
