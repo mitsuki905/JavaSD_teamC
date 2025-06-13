@@ -16,9 +16,12 @@ public class SubjectUpdateController extends CommonServlet {
 		String cd = req.getParameter("cd");
 		String name = req.getParameter("name");
 
+		System.out.println(cd);
 		req.setAttribute("cd", cd);
 		req.setAttribute("name", name);
-		
+
+		// 変更ページへフォワード ---
+		req.getRequestDispatcher("subject_update.jsp").forward(req, resp);
 
 
 	}

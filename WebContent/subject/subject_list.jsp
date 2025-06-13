@@ -24,11 +24,11 @@
 				<tbody>
 					<%-- Java側から渡された subject リストをループ処理 --%>
 					<c:forEach var="subject" items="${subject}">
+							<input type="hidden" name="cd" value="${subject.cd}">
+							<input type="hidden" name="name" value="${subject.name}">
 						<tr>
 							<td>${subject.cd}</td>
-							<input type="hidden" name="cd" value="${subject.cd}">
 							<td>${subject.name}</td>
-							<input type="hidden" name="name" value="${subject.name}">
 							<td><a href="${pageContext.request.contextPath}/subject/subject_update">変更</a></td>
 							<td><a href="${pageContext.request.contextPath}/subject/subject_delete">削除</a></td>
 						</tr>
