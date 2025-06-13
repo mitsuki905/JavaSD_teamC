@@ -46,6 +46,7 @@
 							</tr>
 						</c:forEach>
 					</form>
+
 				</tbody>
 			</table>
 		</div>
