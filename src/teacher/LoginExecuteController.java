@@ -36,6 +36,8 @@ public class LoginExecuteController extends CommonServlet {
 
 			if (teacher != null) {
 	            // 認証成功時：ユーザー情報をセッションに保存
+				Object school = teacher.getSchool();
+				session.setAttribute("school", school);
 	            session.setAttribute("teacher", teacher);
 
 	            // ログイン成功後、メイン画面（/main）にリダイレクト（ブラウザにURLを再要求させる）
