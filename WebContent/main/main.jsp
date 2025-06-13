@@ -19,7 +19,7 @@
 			</div>
 
 			<div class="box_blue">
-				<li><a href="${pageContext.request.contextPath}/subject">科目管理</a></li>
+				<li><a href="${pageContext.request.contextPath}/subject/subject_list">科目管理</a></li>
 			</div>
 		</div>
 

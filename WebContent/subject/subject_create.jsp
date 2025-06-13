@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
-<c:import url="/base1.jsp">
+<c:import url="/base.jsp">
 
 	<c:param name="body">
 
@@ -14,39 +14,41 @@
 			<form action="${pageContext.request.contextPath}/subject/subject_create_done" method="post">
 			<br>
 
-				<%-- 科目コード --%>
-				<div class="mb-3">
-					<label for="subjectCd" class="form-label">科目コード</label>
-					<input
-						type="text"
-						class="form-control"
-						id="subjectCd"
-						name="cd"
-						value="<c:out value='${cd}' />" <%-- 入力値を保持 --%>
-						placeholder="科目コードを入力してください"
-						required>
-				</div>
+			<%-- 科目コード --%>
+			<div class="mb-3">
+				<label for="subjectCd" class="form-label">科目コード</label>
+				<input
+					type="text"
+					class="form-control"
+					id="subjectCd"
+					name="cd"
+					value="${cd}"
+					maxlength="3"
+					placeholder="科目コードを入力してください"
+					required>
+			</div>
 
-				<%-- 科目名 --%>
-				<div class="mb-3">
-					<label for="subjectName" class="form-label">科目名</label>
-					<input
-						type="text"
-						class="form-control"
-						id="subjectName"
-						name="name"
-						value="<c:out value='${name}' />" <%-- 入力値を保持 --%>
-						placeholder="科目名を入力してください"
-						required>
-				</div>
+			<%-- 科目名 --%>
+			<div class="mb-3">
+				<label for="subjectName" class="form-label">科目名</label>
+				<input
+					type="text"
+					class="form-control"
+					id="subjectName"
+					name="name"
+					value="${name}"
+					maxlength="20"
+					placeholder="科目名を入力してください"
+					required>
+			</div>
 
-				<%-- ボタンエリア --%>
-				<div class="mt-4">
-					<button type="submit" class="btn btn-primary">登録</button>
-					<br>
-					<br>
-					<a href="${pageContext.request.contextPath}/subject/subject_list" class="ms-3">戻る</a>
-				</div>
+			<%-- ボタンエリア --%>
+			<div class="mt-4">
+				<button type="submit" class="btn btn-primary">登録</button>
+				<br>
+				<br>
+				<a href="${pageContext.request.contextPath}/subject/subject_list" class="ms-3">戻る</a>
+			</div>
 
 			</form>
 		</div>
@@ -62,8 +64,8 @@
 		    let hasError = false;
 
 		    if (subjectCd.value.trim().length !== 3) {
-		    	  showError(subjectCd, '科目コードは3文字で入力してください。');
-		    	  hasError = true;
+	    	  showError(subjectCd, '科目コードは3文字で入力してください。');
+	    	  hasError = true;
 		    }
 
 		    if (hasError) {
