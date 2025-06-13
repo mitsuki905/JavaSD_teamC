@@ -28,9 +28,9 @@
 					        <td>${subject.cd}</td>
 					        <td>${subject.name}</td>
 					        <%-- 変更リンクのURLにパラメータとして科目コード(cd)を追加 --%>
-					        <td><a href="${pageContext.request.contextPath}/subject/subject_update?cd=${subject.cd}">変更</a></td>
+					        <td><a href="${pageContext.request.contextPath}/subject/subject_update?cd=${subject.cd}&name=${subject.name}">変更</a></td>
 					        <%-- 削除リンクも同様 --%>
-					        <td><a href="${pageContext.request.contextPath}/subject/subject_delete?cd=${subject.cd}">削除</a></td>
+					        <td><a href="${pageContext.request.contextPath}/subject/subject_delete?cd=${subject.cd}&name=${subject.name}">削除</a></td>
 					    </tr>
 					</c:forEach>
 				</tbody>

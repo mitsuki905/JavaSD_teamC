@@ -28,6 +28,8 @@ public class SubjectUpdateExecuteController extends CommonServlet {
 //		画面から送られてきた値を取得する
 		String cd = req.getParameter("cd");
 		String name = req.getParameter("name");
+		System.out.println(cd);
+		System.out.println(name);
 
 //		beanを使って学生の情報をまとめる
 		Subject subject = new Subject();
