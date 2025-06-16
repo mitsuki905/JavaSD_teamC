@@ -14,7 +14,7 @@
 
 			<%-- 科目コード --%>
 			<div class="mb-3">
-				<label for="subjectCd" class="form-label">科目コード</label>]
+				<label for="subjectCd" class="form-label">科目コード</label>
 				<input
 					type="text"
 					class="form-control"
