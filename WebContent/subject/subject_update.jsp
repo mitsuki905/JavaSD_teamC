@@ -16,13 +16,14 @@
 			<div class="mb-3">
 				<label for="subjectCd" class="form-label">科目コード</label>
 				<input
-					type="text"
+					type="hidden"
 					class="form-control"
 					id="subjectCd"
 					name="cd"
 					value="${cd}"
 					readonly
 					required>
+					<p>${cd }</p>
 
 				<%-- 変更中に別画面から対象の科目が削除された場合のエラー表示 --%>
 				<ul>
