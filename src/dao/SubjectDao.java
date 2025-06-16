@@ -83,7 +83,7 @@ public class SubjectDao extends DAO {
 		        	flag = true;
 		        } else {
 		        //更新の処理
-		        	String sql = "UPDATE SUBJECT SET school = ? ,"
+		        	String sql = "UPDATE SUBJECT SET school_cd = ? ,"
 		        			+ " cd = ? ,"
 		        			+ " name= ? "
 		        			+ "WHERE CD = ?";
