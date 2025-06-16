@@ -49,7 +49,7 @@ public class LoginExecuteController extends CommonServlet {
 	            req.setAttribute("userId", id);
 
 	            // エラーメッセージをリクエストに追加（JSP側で表示用）
-	            req.setAttribute("errorMessage", "ログインに失敗しました。idまたはパスワードが正しくありません");
+	            req.setAttribute("errorMessage", "ログインに失敗しました。<br>idまたはパスワードが正しくありません");
 
 	            System.out.println("error");
 	            // ログイン画面に戻る（入力ミスを修正して再試行させる）
