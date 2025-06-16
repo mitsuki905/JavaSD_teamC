@@ -9,7 +9,7 @@
 
 		<%-- 科目登録画面に遷移 --%>
 		<div class="text-end mb-2">
-			<a href="${pageContext.request.contextPath}/subject/subject_update">新規登録</a>
+			<a href="${pageContext.request.contextPath}/subject/subject_create">新規登録</a>
 		</div>
 
 

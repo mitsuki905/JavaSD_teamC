@@ -2,6 +2,7 @@ package subject;
 
 import java.util.List;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import bean.Subject;
 import dao.SubjectDao;
 import tool.CommonServlet;
 
+@WebServlet(urlPatterns = { "/subject/subject_create" })
 public class SubjectCreateController extends CommonServlet {
 
 	@Override
