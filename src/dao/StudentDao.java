@@ -61,11 +61,46 @@ public class StudentDao extends DAO {
 		return student;
 	}
 
-// 生徒情報をリストで取得する
+
 	public List<Student> getList(){
+		
+		Connection con;
+		try {
+	
+			Student student = null;
+			School school = null;
+			List<Student> list = new ArrayList<>();
+			SchoolDao dao = new SchoolDao();
+			con = getConnection();
+			
+			String sql = basesql;
 
-// この文消していいよ
+			PreparedStatement st = con.prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+			
+			while(rs.next()){
+				
+				student = new Student();
+				student.setNo(rs.getString("no"));
+				student.setName(rs.getString("name"));
+				student.setEntYear(rs.getInt("ent_year"));
+				student.setClassNum(rs.getString("class_num").charAt(0));
+				student.setisAttend(rs.getBoolean("isattend"));
 
+				school = dao.get(rs.getString("school_cd"));
+
+				student.setSchool(school);
+				
+				list.add(student);
+				
+			}
+			return list;
+			
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 // データベースから取ってきたデータをリストにまとめる。
