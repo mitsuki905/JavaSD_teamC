@@ -106,9 +106,10 @@
 					            <c:if test="${student.isattend}">○</c:if>
 					            <c:if test="${!student.isattend}">×</c:if>
 					        </td>
-					        <%-- 変更リンクのURLに、キーとなるentyearとnoをパラメータとして追加 --%>
+					        <%-- 変更リンクのURLに、キーとなるentyear,no,name,numをパラメータとして追加 --%>
 					        <td>
-					            <a href="${pageContext.request.contextPath}/student/student_update?entyear=${student.entyear}&no=${student.no}">変更</a>
+					            <a href="${pageContext.request.contextPath}/student/student_update?
+					            		entyear=${student.entyear}&no=${student.no}&name=${student.name}&num=${student.num}">変更</a>
 					        </td>
 					    </tr>
 					</c:forEach>
