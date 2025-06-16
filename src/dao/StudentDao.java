@@ -26,7 +26,6 @@ public class StudentDao extends DAO {
 
 		SchoolDao dao = new SchoolDao();
 
-
 		try {
 			Connection con = getConnection();
 			String sql = basesql + " where NO = ?";
@@ -61,7 +60,7 @@ public class StudentDao extends DAO {
 		return student;
 	}
 
-// リストに生徒情報を取得
+
 	public List<Student> getList(){
 
 		Connection con;
@@ -72,26 +71,14 @@ public class StudentDao extends DAO {
 			List<Student> list = new ArrayList<>();
 			SchoolDao dao = new SchoolDao();
 			con = getConnection();
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-			
-			String sql = "select * from STUDENT";
-=======
->>>>>>> branch 'master' of https://github.com/mitsuki905/JavaSD_teamC.git
 
 			String sql = basesql;
->>>>>>> branch 'master' of https://github.com/mitsuki905/JavaSD_teamC.git
 
 			PreparedStatement st = con.prepareStatement(sql);
 			ResultSet rs = st.executeQuery();
 
 			while(rs.next()){
-<<<<<<< HEAD
-				
-=======
 
->>>>>>> branch 'master' of https://github.com/mitsuki905/JavaSD_teamC.git
 				student = new Student();
 				student.setNo(rs.getString("no"));
 				student.setName(rs.getString("name"));
