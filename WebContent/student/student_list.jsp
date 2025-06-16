@@ -3,6 +3,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
 <c:import url="/base.jsp">
+
 	<c:param name="body">
 
 		<h2 style="background-color: #f0f0f0;">学生管理</h2>
