@@ -14,10 +14,11 @@
 
 			<%-- 確認文 --%>
 			<label>
-				<p>「${ subject.name }(${ subject.cd })」を削除してもよろしいですか</p>
+				<p>「${ name }(${ cd })」を削除してもよろしいですか</p>
 			</label>
 
-			<input type="hidden" name="cd" value="${subject.cd}">
+			<input type="hidden" name="cd" value="${cd}">
+			<input type="hidden" name="name" value="${name}">
 
 			<%-- ボタンエリア --%>
 			<div class="mt-4">
