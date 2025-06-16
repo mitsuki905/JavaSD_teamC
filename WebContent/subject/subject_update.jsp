@@ -1,7 +1,7 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="../css/style.css">
-<c:import url="/base1.jsp">
+<c:import url="/base.jsp">
 
 	<c:param name="body">
 
@@ -39,9 +39,11 @@
 
 			<%-- ボタンエリア --%>
 			<div class="mt-4">
+				<%-- 科目情報変更完了画面に遷移 --%>
 				<button type="submit" class="btn btn-primary">変更</button>
 				<br>
 				<br>
+				<%-- 科目管理一覧画面に遷移 --%>
 				<a href="${pageContext.request.contextPath}/subject/subject_list" class="ms-3">戻る</a>
 			</div>
 
