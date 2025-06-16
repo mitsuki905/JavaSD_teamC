@@ -37,6 +37,7 @@ public class SubjectDao extends DAO {
 			}
 			}catch (Exception e) {
 				e.printStackTrace();
+				return null;
 			}return subject;
 	}
 
@@ -109,7 +110,7 @@ public class SubjectDao extends DAO {
 		boolean flag = false;
 
 		try (Connection con = getConnection()){
-			String sql = "DELETE * FROM SUBJECT WHERE CD = ? ";
+			String sql = "DELETE FROM SUBJECT WHERE CD = ? ";
         	PreparedStatement st = con.prepareStatement(sql);
         	st.setString(1, subject.getCd());           // 科目名
         	st.executeUpdate();

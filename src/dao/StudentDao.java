@@ -63,23 +63,32 @@ public class StudentDao extends DAO {
 
 // リストに生徒情報を取得
 	public List<Student> getList(){
-		
+
 		Connection con;
 		try {
-	
+
 			Student student = null;
 			School school = null;
 			List<Student> list = new ArrayList<>();
 			SchoolDao dao = new SchoolDao();
 			con = getConnection();
+<<<<<<< HEAD
 			
 			String sql = "select * from STUDENT";
+=======
+
+			String sql = basesql;
+>>>>>>> branch 'master' of https://github.com/mitsuki905/JavaSD_teamC.git
 
 			PreparedStatement st = con.prepareStatement(sql);
 			ResultSet rs = st.executeQuery();
-			
+
 			while(rs.next()){
+<<<<<<< HEAD
 				
+=======
+
+>>>>>>> branch 'master' of https://github.com/mitsuki905/JavaSD_teamC.git
 				student = new Student();
 				student.setNo(rs.getString("no"));
 				student.setName(rs.getString("name"));
@@ -90,12 +99,12 @@ public class StudentDao extends DAO {
 				school = dao.get(rs.getString("school_cd"));
 
 				student.setSchool(school);
-				
+
 				list.add(student);
-				
+
 			}
 			return list;
-			
+
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
