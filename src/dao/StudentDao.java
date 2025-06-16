@@ -61,7 +61,7 @@ public class StudentDao extends DAO {
 		return student;
 	}
 
-
+// リストに生徒情報を取得
 	public List<Student> getList(){
 		
 		Connection con;
@@ -73,13 +73,13 @@ public class StudentDao extends DAO {
 			SchoolDao dao = new SchoolDao();
 			con = getConnection();
 			
-			String sql = basesql;
+			String sql = "select * from STUDENT";
 
 			PreparedStatement st = con.prepareStatement(sql);
 			ResultSet rs = st.executeQuery();
 			
 			while(rs.next()){
-				d
+				
 				student = new Student();
 				student.setNo(rs.getString("no"));
 				student.setName(rs.getString("name"));
