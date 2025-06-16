@@ -6,8 +6,14 @@
 
 	<c:param name="body">
 
-        <%-- ヘッダー：科目情報登録 --%>
 		<h2 style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">科目情報登録</h2>
+
+		<%-- サーバーからのエラーメッセージを表示する --%>
+		<c:if test="${not empty error}">
+			<div class="alert alert-danger mt-3" role="alert">
+				<c:out value="${error}" />
+			</div>
+		</c:if>
 
 		<%-- フォーム本体 --%>
 		<div class="card-body">
@@ -47,11 +53,13 @@
 				<button type="submit" class="btn btn-primary">登録</button>
 				<br>
 				<br>
+				<%-- 科目管理一覧画面に遷移 --%>
 				<a href="${pageContext.request.contextPath}/subject/subject_list" class="ms-3">戻る</a>
 			</div>
 
 			</form>
 		</div>
+
 
 		<script>
 		  document.querySelector('form').addEventListener('submit', function (e) {
@@ -64,7 +72,7 @@
 		    let hasError = false;
 
 		    if (subjectCd.value.trim().length !== 3) {
-	    	  showError(subjectCd, '科目コードは3文字で入力してください。');
+	    	  showError(subjectCd, '科目コードは3文字で入力してください');
 	    	  hasError = true;
 		    }
 
@@ -74,7 +82,7 @@
 
 		    function showError(inputElement, message) {
 		      const error = document.createElement('div');
-		      error.className = 'error-msg text-danger mt-1';
+		      error.className = 'error-msg text-warning mt-1';
 		      error.textContent = message;
 		      inputElement.parentNode.appendChild(error);
 		    }

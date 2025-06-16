@@ -9,6 +9,7 @@
 		<p style="background-color: #008b8b;text-align: center">　変更が完了しました</p>
 
 		<br><br>
+		<%-- 科目管理一覧画面に遷移 --%>
 		<a href="${pageContext.request.contextPath}/subject/subject_list">科目一覧</a>
 	</c:param>
 

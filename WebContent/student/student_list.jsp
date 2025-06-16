@@ -3,7 +3,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
 <c:import url="/base.jsp">
-
 	<c:param name="body">
 
 		<h2 style="background-color: #f0f0f0;">学生管理</h2>
@@ -49,6 +48,8 @@
 						</select>
 					</div>
 
+
+
 					<div class="col-md-2">
 						<div class="form-check">
 							<input  class="form-check-input"
@@ -65,6 +66,9 @@
 						</div>
 					</div>
 
+
+
+					<!-- 指定されている条件に該当する学生情報を取得して一覧に表示する -->
 					<div class="col-md-2 d-flex justify-content-end">
 						<button type="submit"
 								class="btn btn-secondary">絞り込み
@@ -78,6 +82,7 @@
 		<p>
 			検索結果：
 			<c:out value="${students.size()}" />
+			<!-- リクエストに表示されている学生リストの件数を表示する -->
 			件
 		</p>
 
@@ -98,11 +103,16 @@
 				<tbody>
 					<c:forEach var="student" items="${students}">
 					    <tr>
+					    	<!--学生情報管理テーブルの「入学年度」カラムの値を表示する -->
 					        <td>${student.entyear}</td>
+					        <!-- 学生情報管理テーブルの「学生番号」カラムの値を表示する -->
 					        <td>${student.no}</td>
+					        <!-- 学生情報管理テーブルの「学生氏名」カラムの値を表示する -->
 					        <td>${student.name}</td>
+					        <!-- 学生情報管理テーブルの「クラス番号」カラムの値を表示する -->
 					        <td>${student.classNum}</td>
 					        <td>
+					        	<!-- 学生情報管理テーブルの「在学中フラグ」カラムの値を変換して表示する -->
 					            <c:if test="${student.isattend}">○</c:if>
 					            <c:if test="${!student.isattend}">×</c:if>
 					        </td>
