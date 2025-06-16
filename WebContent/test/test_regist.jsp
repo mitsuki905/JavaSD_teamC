@@ -8,7 +8,7 @@
 		<h2 style="background-color: #f0f0f0;">　成績参照</h2>
 
 		<div class="bg-light p-3 rounded mb-4">
-			<form action="/student/student_list" method="post">
+			<form action="/test/test_list_subject" method="post">
 				<div class="row g-3 align-items-end">科目情報　　　　　
 					<div class="col-md-2">
 						<label  for="f_ent_year"
@@ -66,7 +66,7 @@
 										<c:if test="${classItem.classNum == fClassNum}">selected
 										</c:if>>${classItem.classNum}
 									</option>
-									<input type="hidden" name="f" value="st">
+									<input type="hidden" name="f" value="sj">
 								</c:forEach>
 						</select>
 					</div>
@@ -86,7 +86,7 @@
 
 
 		<div class="bg-light p-3 rounded mb-4">
-			<form action="/student/student_list" method="post">
+			<form action="/test/test_list_student" method="post">
 				<div class="row g-3 align-items-end">学生情報　　　　　
 					<div class="col-md-3">
 							<label  for="f_class_num"
@@ -100,7 +100,7 @@
 								placeholder="学生番号を入力してください"
 								maxlength="10" <%-- 最大10文字に制限 --%>
 								required> <%-- 必須入力 --%>
-								<input type="hidden" name="f" value="sj">
+								<input type="hidden" name="f" value="st">
 					</div>
 
 
