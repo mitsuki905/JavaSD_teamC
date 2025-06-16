@@ -64,7 +64,7 @@ public class StudentDao extends DAO {
 // 生徒情報をリストで取得する
 	public List<Student> getList(){
 
-
+// この文消していいよ
 
 	}
 
