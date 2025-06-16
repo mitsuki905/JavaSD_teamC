@@ -1,12 +1,13 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="../css/style.css">
-<c:import url="/base1.jsp">
+<c:import url="/base.jsp">
 
 	<c:param name="body">
 
 		<h2 style="background-color: #f0f0f0;">　科目管理</h2>
 
+		<%-- 科目登録画面に遷移 --%>
 		<div class="text-end mb-2">
 			<a href="${pageContext.request.contextPath}/subject/subject_update">新規登録</a>
 		</div>

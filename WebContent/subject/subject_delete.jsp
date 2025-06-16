@@ -19,9 +19,11 @@
 
 			<%-- ボタンエリア --%>
 			<div class="mt-4">
+				<%-- 科目情報削除完了画面に遷移 --%>
 				<button type="submit" class="btn btn-danger">削除</button>
 				<br>
 				<br>
+				<%-- 科目管理一覧画面に遷移 --%>
 				<a href="${pageContext.request.contextPath}/subject/subject_list" class="ms-3">戻る</a>
 			</div>
 
