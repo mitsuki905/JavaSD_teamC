@@ -9,7 +9,7 @@
 
 		<div class="box-container">
 			<div class="box_red">
-				<li><a href="${pageContext.request.contextPath}/student/student_list">学生管理</a></li>
+				<li><a href="/JavaSD/student/student_list">学生管理</a></li>
 			</div>
 
 			<div class="box_green">
