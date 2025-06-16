@@ -17,6 +17,8 @@
 				<p>「${ subject.name }(${ subject.cd })」を削除してもよろしいですか</p>
 			</label>
 
+			<input type="hidden" name="cd" value="${subject.cd}">
+
 			<%-- ボタンエリア --%>
 			<div class="mt-4">
 				<%-- 科目情報削除完了画面に遷移 --%>
