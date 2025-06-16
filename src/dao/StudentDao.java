@@ -79,7 +79,7 @@ public class StudentDao extends DAO {
 			ResultSet rs = st.executeQuery();
 			
 			while(rs.next()){
-				
+				d
 				student = new Student();
 				student.setNo(rs.getString("no"));
 				student.setName(rs.getString("name"));
