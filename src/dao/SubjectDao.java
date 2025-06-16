@@ -41,6 +41,7 @@ public class SubjectDao extends DAO {
 			}return subject;
 	}
 
+
 //  科目をリスト型で返す
 	public List<Subject> filter(School school) {
 	    List<Subject> list = new ArrayList<>();
