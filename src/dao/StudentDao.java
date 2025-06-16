@@ -19,7 +19,7 @@ public class StudentDao extends DAO {
 	String basesql = "select * from STUDENT";
 
 // 生徒情報を取得
-	public Student get(String no){
+	public Student get(String school_cd){
 
 		Student student = null;
 		School school = null;
@@ -29,10 +29,10 @@ public class StudentDao extends DAO {
 
 		try {
 			Connection con = getConnection();
-			String sql = basesql + " where NO = ?";
+			String sql = basesql + " where school_cd = ?";
 
 			PreparedStatement st = con.prepareStatement(sql);
-			st.setString(1, no);
+			st.setString(1, school_cd);
 			ResultSet rs = st.executeQuery();
 
 			if(rs.next()){
@@ -108,6 +108,8 @@ public class StudentDao extends DAO {
 							+ " AND CLASS_NUM = ?"
 							+ " AND IS_ATTEND = ?"
 							+ " AND SCHOOL_CD = ?";
+
+
 
 					PreparedStatement st = con.prepareStatement(sql);
 					st.setInt(1, entYear);
