@@ -5,7 +5,7 @@
 <html>
 <head>
 	<title>得点管理システム</title>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
