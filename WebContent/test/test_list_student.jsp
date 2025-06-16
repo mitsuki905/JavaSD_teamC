@@ -114,47 +114,59 @@
 			</form>
 		</div>
 
-		<%-- ここよろしくです --%>
-		<div>
-			<p>
-				氏名：
-				<c:out value="${student.name()}" />
-				<!-- 氏名:学生氏名（学生番号）を表示する -->
+		<%-- 検索ボタンをクリック後、検索結果を表示 --%>
+		<%-- <c:forEach var="student" items="${ students }"> --%>
 
-			</p>
-		</div>
+			<%-- 該当学生がいないときに表示する--%>
+		    <c:if test="${ empty student }">
+				<p>
+					氏名：
+					<c:out value="${student.name()}" /><br>
+					<!-- 氏名:学生氏名（学生番号）を表示する -->
+					成績情報が存在しませんでした
+				</p>
+		    </c:if>
 
-		<%-- 検索結果--%>
-		<div class="table-responsive">
-			<table class="table table-striped table-hover">
-				<thead>
-					<tr>
-						<th>科目名</th>
-						<th>科目コード</th>
-						<th>回数</th>
-						<th>点数</th>
-						<th></th>
-						<%-- 変更リンク用の空ヘッダー --%>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="student" items="${students}">
-					    <tr>
-					    <%-- ここよろしくです --%>
-					    	<!--学生情報管理テーブルの「科目名」カラムの値を表示する -->
-					        <td>${student.entyear}</td>
-					        <!-- 学生情報管理テーブルの「科目コード」カラムの値を表示する -->
-					        <td>${student.no}</td>
-					        <!-- 学生情報管理テーブルの「回数」カラムの値を表示する -->
-					        <td>${student.name}</td>
-					        <!-- 学生情報管理テーブルの「点数」カラムの値を表示する -->
-					        <td>${student.classNum}</td>
-					    </tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+			<%-- ここよろしくです --%>
+			<div>
+				<p>
+					氏名：
+					<c:out value="${student.name()}" />
+					<!-- 氏名:学生氏名（学生番号）を表示する -->
+				</p>
+			</div>
 
+			<%-- 検索結果--%>
+			<div class="table-responsive">
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>科目名</th>
+							<th>科目コード</th>
+							<th>回数</th>
+							<th>点数</th>
+							<th></th>
+							<%-- 変更リンク用の空ヘッダー --%>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="student" items="${students}">
+						    <tr>
+						    <%-- ここよろしくです --%>
+						    	<!--学生情報管理テーブルの「科目名」カラムの値を表示する -->
+						        <td>${student.entyear}</td>
+						        <!-- 学生情報管理テーブルの「科目コード」カラムの値を表示する -->
+						        <td>${student.no}</td>
+						        <!-- 学生情報管理テーブルの「回数」カラムの値を表示する -->
+						        <td>${student.name}</td>
+						        <!-- 学生情報管理テーブルの「点数」カラムの値を表示する -->
+						        <td>${student.classNum}</td>
+						    </tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		<%-- </c:forEach> --%>
 
 	</c:param>
 </c:import>

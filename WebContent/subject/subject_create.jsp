@@ -32,6 +32,11 @@
 					maxlength="3"
 					placeholder="科目コードを入力してください"
 					required>
+
+				<%-- 科目コード重複エラー --%>
+				<ul>
+		        	<li style="list-style: none;">${ errorMessage }</li>
+		        </ul>
 			</div>
 
 			<%-- 科目名 --%>

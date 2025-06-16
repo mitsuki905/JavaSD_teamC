@@ -1,13 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<%-- 絶対パスでの指定を推奨します --%>
 <link rel="stylesheet" href="../css/style.css">
 
 <c:import url="/base.jsp">
 
 	<c:param name="body">
-		<%-- 1. ページタイトルを修正 --%>
+
 		<h2 style="background-color: #f0f0f0;" class="p-2">成績一覧（科目）</h2>
 
 		<%-- 検索フォーム（上部） --%>
@@ -47,6 +46,11 @@
 					</div>
 				</div>
 			</form>
+
+			<%-- 検索条件不足エラー --%>
+			<ul>
+	        	<li style="list-style: none;">${ errorMessage }</li>
+	        </ul>
 		</div>
 
 		<div class="bg-light p-3 rounded mb-4">
@@ -56,7 +60,7 @@
 							<label  for="f_class_num"
 								    class="form-label">学生番号
 							</label>
-						<input type="text"
+							<input type="text"
 								class="form-control"
 								id="f4"
 								name="f4"
