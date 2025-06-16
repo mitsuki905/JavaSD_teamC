@@ -11,6 +11,7 @@
 			<a href="${pageContext.request.contextPath}/subject/subject_update">新規登録</a>
 		</div>
 
+
 		<div class="table-responsive">
 			<table class="table table-striped table-hover">
 				<%-- テーブルの型 --%>
