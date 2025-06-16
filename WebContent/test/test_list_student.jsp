@@ -9,7 +9,7 @@
 
 		<%-- 科目一覧の検索 --%>
 		<div class="bg-light p-3 rounded mb-4">
-			<form action="/student/student_list" method="post">
+			<form action="/test/test_list_subject" method="post">
 				<div class="row g-3 align-items-end">科目情報　　　
 
 					<%-- プルダウン式 --%>
@@ -92,7 +92,7 @@
 
 		<%-- 学生一覧の検索 --%>
 		<div class="bg-light p-3 rounded mb-4">
-			<form action="/student/student_list" method="post">
+			<form action="/test/test_list_student" method="post">
 				<div class="row g-3 align-items-end">学生情報
 					<div class="col-md-3">
 							<label  for="f_class_num"
