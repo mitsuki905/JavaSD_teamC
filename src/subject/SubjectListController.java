@@ -24,10 +24,10 @@ public class SubjectListController extends CommonServlet {
 		SubjectDao dao = new SubjectDao();
 		List<Subject> subject = dao.filter(school);
 
-//		取得した値をリクエストに保存する 変数名：coursies
+//		取得した値をリクエストに保存する 変数名：subject
 		req.setAttribute("subject", subject);
 
-// 		追加フォーム（stuinsert.jsp）にフォワード
+// 		追加フォーム（subject_list.jsp）にフォワード
 		req.getRequestDispatcher("subject_list.jsp").forward(req, resp);
 
 
