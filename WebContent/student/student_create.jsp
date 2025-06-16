@@ -40,7 +40,6 @@
 
 
 				<%-- 学生番号 --%>
-				<%-- 学生番号 --%>
 				<div class="mb-3">
 					<%-- labelのfor属性をinputのidと一致させる --%>
 					<label for="no" class="form-label">

@@ -10,7 +10,7 @@
 
 		<%-- サーバーからのエラーメッセージを表示する --%>
 		<c:if test="${not empty error}">
-			<div class="alert alert-danger mt-3" role="alert">
+			<div class="alert alert-warning mt-3" role="alert">
 				<c:out value="${error}" />
 			</div>
 		</c:if>
