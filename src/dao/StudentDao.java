@@ -63,23 +63,23 @@ public class StudentDao extends DAO {
 
 
 	public List<Student> getList(){
-		
+
 		Connection con;
 		try {
-	
+
 			Student student = null;
 			School school = null;
 			List<Student> list = new ArrayList<>();
 			SchoolDao dao = new SchoolDao();
 			con = getConnection();
-			
+
 			String sql = basesql;
 
 			PreparedStatement st = con.prepareStatement(sql);
 			ResultSet rs = st.executeQuery();
-			
+
 			while(rs.next()){
-				d
+
 				student = new Student();
 				student.setNo(rs.getString("no"));
 				student.setName(rs.getString("name"));
@@ -90,12 +90,12 @@ public class StudentDao extends DAO {
 				school = dao.get(rs.getString("school_cd"));
 
 				student.setSchool(school);
-				
+
 				list.add(student);
-				
+
 			}
 			return list;
-			
+
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
