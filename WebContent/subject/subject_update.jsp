@@ -16,7 +16,13 @@
 			<div class="mb-3">
 				<label for="subjectCd" class="form-label">科目コード</label>]
 			<%-- 科目名と同じように治す --%>
-				<p>${cd}</p>
+				<input
+					type="text"
+					class="form-control"
+					id="subjectCd"
+					name="cd"
+					value="${cd}"
+					required>
 				</div>
 
 			<%-- 科目名 --%>
