@@ -28,7 +28,7 @@ public class TestListController extends CommonServlet {
 	        SubjectDao dao = new SubjectDao();
 	        TestListSubjectDao subdao = new TestListSubjectDao();
 
-	        // ログインしていない、またはセッションが切れた場合はログインページにリダイレクト
+
 
 	        // プルダウンメニュー用のデータを準備するメソッドを呼び出す
 
