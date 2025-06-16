@@ -6,7 +6,7 @@
 
 	<c:param name="body">
 
-		<h2 style="background-color: #f0f0f0; padding: 10px; border-radius: 5px;">科目情報登録</h2>
+		<h2 style="background-color: #f0f0f0;">　科目情報登録</h2>
 
 		<%-- サーバーからのエラーメッセージを表示する --%>
 		<c:if test="${not empty error}">
@@ -34,9 +34,8 @@
 					required>
 
 				<%-- 科目コード重複エラー --%>
-				<ul>
-		        	<li style="list-style: none;">${ errorMessage }</li>
-		        </ul>
+				<%-- エラーカラー --%>
+		        <li style="list-style: none;" class="text-warning">${ errorMessage }</li>
 			</div>
 
 			<%-- 科目名 --%>
@@ -66,6 +65,7 @@
 		</div>
 
 
+		<%-- 文字数エラーはJSP側で判断 --%>
 		<script>
 		  document.querySelector('form').addEventListener('submit', function (e) {
 		    const subjectCd = document.getElementById('subjectCd');
