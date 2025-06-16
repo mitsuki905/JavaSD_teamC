@@ -82,7 +82,7 @@
 			</form>
 		</div>
 
-		<%-- 2. 検索結果表示エリア --%>
+		<%-- 検索結果表示 --%>
 		<div class="mt-4">
 			<%-- 検索された科目名を表示（コントローラーから subjectName で渡されると仮定） --%>
 			<c:if test="${not empty subjectName}">
@@ -92,7 +92,7 @@
 			<%-- 検索結果テーブル --%>
 			<div class="table-responsive">
 				<table class="table table-striped table-hover">
-					<%-- 3. テーブルヘッダーを設計書通りに修正 --%>
+					<%-- テーブルヘッダー --%>
 					<thead>
 						<tr>
 							<th>入学年度</th>
@@ -103,20 +103,16 @@
 							<th>2回</th>
 						</tr>
 					</thead>
-					<%-- 4. テーブルデータを設計書通りに修正 --%>
+					<%-- テーブルデータを設計書通りに修正 --%>
 					<tbody>
 						<%-- リストが空でない場合にのみループ処理 --%>
 						<c:forEach var="student" items="${students}">
 						    <tr>
-						    	<%-- No.9 --%>
 						        <td>${student.entYear}</td>
-						        <%-- No.10 --%>
 						        <td>${student.classNum}</td>
-						        <%-- No.11 --%>
 						        <td>${student.no}</td>
-						        <%-- No.12 --%>
 						        <td>${student.name}</td>
-						        <%-- No.13: 1回目の点数。ない場合はハイフンを表示 --%>
+						        <%-- 1回目の点数。ない場合はハイフンを表示 --%>
 						        <td>
 						            <c:choose>
 						                <c:when test="${student.point1 != null && student.point1 >= 0}">
@@ -127,7 +123,7 @@
 						                </c:otherwise>
 						            </c:choose>
 						        </td>
-						        <%-- No.14: 2回目の点数。ない場合はハイフンを表示 --%>
+						        <%-- 2回目の点数。ない場合はハイフンを表示 --%>
 						        <td>
 						            <c:choose>
 						                <c:when test="${student.point2 != null && student.point2 >= 0}">
