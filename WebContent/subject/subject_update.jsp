@@ -21,8 +21,14 @@
 					id="subjectCd"
 					name="cd"
 					value="${cd}"
+					readonly
 					required>
-				</div>
+
+				<%-- 変更中に別画面から対象の科目が削除された場合のエラー表示 --%>
+				<ul>
+		        	<li style="list-style: none;">${ errorMessage }</li>
+		        </ul>
+			</div>
 
 			<%-- 科目名 --%>
 			<div class="mb-3">

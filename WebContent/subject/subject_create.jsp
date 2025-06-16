@@ -10,7 +10,7 @@
 
 		<%-- サーバーからのエラーメッセージを表示する --%>
 		<c:if test="${not empty error}">
-			<div class="alert alert-danger mt-3" role="alert">
+			<div class="alert alert-warning mt-3" role="alert">
 				<c:out value="${error}" />
 			</div>
 		</c:if>
@@ -32,6 +32,11 @@
 					maxlength="3"
 					placeholder="科目コードを入力してください"
 					required>
+
+				<%-- 科目コード重複エラー --%>
+				<ul>
+		        	<li style="list-style: none;">${ errorMessage }</li>
+		        </ul>
 			</div>
 
 			<%-- 科目名 --%>

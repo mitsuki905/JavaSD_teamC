@@ -19,7 +19,11 @@
 					<br><label for="ent_year" class="form-label">
 						入学年度
 					</label>
+
 					<select class="form-select" id="ent_year" name="ent_year">
+					<option value="0">
+									--------
+								</option>
 						<c:forEach var="year" items="${yearList}">
 							<option value="${year}"
 								<c:if test="${year == ent_year}">selected</c:if>>${year}
@@ -35,7 +39,6 @@
 
 
 
-				<%-- 学生番号 --%>
 				<%-- 学生番号 --%>
 				<div class="mb-3">
 					<%-- labelのfor属性をinputのidと一致させる --%>
@@ -87,9 +90,9 @@
 							id="class_num"
 							name="class_num">
 						<c:forEach var="class_num" items="${classList}">
-							<option value="${classItem.classNum}"
-								<c:if test="${classItem.classNum == classNum}">selected
-								</c:if>>${classItem.classNum}
+							<option value="${class_num.classNum}"
+								<c:if test="${class_num.classNum == classNum}">selected
+								</c:if>>${class_num.classNum}
 							</option>
 						</c:forEach>
 					</select>

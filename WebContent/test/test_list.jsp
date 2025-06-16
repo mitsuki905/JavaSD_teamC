@@ -79,7 +79,7 @@
 	      <p>該当する学生は見つかりませんでした</p>
 	    </c:if>
 
-		<form action="test/test_" method="post">
+		<form action="test/test_create_done" method="post">
 			<div class="table-responsive">
 				<table class="table table-striped table-hover">
 					<p>科目：${ subject.name }(${ subject.num }回)</p>
@@ -94,17 +94,27 @@
 						</tr>
 					</thead>
 					<tbody>
+						<%-- これでちゃんと送れてるか分かんない... --%>
 						<c:forEach var="student" items="${students}">
 							<tr>
 								<td>${student.entyear}</td>
 								<input type="hidden" name="entyear" value="${entyear}">
+
 								<td>${student.no}</td>
 								<input type="hidden" name="no" value="${no}">
+
 								<td>${student.classNum}</td>
 								<input type="hidden" name="classNum" value="${classNum}">
+
 								<td>${student.name}</td>
 								<input type="hidden" name=name value="${name}">
+
+								<%-- 点数入力 --%>
+								<%-- 空っぽOK　入力する値は0～100　そうでない場合はエラー --%>
 								<input type="text" name="point_${ 学生番号 }">
+								<ul>
+						        	<li style="list-style: none;">${ errorMessage }</li>
+						        </ul>
 							</tr>
 						</c:forEach>
 					</tbody>

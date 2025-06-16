@@ -21,7 +21,9 @@
 					<div class="col-md-3">
 						<label for="f_ent_year" class="form-label">入学年度</label> <select
 							name="f_ent_year" id="f_ent_year" class="form-select">
-							<option value="0">--------</option>
+							<option value="0">
+									--------
+								</option>
 							<c:forEach var="year" items="${yearList}">
 								<option value="${year}"
 										<c:if test="${year == fEntYear}">selected</c:if>>${year}
