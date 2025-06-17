@@ -13,6 +13,7 @@
 		</div>
 
 
+		<%-- テーブル型で表示 --%>
 		<div class="table-responsive">
 			<table class="table table-striped table-hover">
 				<%-- テーブルの型 --%>

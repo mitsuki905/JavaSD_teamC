@@ -17,6 +17,7 @@
 				<p>「${ name }(${ cd })」を削除してもよろしいですか</p>
 			</label>
 
+			<%-- 画面遷移先に cd,nameのデーターを送る --%>
 			<input type="hidden" name="cd" value="${cd}">
 			<input type="hidden" name="name" value="${name}">
 

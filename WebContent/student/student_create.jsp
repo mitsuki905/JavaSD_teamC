@@ -2,14 +2,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
-<c:import url="/base1.jsp">
+<c:import url="/base.jsp">
 
 	<c:param name="body">
+
 		<div class="card-header">
 			<h2 style="background-color: #f0f0f0;">学生情報登録</h2>
 		</div>
-
-
 
 		<%-- フォーム本体 --%>
 		<div class="card-body">
@@ -19,7 +18,7 @@
 					<br><label for="ent_year" class="form-label">
 						入学年度
 					</label>
-
+					<%-- プルダウン式 --%>
 					<select class="form-select" id="ent_year" name="ent_year">
 					<option value="0">
 									--------
@@ -30,8 +29,8 @@
 							</option>
 						</c:forEach>
 					</select>
-					<!-- エラー表示 -->
 
+					<!-- エラー表示 -->
 					<c:if test="${not empty error_ent_year}">
 						<div class="text-warning mt-1">${error_ent_year}</div>
 					</c:if>
@@ -102,11 +101,9 @@
 
 				<%-- ボタンエリア --%>
 				<div class="mt-4">
-					<button type="submit" class="btn btn-secondary" name="end">
-						登録して終了
-					</button>
-					<a href="${pageContext.request.contextPath}/main/main"
-						class="d-block mt-2">戻る</a>
+					<button type="submit" class="btn btn-secondary" name="end">登録して終了</button>
+					<%-- 学生管理一覧画面に遷移 --%>
+					<a href="${pageContext.request.contextPath}/main/main" class="d-block mt-2">戻る</a>
 				</div>
 			</form>
 		</div>

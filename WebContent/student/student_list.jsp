@@ -8,7 +8,7 @@
 
 		<h2 style="background-color: #f0f0f0;">学生管理</h2>
 
-
+		<%-- 学生登録画面に遷移 --%>
 		<div class="text-end mb-2">
 			<a href="${pageContext.request.contextPath}/student/student_create">新規登録</a>
 		</div>
@@ -18,12 +18,14 @@
 			<form action="${pageContext.request.contextPath}/student/student_list" method="post">
 				<div class="row g-3 align-items-end">
 
+
+
+					<%-- 入学年度 --%>
 					<div class="col-md-3">
-						<label for="f_ent_year" class="form-label">入学年度</label> <select
-							name="f_ent_year" id="f_ent_year" class="form-select">
-							<option value="0">
-									--------
-								</option>
+						<label for="f_ent_year" class="form-label">入学年度</label>
+						<%-- プルダウン式 --%>
+						<select name="f_ent_year" id="f_ent_year" class="form-select">
+							<option value="0">--------</option>
 							<c:forEach var="year" items="${yearList}">
 								<option value="${year}"
 										<c:if test="${year == fEntYear}">selected</c:if>>${year}
@@ -32,16 +34,14 @@
 						</select>
 					</div>
 
+
+
+					<%-- クラス --%>
 					<div class="col-md-3">
-						<label  for="f_class_num"
-							    class="form-label">クラス
-						</label>
-						<select name="f2"
-								id="f2"
-								class="form-select">
-								<option value="0">
-									--------
-								</option>
+						<label for="f_class_num" class="form-label">クラス</label>
+						<%-- プルダウン式 --%>
+						<select name="f2" id="f2" class="form-select">
+								<option value="0">--------</option>
 							<c:forEach var="classItem" items="${classList}">
 								<option value="${classItem.classNum}"
 										<c:if test="${classItem.classNum == fClassNum}">selected
@@ -53,6 +53,7 @@
 
 
 
+					<%-- 在学中のチェックボックス --%>
 					<div class="col-md-2">
 						<div class="form-check">
 							<input  class="form-check-input"
@@ -90,6 +91,7 @@
 		</p>
 
 
+		<%-- テーブルの表示 --%>
 		<div class="table-responsive">
 			<table class="table table-striped table-hover">
 				<thead>
