@@ -229,7 +229,7 @@ public class StudentDao extends DAO {
 	public boolean save (Student student){
 
 		School school = new School();
-		boolean flg = false;
+
 
 		try {
 			Connection con = getConnection();
