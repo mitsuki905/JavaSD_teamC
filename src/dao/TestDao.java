@@ -248,7 +248,7 @@ public class TestDao extends DAO {
             String classNumStr = rs.getString("class_num");
             if (classNumStr != null && !classNumStr.isEmpty()) {
                 // Studentにはchar型(1文字目)をセット
-                student.setClassNum(classNumStr.charAt(0));
+                student.setClassNum(classNumStr);
                 // TestにはString型をそのままセット
                 test.setClassNum(classNumStr);
             }
