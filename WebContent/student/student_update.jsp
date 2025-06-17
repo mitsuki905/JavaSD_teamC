@@ -8,7 +8,7 @@
 
 		<div class="card-header">
 			<%-- ヘッダー：学生情報登録 --%>
-			<h2 style="background-color: #f0f0f0;">学生情報変更</h2>
+			<h2>　学生情報変更</h2>
 		</div>
 
 
