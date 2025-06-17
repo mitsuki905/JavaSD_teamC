@@ -7,7 +7,7 @@ public class Student implements Serializable{
 	private String no;
 	private String name;
 	private int entYear;
-	private char classNum;
+	private String classNum;
 	private boolean isAttend;
 	private School school;
 
@@ -29,10 +29,10 @@ public class Student implements Serializable{
 	public void setEntYear(int entYear) {
 		this.entYear = entYear;
 	}
-	public char getClassNum() {
+	public String getClassNum() {
 		return classNum;
 	}
-	public void setClassNum(char c) {
+	public void setClassNum(String c) {
 		this.classNum = c;
 	}
 	public boolean isAttend() {

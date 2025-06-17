@@ -48,12 +48,12 @@ public class TestListController extends CommonServlet {
 
             // --- 2. クラス番号リストの作成 ---
             // JSPの items="${classList}" に合わせる
-            Set<Character> classSet = new TreeSet<>();
+            Set<String> classSet = new TreeSet<>();
             for (Student s : studentList) {
                 classSet.add(s.getClassNum());
             }
             List<String> classNumList = new ArrayList<>();
-            for (Character c : classSet) {
+            for (String c : classSet) {
                 classNumList.add(String.valueOf(c));
             }
             // ★JSPに合わせて "classList" という名前でセット
