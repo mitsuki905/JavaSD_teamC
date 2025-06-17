@@ -5,7 +5,7 @@
 
 	<c:param name="body">
 
-		<h2>　ログアウト</h2>
+		<h2 style="background-color: #f0f0f0;">　ログアウト</h2>
 		<p style="background-color: #008b8b;text-align: center">　ログアウトしました</p>
 
 		<br><br>
