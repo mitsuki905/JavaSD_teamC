@@ -6,7 +6,7 @@
 
 	<c:param name="body">
 
-		<h2 style="background-color: #f0f0f0;">学生管理</h2>
+		<h2>学生管理</h2>
 
 		<%-- 学生登録画面に遷移 --%>
 		<div class="text-end mb-2">
