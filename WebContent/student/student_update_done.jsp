@@ -9,8 +9,8 @@
 		<p style="background-color: #008b8b;text-align: center">　変更が完了しました</p>
 
 		<br><br>
-
-		<a href="${pageContext.request.contextPath}/studebt/student_list"  >学生一覧</a>
+		<%-- 学生管理一覧画面に遷移 --%>
+		<a href="${pageContext.request.contextPath}/studebt/student_list">学生一覧</a>
 	</c:param>
 
 </c:import>

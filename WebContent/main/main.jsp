@@ -5,7 +5,7 @@
 
 	<c:param name="body">
 
-		<h2 style="background-color: #f0f0f0;">　メニュー</h2>
+		<h2>　メニュー</h2>
 
 		<div class="box-container">
 			<div class="box_red">

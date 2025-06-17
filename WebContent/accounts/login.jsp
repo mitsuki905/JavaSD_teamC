@@ -13,9 +13,7 @@
 	      <form id="loginForm" method="post" action="/JavaSD/accounts/loginexe">
 
 	        <h1 class="h3 mb-3 fw-bold text-center" style="background-color: #f0f0f0;">ログイン</h1>
-	        <ul>
-	        	<li style="list-style: none;">${ errorMessage }</li>
-	        </ul>
+	        	<li style="list-style: none;text-align: center">${ errorMessage }</li><br>
 
 	        <div class="form-floating mb-2">
 	          <input type="text" class="form-control" id="floatingInput" name="userId" value="${ userId }" required>

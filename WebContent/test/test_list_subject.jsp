@@ -7,9 +7,9 @@
 
 	<c:param name="body">
 
-		<h2 style="background-color: #f0f0f0;" class="p-2">成績一覧（科目）</h2>
+		<h2>　成績一覧（科目）</h2>
 
-		<%-- 検索フォーム（上部） --%>
+		<%-- 検索フォーム（科目） --%>
 		<div class="bg-light p-3 rounded mb-4">
 			<form action="/test/test_list_subject" method="post">
 				<div class="row g-3 align-items-end">科目情報
@@ -22,6 +22,9 @@
 								</c:forEach>
 						</select>
 					</div>
+
+
+
 					<div class="col-md-2">
 						<label for="f3" class="form-label">クラス</label>
 						<select name="f3" id="f3" class="form-select">
@@ -31,6 +34,9 @@
 								</c:forEach>
 						</select>
 					</div>
+
+
+
 					<div class="col-md-3">
 						<label for="f2" class="form-label">科目</label>
 						<select name="f2" id="f2" class="form-select">
@@ -48,11 +54,13 @@
 			</form>
 
 			<%-- 検索条件不足エラー --%>
-			<ul>
-	        	<li style="list-style: none;">${ errorMessage }</li>
-	        </ul>
+        	<li style="list-style: none;" class="text-warning">${ errorMessage }</li>
 		</div>
 
+
+
+
+		<%-- 検索フォーム（学生） --%>
 		<div class="bg-light p-3 rounded mb-4">
 			<form action="/test/test_list_student" method="post">
 				<div class="row g-3 align-items-end">学生情報
@@ -81,6 +89,8 @@
 				</div>
 			</form>
 		</div>
+
+
 
 		<%-- 検索結果表示 --%>
 		<div class="mt-4">

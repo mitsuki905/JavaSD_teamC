@@ -24,9 +24,9 @@
 							<option value="0">
 									--------
 								</option>
-							<c:forEach var="year" items="${yearList}">
-								<option value="${year}"
-										<c:if test="${year == fEntYear}">selected</c:if>>${year}
+							<c:forEach var="student" items="${student}">
+								<option value="${student.entYear}">
+								${student.entYear}
 									</option>
 							</c:forEach>
 						</select>
@@ -42,10 +42,9 @@
 								<option value="0">
 									--------
 								</option>
-							<c:forEach var="classItem" items="${classList}">
-								<option value="${classItem.classNum}"
-										<c:if test="${classItem.classNum == fClassNum}">selected
-										</c:if>>${classItem.classNum}
+							<c:forEach var="student" items="${student}">
+								<option value="${student.classNum}">
+										${student.classNum}
 									</option>
 							</c:forEach>
 						</select>

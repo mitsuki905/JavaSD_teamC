@@ -84,7 +84,7 @@ public class StudentDao extends DAO {
 				student.setName(rs.getString("name"));
 				student.setEntYear(rs.getInt("ent_year"));
 				student.setClassNum(rs.getString("class_num").charAt(0));
-				student.setisAttend(rs.getBoolean("isattend"));
+				student.setisAttend(rs.getBoolean("is_attend"));
 
 				school = dao.get(rs.getString("school_cd"));
 
@@ -224,6 +224,40 @@ public class StudentDao extends DAO {
 
 				return list;
 			}
+
+// 学生登録
+	public boolean save (Student student){
+
+		School school = new School();
+
+
+		try {
+			Connection con = getConnection();
+
+			// 学生を挿入
+		    String insertSql = "INSERT INTO STUDENT (NO,NAME,ENT_YEAR,CLASS_NUM,IS_ATTEND,SCHOOL_CD) VALUES (?,?,?,?.?,?)";
+		    PreparedStatement st = con.prepareStatement(insertSql);
+
+		    st.setString(1,student.getNo());
+		    st.setString(2, student.getName());
+		    st.setInt(3,student.getEntYear());
+		    st.setBoolean(4, student.isAttend());
+		    st.setString(5, String.valueOf(student.getClassNum()));
+		    st.setString(6, school.getCd());
+
+		    if( st.executeUpdate() == 1){
+		    	return true;
+		    }
+		    else{
+		    	return false;
+		    }
+
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
 
 

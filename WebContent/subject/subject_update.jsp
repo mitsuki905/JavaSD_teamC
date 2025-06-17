@@ -26,9 +26,7 @@
 					<p>${cd }</p>
 
 				<%-- 変更中に別画面から対象の科目が削除された場合のエラー表示 --%>
-				<ul>
-		        	<li style="list-style: none;" class="text-warning">${ errorMessage }</li>
-		        </ul>
+		        <li style="list-style: none;" class="text-warning">${ errorMessage }</li>
 			</div>
 
 			<%-- 科目名 --%>
