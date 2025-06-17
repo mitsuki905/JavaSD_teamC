@@ -7,7 +7,7 @@
 	<c:param name="body">
 
 		<div class="card-header">
-			<h2 style="background-color: #f0f0f0;">学生情報登録</h2>
+			<h2>学生情報登録</h2>
 		</div>
 
 		<%-- フォーム本体 --%>
@@ -33,6 +33,7 @@
 					<!-- エラー表示 -->
 					<c:if test="${not empty error_ent_year}">
 						<div class="text-warning mt-1">${error_ent_year}</div>
+						<p>入学年度を選択してください</p>
 					</c:if>
 				</div>
 
@@ -53,10 +54,11 @@
 							maxlength="10" <%-- 最大10文字に制限 --%>
 							required> <%-- 必須入力 --%>
 
-					<c:if test="${not empty error_student_id}">
+					<c:if test="${not empty error_no}">
 						<div class="text-warning mt-1">
-							${error_student_id}
+							${error_no}
 						</div>
+						<p>学生番号が重複しています</p>
 					</c:if>
 				</div>
 
