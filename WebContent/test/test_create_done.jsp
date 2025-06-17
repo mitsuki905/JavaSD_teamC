@@ -6,7 +6,7 @@
 
 	<c:param name="body">
 
-		<h2 style="background-color: #f0f0f0;">　成績管理</h2>
+		<h2>　成績管理</h2>
 		<p style="background-color: #008b8b;text-align: center">　登録が完了しました</p>
 
 		<br><br>

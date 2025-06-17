@@ -5,7 +5,7 @@
 <c:import url="/base.jsp">
 
 	<c:param name="body">
-		<h2 style="background-color: #f0f0f0;">　成績一覧（学生）</h2>
+		<h2>　成績一覧（学生）</h2>
 
 		<%-- 科目一覧の検索 --%>
 		<div class="bg-light p-3 rounded mb-4">

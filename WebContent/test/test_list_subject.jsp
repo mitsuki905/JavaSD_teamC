@@ -7,7 +7,7 @@
 
 	<c:param name="body">
 
-		<h2 style="background-color: #f0f0f0;" class="p-2">成績一覧（科目）</h2>
+		<h2>成績一覧（科目）</h2>
 
 		<%-- 検索フォーム（上部） --%>
 		<div class="bg-light p-3 rounded mb-4">
