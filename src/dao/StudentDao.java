@@ -228,6 +228,9 @@ public class StudentDao extends DAO {
 // 学生登録
 	public boolean save (Student student){
 
+		School school = new School();
+		boolean flg = false;
+
 		try {
 			Connection con = getConnection();
 
@@ -236,15 +239,24 @@ public class StudentDao extends DAO {
 		    PreparedStatement st = con.prepareStatement(insertSql);
 
 		    st.setString(1,student.getNo());
-		    st.setInt(2,student.getEntYear());
+		    st.setString(2, student.getName());
+		    st.setInt(3,student.getEntYear());
+		    st.setBoolean(4, student.isAttend());
+		    st.setString(5, String.valueOf(student.getClassNum()));
+		    st.setString(6, school.getCd());
 
-
-
+		    if( st.executeUpdate() == 1){
+		    	return true;
+		    }
+		    else{
+		    	return false;
+		    }
 
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
+		return false;
 	}
 }
 
