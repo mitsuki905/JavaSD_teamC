@@ -31,49 +31,35 @@
 
 
 
-					<%-- 変数名よろしく --%>
-					<div class="col-md-2">
-						<label  for="f_class_num"
-							    class="form-label">クラス
-						</label>
-						<select name="f3"
-								id="f3"
-								class="form-select">
-								<option value="0">
-									--------
-								</option>
-								<c:forEach var="classItem" items="${classList}">
-									<option value="${classItem.classNum}"
-										<c:if test="${classItem.classNum == fClassNum}">selected
-										</c:if>>${classItem.classNum}
-									</option>
-								</c:forEach>
-						</select>
-					</div>
-
-
-
-					<%-- 変数名よろしく --%>
-					<div class="col-md-3">
-						<label  for="f_class_num"
-							    class="form-label">科目
-						</label>
-						<select name="f2"
-								id="f2"
-								class="form-select">
-								<option value="0">
-									--------
-								</option>
-								<c:forEach var="classItem" items="${subjectList}">
-									<option value="${classItem.classNum}"
-										<c:if test="${classItem.classNum == fClassNum}">selected
-										</c:if>>${classItem.classNum}
-									</option>
-									<input type="hidden" name="f" value="sj">
-								</c:forEach>
-						</select>
-					</div>
-
+					<%-- クラスプルダウン (修正版) --%>
+			<div class="col-md-2">
+			    <label for="f_class_num" class="form-label">クラス</label>
+			    <select name="f3" id="f3" class="form-select">
+			        <option value="">--------</option> <%-- 空文字に --%>
+			        <%-- "classList"は文字列のリストなので、"classItem"自体がクラス番号になる --%>
+			        <c:forEach var="classNum" items="${classList}">
+			            <option value="${classNum}" <c:if test="${classNum == fClassNum}">selected</c:if>>
+			                ${classNum}
+			            </option>
+			        </c:forEach>
+			    </select>
+			</div>
+			
+			<%-- 科目プルダウン (修正版) --%>
+			<div class="col-md-3">
+			    <label for="f_class_num" class="form-label">科目</label>
+			    <select name="f2" id="f2" class="form-select">
+			        <option value="">--------</option>
+			        <%-- "subjectList"はSubjectオブジェクトのリスト --%>
+			        <c:forEach var="subject" items="${subjectList}">
+			            <%-- valueには科目コード、表示には科目名を使う --%>
+			            <option value="${subject.cd}" <c:if test="${subject.cd == fSubjectCd}">selected</c:if>>
+			                ${subject.name}
+			            </option>
+			        </c:forEach>
+			    </select>
+			</div>
+			
 
 
 					<div class="col-md-2 d-flex justify-content-end">

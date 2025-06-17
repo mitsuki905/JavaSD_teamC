@@ -22,57 +22,60 @@ import tool.CommonServlet;
 public class TestListController extends CommonServlet {
 
 	@Override
-
-
 	protected void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    // セッションからログインユーザーの学校情報を取得
-	    HttpSession session = request.getSession();
-	    School school = (School) session.getAttribute("school");
+        // セッションからログインユーザーの学校情報を取得
+		System.out.println("test;;;;;;");
+        HttpSession session = request.getSession();
+        School school = (School) session.getAttribute("school");
 
-	    // DAOのインスタンスを生成
-	    SubjectDao subdao = new SubjectDao();
-	    StudentDao studao = new StudentDao();
+        // DAOのインスタンスを生成
+        SubjectDao subdao = new SubjectDao();
+        StudentDao studao = new StudentDao();
 
-	    try {
-	        // 在校生リストを取得 (schoolとisAttend=trueで絞り込むのが望ましい)
-	        // ※getList()が全校の全生徒を返すなら、filter(school, true)の方が良いです
-	        List<Student> studentList = studao.filter(school, true); // 在校生のみに絞り込み
+        try {
+            // 在校生リストを取得
+            List<Student> studentList = studao.filter(school, true); // 在校生のみに絞り込み
 
-	        // 1. 入学年度リストの作成
-	        Set<Integer> yearSet = new TreeSet<>();
-	        for (Student s : studentList) {
-	            yearSet.add(s.getEntYear());
-	        }
-	        List<Integer> entYearList = new ArrayList<>(yearSet);
+            // --- 1. 入学年度リストの作成 ---
+            // JSPの items="${yearList}" に合わせる
+            Set<Integer> yearSet = new TreeSet<>();
+            for (Student s : studentList) {
+                yearSet.add(s.getEntYear());
+            }
+            List<Integer> entYearList = new ArrayList<>(yearSet);
+            // ★JSPに合わせて "yearList" という名前でセット
+            request.setAttribute("yearList", entYearList);
 
-	        // 2. クラス番号リストの作成
-	        Set<Character> classSet = new TreeSet<>();
-	        for (Student s : studentList) {
-	            classSet.add(s.getClassNum());
-	        }
-	        List<String> classNumList = new ArrayList<>();
-	        for (Character c : classSet) {
-	            classNumList.add(String.valueOf(c));
-	        }
+            // --- 2. クラス番号リストの作成 ---
+            // JSPの items="${classList}" に合わせる
+            Set<Character> classSet = new TreeSet<>();
+            for (Student s : studentList) {
+                classSet.add(s.getClassNum());
+            }
+            List<String> classNumList = new ArrayList<>();
+            for (Character c : classSet) {
+                classNumList.add(String.valueOf(c));
+            }
+            // ★JSPに合わせて "classList" という名前でセット
+            request.setAttribute("classList", classNumList);
 
-	        // 3. 科目リストの取得
-	        List<Subject> subjectList = subdao.filter(school);
+            // --- 3. 科目リストの取得 ---
+            // JSPの items="${subjectList}" に合わせる
+            List<Subject> subjectList = subdao.filter(school);
+            // ★JSPに合わせて "subjectList" という名前でセット
+            request.setAttribute("subjectList", subjectList);
 
-	        // ★★★ JSPの変数名に合わせるための修正 ★★★
-	        request.setAttribute("yearList", entYearList);     // "ent_year_list" -> "yearList"
-	        request.setAttribute("classList", classNumList);   // "class_num_list" -> "classList"
-	        request.setAttribute("subjectList", subjectList);  // 科目用に新設
-	        // 回数(testNo)用のリストは、必要ならここで準備します
+        } catch (Exception e) {
+            e.printStackTrace();
+            // エラーハンドリング
+        }
 
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        // エラーハンドリング
-	    }
+        // JSPにフォワード
+        // JSPのファイル名は適宜修正してください
+        request.getRequestDispatcher("test_search.jsp").forward(request, response);
+    }
 
-	        // JSPにフォワード
-	    // パスは環境に合わせてください (例: "/jsp/test_list.jsp")
-	    request.getRequestDispatcher("test_search.jsp").forward(request, response);
-	    }
+    // ... (postメソッドなどは省略)
 
 	    /**
 	     * フォームから送信された検索条件に基づいて成績を検索します。
