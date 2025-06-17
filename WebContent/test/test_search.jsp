@@ -61,7 +61,7 @@
 								<option value="0">
 									--------
 								</option>
-								<c:forEach var="classItem" items="${classList}">
+								<c:forEach var="classItem" items="${subjectList}">
 									<option value="${classItem.classNum}"
 										<c:if test="${classItem.classNum == fClassNum}">selected
 										</c:if>>${classItem.classNum}
