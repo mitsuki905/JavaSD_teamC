@@ -6,7 +6,7 @@
 
 	<c:param name="body">
 
-		<h2 style="background-color: #f0f0f0;">成績管理</h2><br>
+		<h2>成績管理</h2><br>
 
 		<%-- 検索フォーム --%>
 		<div class="bg-light p-3 rounded mb-4">
