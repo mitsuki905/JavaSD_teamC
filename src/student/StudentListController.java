@@ -20,10 +20,12 @@ public class StudentListController extends CommonServlet {
     	HttpSession session = req.getSession();
 
 		StudentDao dao = new StudentDao();
-		List<Student> yearlist = dao.getList();
+		List<Student> student = dao.getList();
+		
 
 
-		req.setAttribute("yearList", yearlist);
+
+		req.setAttribute("student", student);
 
 		req.getRequestDispatcher("student_list.jsp").forward(req, resp);
     }
