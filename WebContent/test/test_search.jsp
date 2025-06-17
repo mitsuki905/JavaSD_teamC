@@ -31,6 +31,7 @@
 
 
 
+					<%-- 変数名よろしく --%>
 					<div class="col-md-2">
 						<label  for="f_class_num"
 							    class="form-label">クラス
@@ -52,6 +53,7 @@
 
 
 
+					<%-- 変数名よろしく --%>
 					<div class="col-md-3">
 						<label  for="f_class_num"
 							    class="form-label">科目

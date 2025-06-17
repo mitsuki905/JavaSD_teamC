@@ -112,9 +112,7 @@
 								<%-- 点数入力 --%>
 								<%-- 空っぽOK　入力する値は0～100　そうでない場合はエラー --%>
 								<input type="text" name="point_${ 学生番号 }">
-								<ul>
-						        	<li style="list-style: none;">${ errorMessage }</li>
-						        </ul>
+						        <li style="list-style: none;" class="text-warning">${ errorMessage }</li>
 							</tr>
 						</c:forEach>
 					</tbody>
