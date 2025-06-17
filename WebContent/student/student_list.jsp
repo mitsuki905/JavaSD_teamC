@@ -82,8 +82,11 @@
 			</form>
 		</div>
 
-
-		<p>
+		<c:if test="${empty student.no}">
+       		<p>学生情報が存在しませんでした</p>
+   		</c:if>
+   		<c:if test="${not empty student.no}">
+   			<p>
 			検索結果：
 			<c:out value="${students.size()}" />
 			<!-- リクエストに表示されている学生リストの件数を表示する -->
@@ -91,7 +94,7 @@
 		</p>
 
 
-		<%-- テーブルの表示 --%>
+		テーブルの表示
 		<div class="table-responsive">
 			<table class="table table-striped table-hover">
 				<thead>
@@ -102,7 +105,7 @@
 						<th>クラス</th>
 						<th>在学中</th>
 						<th></th>
-						<%-- 変更リンク用の空ヘッダー --%>
+						変更リンク用の空ヘッダー
 					</tr>
 				</thead>
 				<tbody>
@@ -121,7 +124,7 @@
 					            <c:if test="${student.isattend}">○</c:if>
 					            <c:if test="${!student.isattend}">×</c:if>
 					        </td>
-					        <%-- 変更リンクのURLに、キーとなるentyear,no,name,numをパラメータとして追加 --%>
+					        変更リンクのURLに、キーとなるentyear,no,name,numをパラメータとして追加
 					        <td>
 					            <a href="${pageContext.request.contextPath}/student/student_update?
 					            		entyear=${student.entyear}&no=${student.no}&name=${student.name}&num=${student.num}">変更</a>
@@ -131,6 +134,58 @@
 				</tbody>
 			</table>
 		</div>
+   		</c:if>
+
+
+
+		<%-- <p>
+			検索結果：
+			<c:out value="${students.size()}" />
+			<!-- リクエストに表示されている学生リストの件数を表示する -->
+			件
+		</p>
+
+
+		テーブルの表示
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>入学年度</th>
+						<th>学生番号</th>
+						<th>氏名</th>
+						<th>クラス</th>
+						<th>在学中</th>
+						<th></th>
+						変更リンク用の空ヘッダー
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="student" items="${students}">
+					    <tr>
+					    	<!--学生情報管理テーブルの「入学年度」カラムの値を表示する -->
+					        <td>${student.entyear}</td>
+					        <!-- 学生情報管理テーブルの「学生番号」カラムの値を表示する -->
+					        <td>${student.no}</td>
+					        <!-- 学生情報管理テーブルの「学生氏名」カラムの値を表示する -->
+					        <td>${student.name}</td>
+					        <!-- 学生情報管理テーブルの「クラス番号」カラムの値を表示する -->
+					        <td>${student.classNum}</td>
+					        <td>
+					        	<!-- 学生情報管理テーブルの「在学中フラグ」カラムの値を変換して表示する -->
+					            <c:if test="${student.isattend}">○</c:if>
+					            <c:if test="${!student.isattend}">×</c:if>
+					        </td>
+					        変更リンクのURLに、キーとなるentyear,no,name,numをパラメータとして追加
+					        <td>
+					            <a href="${pageContext.request.contextPath}/student/student_update?
+					            		entyear=${student.entyear}&no=${student.no}&name=${student.name}&num=${student.num}">変更</a>
+					        </td>
+					    </tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div> --%>
 
 
 
