@@ -7,6 +7,7 @@
 	<c:param name="body">
 		<h2>　成績参照</h2>
 
+		<%-- 検索フォーム（科目） --%>
 		<div class="bg-light p-3 rounded mb-4">
 			<form action="/test/test_list_subject" method="post">
 				<div class="row g-3 align-items-end">科目情報　　　　　
@@ -84,7 +85,7 @@
 
 
 
-
+		<%-- 検索フォーム（学生） --%>
 		<div class="bg-light p-3 rounded mb-4">
 			<form action="/test/test_list_student" method="post">
 				<div class="row g-3 align-items-end">学生情報　　　　　
@@ -114,12 +115,10 @@
 			</form>
 		</div>
 
+
 		<label><font color="#1e90ff">
-		<!-- <input type="hidden" name="f" value="sj">
-		<input type="hidden" name="f" value="st"> -->
 		科目情報を選択または学生情報を入力して検索ボタンをクリックしてください
-		 </font>
-		</label>
+		 </font></label>
 
 	</c:param>
 </c:import>

@@ -12,17 +12,13 @@
 			<form action="/test/test_list_subject" method="post">
 				<div class="row g-3 align-items-end">科目情報　　　
 
-					<%-- プルダウン式 --%>
+
+
 					<div class="col-md-2">
-						<label  for="f_ent_year"
-								class="form-label">入学年度
-						</label>
-						<select name="f1"
-								id="f1"
-								class="form-select">
-								<option value="0">
-									--------
-								</option>
+						<label  for="f_ent_year" class="form-label">入学年度</label>
+						<%-- プルダウン式 --%>
+						<select name="f1" id="f1" class="form-select">
+								<option value="0">--------</option>
 								<c:forEach var="year" items="${yearList}">
 									<option value="${year}"
 										<c:if test="${year == fEntYear}">selected</c:if>>${year}
@@ -33,17 +29,11 @@
 
 
 
-					<%-- プルダウン式 --%>
 					<div class="col-md-2">
-						<label  for="f_class_num"
-							    class="form-label">クラス
-						</label>
-						<select name="f3"
-								id="f3"
-								class="form-select">
-								<option value="0">
-									--------
-								</option>
+						<label  for="f_class_num" class="form-label">クラス</label>
+					<%-- プルダウン式 --%>
+						<select name="f3" id="f3" class="form-select">
+								<option value="0">--------</option>
 								<c:forEach var="classItem" items="${classList}">
 									<option value="${classItem.classNum}"
 										<c:if test="${classItem.classNum == fClassNum}">selected
@@ -55,17 +45,11 @@
 
 
 
-					<%-- プルダウン式 --%>
 					<div class="col-md-3">
-						<label  for="f_class_num"
-							    class="form-label">科目
-						</label>
-						<select name="f2"
-								id="f2"
-								class="form-select">
-								<option value="0">
-									--------
-								</option>
+						<label  for="f_class_num" class="form-label">科目</label>
+					<%-- プルダウン式 --%>
+						<select name="f2" id="f2" class="form-select">
+								<option value="0">--------</option>
 								<c:forEach var="classItem" items="${classList}">
 									<option value="${classItem.classNum}"
 										<c:if test="${classItem.classNum == fClassNum}">selected
@@ -79,9 +63,7 @@
 
 
 					<div class="col-md-2 d-flex justify-content-end">
-						<button type="submit"
-								class="btn btn-secondary">検索
-						</button>
+						<button type="submit" class="btn btn-secondary">検索</button>
 					</div>
 				</div>
 			</form>
@@ -134,6 +116,8 @@
 					成績情報が存在しませんでした
 				</p>
 		    </c:if>
+
+
 
 			<div>
 				<p>
