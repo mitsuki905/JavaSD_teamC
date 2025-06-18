@@ -68,7 +68,24 @@ h2{
     text-align: center !important;
 }
 
+.form-signin{
+	max-width: 500px; padding-top: 40px; margin: 0 auto; padding: 2rem;
+}
 
+
+.login-title{
+	background-color: #f0f0f0;
+}
+
+
+.login-btn{
+	max-width: 300px;
+}
+
+
+.error-message{
+	list-style: none;text-align: center;
+}
 
 /*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  */
 

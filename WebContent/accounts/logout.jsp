@@ -5,8 +5,8 @@
 
 	<c:param name="body">
 
-		<h2 style="background-color: #f0f0f0;">　ログアウト</h2>
-		<p style="background-color: #008b8b;text-align: center">　ログアウトしました</p>
+		<h2>　ログアウト</h2>
+		<p class="p1">　ログアウトしました</p>
 
 		<br><br>
 		<a href="${pageContext.request.contextPath}/accounts/login">ログイン</a>

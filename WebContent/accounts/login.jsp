@@ -9,11 +9,11 @@
 
 	<c:param name="body">
 	  	<%-- ログインフォームの適応範囲 --%>
-	    <main class="form-signin" style="max-width: 500px; padding-top: 40px; margin: 0 auto; padding: 2rem;">
+	    <main class="form-signin">
 	      <form id="loginForm" method="post" action="/JavaSD/accounts/loginexe">
 
-	        <h1 class="h3 mb-3 fw-bold text-center" style="background-color: #f0f0f0;">ログイン</h1>
-	        	<li style="list-style: none;text-align: center">${ errorMessage }</li><br>
+	        <h1 class="h3 mb-3 fw-bold text-center login-title" >ログイン</h1>
+	        	<li class="error-message">${ errorMessage }</li><br>
 
 	        <div class="form-floating mb-2">
 	          <input type="text" class="form-control" id="floatingInput" name="userId" value="${ userId }" required>
@@ -33,7 +33,7 @@
 	        </div>
 
 	        <div class="text-center">
-	            <button class="btn btn-primary w-50 py-2" style="max-width: 300px;" type="submit">ログイン</button>
+	            <button class="btn btn-primary w-50 py-2 login-btn" type="submit">ログイン</button>
 	        </div>
 	      </form>
 	    </main>
