@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.School;
 import bean.Student;
-import dao.SubjectDao;
+import dao.StudentDao;
 import tool.CommonServlet;
 
 public class StudentUpdateExecuteController extends CommonServlet {
@@ -23,7 +23,8 @@ public class StudentUpdateExecuteController extends CommonServlet {
 		String no = req.getParameter("no");
 		String name = req.getParameter("name");
 		String num = req.getParameter("num");
-		String isattend = req.getParameter("isattend");
+		String isattend = req.getParameter("is_attend");
+		String classnum = req.getParameter("class_num");
 
 
 //		beanを使って学生の情報をまとめる
@@ -32,14 +33,8 @@ public class StudentUpdateExecuteController extends CommonServlet {
 		student.setEntYear(entyear);
 		student.setNo(no);
 		student.setName(name);
+		student.setClassNum(classnum);
 
-		// 【重要】Stringからcharへの変換処理
-		if (num != null && !num.isEmpty()) {
-		    // 文字列が空でないことを確認してから、最初の1文字を取得
-		    char classNumChar = num.charAt(0);
-		    // char型でセットする
-		    student.setClassNum(classNumChar);
-		}
 
 		// Stringをbooleanに変換
 		// パラメータが"true"（大文字小文字を区別しない）の場合にtrue、それ以外（nullや他の文字列）の場合はfalseになる
@@ -47,7 +42,7 @@ public class StudentUpdateExecuteController extends CommonServlet {
 
 
 //		まとめたデータに変更させる
-		SubjectDao dao = new SubjectDao();
+		StudentDao dao = new StudentDao();
 		boolean flag = dao.save(student);
 
 //		データの変更に成功したかの判定式
