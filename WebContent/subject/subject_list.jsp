@@ -5,7 +5,7 @@
 
 	<c:param name="body">
 
-		<h2 style="background-color: #f0f0f0;">　科目管理</h2>
+		<h2>　科目管理</h2>
 
 		<%-- 科目登録画面に遷移 --%>
 		<div class="text-end mb-2">

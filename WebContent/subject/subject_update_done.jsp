@@ -5,8 +5,8 @@
 
 	<c:param name="body">
 
-		<h2 style="background-color: #f0f0f0;">　科目情報変更</h2>
-		<p style="background-color: #008b8b;text-align: center">　変更が完了しました</p>
+		<h2>　科目情報変更</h2>
+		<p class="p1">　変更が完了しました</p>
 
 		<br><br>
 		<%-- 科目管理一覧画面に遷移 --%>

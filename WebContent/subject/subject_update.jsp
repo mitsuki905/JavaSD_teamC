@@ -5,7 +5,7 @@
 
 	<c:param name="body">
 
-		<h2 style="background-color: #f0f0f0;">　科目情報変更</h2>
+		<h2>　科目情報変更</h2>
 
 		<%-- フォーム本体 --%>
 		<div class="card-body">

@@ -63,6 +63,11 @@ h2{
 	background-color: #f0f0f0;!important
 }
 
+.p1 {
+    background-color: #008b8b !important;
+    text-align: center !important;
+}
+
 
 
 /*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  */
@@ -115,6 +120,7 @@ ul {
 	list-style: none;
     padding-left: 0;
 }
+
 
 /* 共通部分(フッター) */
 .footer {

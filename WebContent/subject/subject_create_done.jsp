@@ -5,8 +5,8 @@
 
 	<c:param name="body">
 
-		<h2 style="background-color: #f0f0f0;">　科目情報登録</h2>
-		<p style="background-color: #008b8b;text-align: center">　登録が完了しました</p>
+		<h2>　科目情報登録</h2>
+		<p class="p1">　登録が完了しました</p>
 
 		<br><br>
 		<%-- 科目登録画面に遷移 --%>

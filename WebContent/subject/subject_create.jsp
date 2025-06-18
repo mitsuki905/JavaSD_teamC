@@ -6,7 +6,7 @@
 
 	<c:param name="body">
 
-		<h2 style="background-color: #f0f0f0;">　科目情報登録</h2>
+		<h2>　科目情報登録</h2>
 
 		<%-- サーバーからのエラーメッセージを表示する --%>
 		<c:if test="${not empty error}">
