@@ -9,7 +9,7 @@
 
 	<c:param name="body">
 
-		<p class="fs-1" style="text-align: center">エラーが発生しました</p>
+		<p>エラーが発生しました</p>
 
 	</c:param>
 
