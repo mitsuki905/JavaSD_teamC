@@ -29,6 +29,12 @@ body {
 	margin-top: 50px;
 }
 
+
+.subject{
+	margin-left: 1em; text-indent: -1em;
+}
+
+
 .box_red,
 .box_green,
 .box_blue {

@@ -14,9 +14,9 @@
 		<li><a href="${pageContext.request.contextPath}/student/student_list">学生管理</a></li>
 		<li>成績管理</li>
 		<li><a href="${pageContext.request.contextPath}/test/test_regist"
-				style="margin-left: 1em; text-indent: -1em;">成績登録</a></li>
+				class="subject">成績登録</a></li>
 		<li><a href="${pageContext.request.contextPath}/test/test_list"
-				style="margin-left: 1em; text-indent: -1em;">成績参照</a></li>
+				class="subject">成績参照</a></li>
 		<li><a href="${pageContext.request.contextPath}/subject/subject_list">科目管理</a></li>
     </ul>
 	</nav>
