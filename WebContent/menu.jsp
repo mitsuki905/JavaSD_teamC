@@ -13,7 +13,7 @@
 		<li><a href="${pageContext.request.contextPath}/main/main">メニュー</a></li>
 		<li><a href="${pageContext.request.contextPath}/student/student_list">学生管理</a></li>
 		<li>成績管理</li>
-		<li><a href="${pageContext.request.contextPath}/test/"
+		<li><a href="${pageContext.request.contextPath}/test/test_regist"
 				style="margin-left: 1em; text-indent: -1em;">成績登録</a></li>
 		<li><a href="${pageContext.request.contextPath}/main/deleteselect"
 				style="margin-left: 1em; text-indent: -1em;">成績参照</a></li>
