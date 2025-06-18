@@ -9,12 +9,12 @@
 
 		<div class="box-container">
 			<div class="box_red">
-				<li><a href="/JavaSD/student/student_list">学生管理</a></li>
+				<li><a href="/student/student_list">学生管理</a></li>
 			</div>
 
 			<div class="box_green">
 				成績管理
-				<li><a href="${pageContext.request.contextPath}/test/">成績登録</a></li>
+				<li><a href="${pageContext.request.contextPath}/test/test_regist">成績登録</a></li>
 				<li><a href="${pageContext.request.contextPath}/test/test_list">成績参照</a></li>
 			</div>
 
