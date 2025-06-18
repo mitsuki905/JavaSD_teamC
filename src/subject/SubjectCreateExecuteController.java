@@ -74,7 +74,7 @@ public class SubjectCreateExecuteController extends CommonServlet {
             // エラーメッセージをリクエストに追加
             req.setAttribute("errorMessage", "科目コードが重複しています");
 
-         // ログイン画面に戻る
+         // 登録画面に戻る
             req.getRequestDispatcher("subject_create.jsp").forward(req, resp);
 		}
 
