@@ -1,10 +1,12 @@
 package test;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
 
+@WebServlet(urlPatterns = { "/test/test_" })
 public class TestRegistController extends CommonServlet {
 
 	@Override
