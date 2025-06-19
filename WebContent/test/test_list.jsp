@@ -166,10 +166,7 @@
 					</table>
 				</div>
 
-				<%-- 検索結果が0件だった場合にメッセージを表示する --%>
-				<c:if test="${empty students}">
-					<p class="text-center mt-3">該当するデータはありませんでした。</p>
-				</c:if>
+
 			</div>
 		</c:if>
 
