@@ -97,12 +97,12 @@ public class TestDao extends DAO {
 
         // 各引数が有効な値を持つ場合のみ、条件とパラメータを追加
         if (entYear > 0) { conditions.add("s.ent_year = ?"); params.add(entYear); }
-        if (classNum != null && !classNum.isEmpty()) { conditions.add("s.class_num = ?"); params.add(classNum); }
+        if (classNum != null && !classNum.isEmpty() && !classNum.equals("0")) { conditions.add("s.class_num = ?"); params.add(classNum); }
         if (subject != null) { conditions.add("t.subject_cd = ?"); params.add(subject.getCd()); }
         if (num > 0) { conditions.add("t.no = ?"); params.add(num); }
 
         // 条件が1つ以上あれば、WHERE句を組み立てる
-        if (!conditions.isEmpty()) {
+        if (conditions.size() > 1) { // school_cdは必ずあるので1より大きいかで判断
             sqlBuilder.append("WHERE ");
             sqlBuilder.append(String.join(" AND ", conditions)); // "cond1 AND cond2 AND ..." のように結合
         }
@@ -244,12 +244,9 @@ public class TestDao extends DAO {
             student.setEntYear(rs.getInt("ent_year"));
             student.setSchool(school);
 
-            // 【注意】Student BeanのclassNumはchar型、Test BeanのclassNumはString型と想定
             String classNumStr = rs.getString("class_num");
             if (classNumStr != null && !classNumStr.isEmpty()) {
-                // Studentにはchar型(1文字目)をセット
                 student.setClassNum(classNumStr);
-                // TestにはString型をそのままセット
                 test.setClassNum(classNumStr);
             }
 
@@ -279,18 +276,17 @@ public class TestDao extends DAO {
      * @throws SQLException SQLの実行中に発生する可能性のある例外
      */
     private boolean save(Test test, Connection connection) throws SQLException {
-        // ON DUPLICATE KEY UPDATE (MySQL/MariaDB構文):
-        // 主キーまたはユニークキーが重複するデータがあればUPDATE、なければINSERTを実行する
-        String sql = "INSERT INTO test (student_no, subject_cd, school_cd, no, class_num, point) "
-                   + "VALUES (?, ?, ?, ?, ?, ?) "
-                   + "ON DUPLICATE KEY UPDATE point = VALUES(point), class_num = VALUES(class_num)";
+        // H2 Databaseで動作するMERGE文に修正
+        // 主キー(student_no, subject_cd, school_cd, no)が一致する行があればUPDATE、なければINSERT
+        String sql = "MERGE INTO test (student_no, subject_cd, school_cd, no, class_num, point) "
+                   + "KEY(student_no, subject_cd, school_cd, no) "
+                   + "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, test.getStudent().getNo());
             pstmt.setString(2, test.getSubject().getCd());
             pstmt.setString(3, test.getSchool().getCd());
             pstmt.setInt(4, test.getNo());
-            // Test Beanが持つString型のclassNumをセット
             pstmt.setString(5, test.getClassNum());
             pstmt.setInt(6, test.getPoint());
 

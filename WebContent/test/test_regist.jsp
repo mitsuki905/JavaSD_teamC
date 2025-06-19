@@ -9,7 +9,7 @@
 
         <%-- エラーメッセージ表示エリア --%>
         <c:if test="${not empty error}">
-            <div class="alert alert-danger">${error}</div>
+            <div class="alert alert-warning">${error}</div>
         </c:if>
 
         <%-- 検索フォーム --%>
@@ -17,16 +17,18 @@
             <form action="test_regist" method="post">
                 <div class="row g-3 align-items-end">
 
+                    <%-- 入学年度 --%>
                     <div class="col-md-2">
                         <label for="f_ent_year" class="form-label">入学年度</label>
                         <select name="f_ent_year" id="f_ent_year" class="form-select">
                             <option value="0">--------</option>
                             <c:forEach var="year" items="${entYearSet}">
-                                <option value="${year}" <c:if test="${year == f_ent_year}">selected</c:if>>${year}</option>
-                            </c:forEach>
+								<option value="${year}" <c:if test="${year == f_ent_year}">selected</c:if>>${year}</option>
+							</c:forEach>
                         </select>
                     </div>
 
+                    <%-- クラス --%>
                     <div class="col-md-2">
                         <label for="f_class_num" class="form-label">クラス</label>
                         <select name="f_class_num" id="f_class_num" class="form-select">
@@ -37,6 +39,7 @@
                         </select>
                     </div>
 
+                    <%-- 科目 --%>
                     <div class="col-md-3">
                         <label for="f_subject_cd" class="form-label">科目</label>
                         <select name="f_subject_cd" id="f_subject_cd" class="form-select">
@@ -47,11 +50,11 @@
                         </select>
                     </div>
 
+                    <%-- 回数 --%>
                     <div class="col-md-2">
                         <label for="f_num" class="form-label">回数</label>
                         <select name="f_num" id="f_num" class="form-select">
                             <option value="0">--------</option>
-                            <%-- 例えば1回から5回まで選択可能にする --%>
                             <c:forEach var="i" begin="1" end="5">
                                 <option value="${i}" <c:if test="${i == f_num}">selected</c:if>>${i}</option>
                             </c:forEach>
@@ -65,7 +68,12 @@
             </form>
         </div>
 
-        <%-- 検索ボタンをクリック後、検索結果を表示 --%>
+        <%-- 検索後、該当者がいなかった場合にメッセージ表示 --%>
+        <c:if test="${not empty f_ent_year && f_ent_year != 0 && empty students}">
+            <p>該当する学生は見つかりませんでした</p>
+        </c:if>
+
+        <%-- 検索結果の表示 --%>
         <c:if test="${not empty students}">
             <form action="test_regist_execute" method="post">
                 <p>科目：${subject.name} (${num}回)</p>
@@ -88,14 +96,13 @@
                                     <td>${student.no}</td>
                                     <td>${student.name}</td>
                                     <td>
-                                        <%-- 点数入力欄。エラー時に値を保持する --%>
                                         <input type="text" name="point_${student.no}" class="form-control" value="${points[student.no]}">
-                                        <%-- エラーメッセージ表示 --%>
+                                        <%-- 不要なエラー表示(liタグ)を削除しました --%>
                                         <c:if test="${not empty errors[student.no]}">
+                                            <%-- エラーメッセージの色を text-danger (赤色) に変更しました --%>
                                             <div class="text-danger small">${errors[student.no]}</div>
                                         </c:if>
                                     </td>
-                                    <%-- 登録処理に必要な情報をhiddenで送信 --%>
                                     <input type="hidden" name="student_no" value="${student.no}">
                                 </tr>
                             </c:forEach>
@@ -105,20 +112,15 @@
                     <%-- 登録処理に必要な共通情報をhiddenで送信 --%>
                     <input type="hidden" name="subject_cd" value="${subject.cd}">
                     <input type="hidden" name="num" value="${num}">
-                    <input type="hidden" name="ent_year" value="${ent_year}">
-                    <input type="hidden" name="class_num" value="${class_num}">
+                    <input type="hidden" name="ent_year" value="${f_ent_year}">
+                    <input type="hidden" name="class_num" value="${f_class_num}">
 
-                    <%-- ボタンエリア --%>
                     <div class="mt-4">
+                        <%-- ボタンのクラス名を btn-primary に戻しました --%>
                         <button type="submit" class="btn btn-primary">登録して終了</button>
                     </div>
                 </div>
             </form>
-        </c:if>
-
-        <%-- 検索後、該当者がいなかった場合にメッセージ表示 --%>
-        <c:if test="${not empty f_ent_year and empty students}">
-            <p>該当する学生は見つかりませんでした</p>
         </c:if>
 
     </c:param>
