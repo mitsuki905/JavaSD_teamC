@@ -115,8 +115,7 @@
                     <input type="hidden" name="class_num" value="${f_class_num}">
 
                     <div class="mt-4">
-                        <%-- ボタンのクラス名を btn-primary に戻しました --%>
-                        <button type="submit" class="btn btn-primary">登録して終了</button>
+                        <button type="submit" class="btn btn-secondary">登録して終了</button>
                     </div>
                 </div>
             </form>
