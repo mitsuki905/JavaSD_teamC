@@ -7,10 +7,6 @@
 
         <h2>　成績管理</h2><br>
 
-        <%-- エラーメッセージ表示エリア --%>
-        <c:if test="${not empty error}">
-            <div class="alert alert-warning">${error}</div>
-        </c:if>
 
         <%-- 検索フォーム --%>
         <div class="bg-light p-3 rounded mb-4">
@@ -66,6 +62,11 @@
                     </div>
                 </div>
             </form>
+
+	        <%-- エラーメッセージ表示エリア --%>
+	        <c:if test="${not empty error}">
+	            <div class="text-warning small">${error}</div>
+	        </c:if>
         </div>
 
         <%-- 検索後、該当者がいなかった場合にメッセージ表示 --%>
@@ -97,10 +98,8 @@
                                     <td>${student.name}</td>
                                     <td>
                                         <input type="text" name="point_${student.no}" class="form-control" value="${points[student.no]}">
-                                        <%-- 不要なエラー表示(liタグ)を削除しました --%>
                                         <c:if test="${not empty errors[student.no]}">
-                                            <%-- エラーメッセージの色を text-danger (赤色) に変更しました --%>
-                                            <div class="text-danger small">${errors[student.no]}</div>
+                                            <div class="text-warning small">${errors[student.no]}</div>
                                         </c:if>
                                     </td>
                                     <input type="hidden" name="student_no" value="${student.no}">
