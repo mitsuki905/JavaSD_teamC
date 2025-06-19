@@ -35,7 +35,7 @@
 
 				<%-- 科目コード重複エラー --%>
 				<%-- エラーカラー --%>
-		        <li style="list-style: none;" class="text-warning">${ errorMessage }</li>
+		        <li class="text-warning error-message-item">${ errorMessage }</li>
 			</div>
 
 			<%-- 科目名 --%>

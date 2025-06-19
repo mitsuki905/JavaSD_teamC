@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/style.css">
 <c:import url="/base.jsp">
 
@@ -26,7 +27,7 @@
 					<p>${cd }</p>
 
 				<%-- 変更中に別画面から対象の科目が削除された場合のエラー表示 --%>
-		        <li style="list-style: none;" class="text-warning">${ errorMessage }</li>
+		        <li class="text-warning error-message-item">${ errorMessage }</li>
 			</div>
 
 			<%-- 科目名 --%>
