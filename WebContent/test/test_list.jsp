@@ -107,6 +107,72 @@
 		<label><font color="#1e90ff">
 		科目情報を選択または学生情報を入力して検索ボタンをクリックしてください
 		 </font></label>
+		 <%-- studentsがnullでない場合（＝検索が実行された後）にのみ、このブロック全体を表示する --%>
+		<c:if test="${students != null}">
+			<div class="mt-4">
+				<%-- 検索された科目名を表示 --%>
+				<c:if test="${not empty subjectName}">
+					<h3 class="h5 mb-3">科目：<c:out value="${subjectName}" /></h3>
+				</c:if>
+
+				<%-- 検索結果テーブル --%>
+				<div class="table-responsive">
+					<table class="table table-striped table-hover">
+						<%-- テーブルヘッダー --%>
+						<thead>
+							<tr>
+								<th>入学年度</th>
+								<th>クラス</th>
+								<th>学生番号</th>
+								<th>氏名</th>
+								<th>1回</th>
+								<th>2回</th>
+							</tr>
+						</thead>
+						<%-- テーブルデータ --%>
+						<tbody>
+							<%-- リストが空でない場合にのみループ処理 --%>
+							<c:forEach var="student" items="${students}">
+								<tr>
+									<td>${student.entYear}</td>
+									<td>${student.classNum}</td>
+									<td>${student.no}</td>
+									<td>${student.name}</td>
+									<%-- 1回目の点数。ない場合はハイフンを表示 --%>
+									<td>
+										<c:choose>
+											<c:when test="${student.point1 != null && student.point1 >= 0}">
+												${student.point1}
+											</c:when>
+											<c:otherwise>
+												-
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<%-- 2回目の点数。ない場合はハイフンを表示 --%>
+									<td>
+										<c:choose>
+											<c:when test="${student.point2 != null && student.point2 >= 0}">
+												${student.point2}
+											</c:when>
+											<c:otherwise>
+												-
+											</c:otherwise>
+										</c:choose>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+
+				<%-- 検索結果が0件だった場合にメッセージを表示する --%>
+				<c:if test="${empty students}">
+					<p class="text-center mt-3">該当するデータはありませんでした。</p>
+				</c:if>
+			</div>
+		</c:if>
+
 
 	</c:param>
 </c:import>
