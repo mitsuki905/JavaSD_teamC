@@ -6,7 +6,7 @@
 
 	<c:param name="body">
 
-		<h2>学生管理</h2>
+		<h2 style="background-color: #f0f0f0;">学生管理</h2>
 
 
 		<div class="text-end mb-2">
@@ -20,7 +20,7 @@
 
 					<div class="col-md-3">
 						<label for="f_ent_year" class="form-label">入学年度</label> <select
-							name="f_ent_year" id="f_ent_year" class="form-select">
+							name="year" id="f_ent_year" class="form-select">
 							<option value="0">
 									--------
 								</option>
@@ -35,7 +35,7 @@
 						<label  for="f_class_num"
 							    class="form-label">クラス
 						</label>
-						<select name="f2"
+						<select name="classItem"
 								id="f2"
 								class="form-select">
 								<option value="0">
@@ -54,7 +54,7 @@
 						<div class="form-check">
 							<input  class="form-check-input"
 									type="checkbox"
-									name="f3"
+									name="isattend"
 									id="f3"
 									value="true"
 							<c:if test="${isattend}">
@@ -104,7 +104,7 @@
 					<c:forEach var="student" items="${students}">
 					    <tr>
 					    	<!--学生情報管理テーブルの「入学年度」カラムの値を表示する -->
-					        <td>${student.entyear}</td>
+					        <td>${student.entYear}</td>
 					        <!-- 学生情報管理テーブルの「学生番号」カラムの値を表示する -->
 					        <td>${student.no}</td>
 					        <!-- 学生情報管理テーブルの「学生氏名」カラムの値を表示する -->
@@ -113,13 +113,13 @@
 					        <td>${student.classNum}</td>
 					        <td>
 					        	<!-- 学生情報管理テーブルの「在学中フラグ」カラムの値を変換して表示する -->
-					            <c:if test="${student.isattend}">○</c:if>
-					            <c:if test="${!student.isattend}">×</c:if>
+					            <c:if test="${student.isAttend}">○</c:if>
+					            <c:if test="${!student.isAttend}">×</c:if>
 					        </td>
 					        <%-- 変更リンクのURLに、キーとなるentyear,no,name,numをパラメータとして追加 --%>
 					        <td>
 					            <a href="${pageContext.request.contextPath}/student/student_update?
-					            		entyear=${student.entyear}&no=${student.no}&name=${student.name}&num=${student.num}">変更</a>
+					            		entyear=${student.entYear}&no=${student.no}&name=${student.name}&num=${student.num}">変更</a>
 					        </td>
 					    </tr>
 					</c:forEach>
