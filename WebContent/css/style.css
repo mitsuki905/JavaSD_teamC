@@ -67,7 +67,7 @@ body {
 
 
 h2{
-	background-color: #f0f0f0;!important
+	background-color: #f0f0f0 !important;
 }
 
 .p1 {
@@ -97,6 +97,16 @@ h2{
 
 .error-message-item{
  list-style: none;
+}
+
+
+.test-r{
+	 width: 200px !important;
+}
+
+.table-uniform{
+	 table-layout: fixed;
+	 width: 100%;
 }
 
 /*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  *//*  */

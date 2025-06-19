@@ -79,7 +79,7 @@
             <form action="test_regist_execute" method="post">
                 <p>科目：${subject.name} (${num}回)</p>
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover table-uniform">
                         <thead>
                             <tr>
                                 <th>入学年度</th>
@@ -97,7 +97,7 @@
                                     <td>${student.no}</td>
                                     <td>${student.name}</td>
                                     <td>
-                                        <input type="text" name="point_${student.no}" class="form-control" value="${points[student.no]}">
+                                        <input type="text" name="point_${student.no}" class="form-control test-r" value="${points[student.no]}">
                                         <c:if test="${not empty errors[student.no]}">
                                             <div class="text-warning small">${errors[student.no]}</div>
                                         </c:if>
