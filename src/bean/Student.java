@@ -38,7 +38,7 @@ public class Student implements Serializable{
 	public boolean isAttend() {
 		return isAttend;
 	}
-	public void setAttend(boolean isAttend) {
+	public void setIsAttend(boolean isAttend) {
 		this.isAttend = isAttend;
 	}
 	public School getSchool() {
