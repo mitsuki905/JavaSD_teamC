@@ -74,14 +74,13 @@ public class StudentListController extends CommonServlet {
 
 //		画面から送られてきた値を取得する
 		int year = Integer.parseInt(req.getParameter("year"));
-		System.out.println(year);
 		String classItem = req.getParameter("classItem");
-		System.out.println(classItem);
 
 		// StudentListController.java (doPost メソッド内)
-		String isattendParam = req.getParameter("isattend"); // JSPから送られてくる名前
+		String isattendParam = req.getParameter("isAttend"); // JSPから送られてくる名前
 
 		boolean isAttend = "TRUE".equalsIgnoreCase(isattendParam);
+		System.out.println(isAttend);
 
 		List<Student> students = null;
 
@@ -102,7 +101,7 @@ public class StudentListController extends CommonServlet {
 
 		req.setAttribute("fEntYear", year);      // JSPの ${fEntYear} に対応
 		req.setAttribute("fClassNum", classItem);    // JSPの ${fClassNum} に対応
-		req.setAttribute("isattend", isAttend);     // JSPの ${isattend} に対応
+		req.setAttribute("isAttend", isAttend);     // JSPの ${isattend} に対応
 
 		req.setAttribute("students", students);
 

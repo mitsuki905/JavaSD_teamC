@@ -54,10 +54,10 @@
 						<div class="form-check">
 							<input  class="form-check-input"
 									type="checkbox"
-									name="isattend"
+									name="isAttend"
 									id="f3"
 									value="true"
-							<c:if test="${isattend}">
+							<c:if test="${isAttend}">
 								checked
 							</c:if>>
 							<label class="form-check-label" for="is_attend">
@@ -119,7 +119,7 @@
 					        <%-- 変更リンクのURLに、キーとなるentyear,no,name,numをパラメータとして追加 --%>
 					        <td>
 					            <a href="${pageContext.request.contextPath}/student/student_update?
-					            		entyear=${student.entYear}&no=${student.no}&name=${student.name}&num=${student.num}">変更</a>
+					            		entyear=${student.entYear}&no=${student.no}&name=${student.name}&num=${student.classNum}">変更</a>
 					        </td>
 					    </tr>
 					</c:forEach>

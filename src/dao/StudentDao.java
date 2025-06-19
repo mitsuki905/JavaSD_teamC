@@ -41,7 +41,7 @@ public class StudentDao extends DAO {
 				student.setName(rs.getString("name"));
 				student.setEntYear(rs.getInt("ent_year"));
 				student.setClassNum(rs.getString("class_num"));
-				student.setisAttend(rs.getBoolean("is_attend"));
+				student.setAttend(rs.getBoolean("is_attend"));
 
 				school = dao.get(rs.getString("school_cd"));
 
@@ -84,7 +84,7 @@ public class StudentDao extends DAO {
 				student.setName(rs.getString("name"));
 				student.setEntYear(rs.getInt("ent_year"));
 				student.setClassNum(rs.getString("class_num"));
-				student.setisAttend(rs.getBoolean("is_attend"));
+				student.setAttend(rs.getBoolean("is_attend"));
 
 				school = dao.get(rs.getString("school_cd"));
 
@@ -119,7 +119,7 @@ public class StudentDao extends DAO {
 					student.setName(rSet.getString("name"));
 					student.setEntYear(rSet.getInt("ent_year"));
 					student.setClassNum(rSet.getString("class_num"));
-					student.setisAttend(rSet.getBoolean("is_attend"));
+					student.setAttend(rSet.getBoolean("is_attend"));
 
 					school = dao.get(rSet.getString("school_cd"));
 
