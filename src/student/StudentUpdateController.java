@@ -1,22 +1,24 @@
 package student;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import bean.Student;
-import dao.StudentDao;
+import bean.ClassNum;
+import bean.School;
+import dao.ClassNumDao;
 import tool.CommonServlet;
 @WebServlet(urlPatterns = { "/student/student_update" })
 public class StudentUpdateController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+
+		HttpSession session = req.getSession();
+		School school = (School) session.getAttribute("school");
 
 //		画面から送られてきた値を取得する
 		int entYear = Integer.parseInt(req.getParameter("entYear"));
@@ -30,22 +32,15 @@ public class StudentUpdateController extends CommonServlet {
 		req.setAttribute("classNum", classNum);
 
 
-		StudentDao studao = new StudentDao();
+
+		ClassNumDao numdao = new ClassNumDao();
+
 
         try {
-            // 学生リストを取得
-            List<Student> studentList = studao.getList();
+            // 学生リストを取得;
+            List<ClassNum> classList = numdao.filter(school);
 
-         // --- 2. クラス番号リストの作成 ---
-            // JSPの items="${classList}" に合わせる
-            Set<String> classSet = new TreeSet<>();
-            for (Student s : studentList) {
-                classSet.add(s.getClassNum());
-            }
-            List<String> classList = new ArrayList<>();
-            for (String c : classSet) {
-                classList.add(String.valueOf(c));
-            }
+
             // ★JSPに合わせて "classList" という名前でセット
             req.setAttribute("classList", classList);
 

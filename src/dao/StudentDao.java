@@ -236,7 +236,7 @@ public class StudentDao extends DAO {
 
 			if (stuget == null){
 				// 学生を挿入
-			    String insertSql = "INSERT INTO STUDENT (NO,NAME,ENT_YEAR,CLASS_NUM,IS_ATTEND,SCHOOL_CD) VALUES (?,?,?,?.?,?)";
+			    String insertSql = "INSERT INTO STUDENT (NO,NAME,ENT_YEAR,CLASS_NUM,IS_ATTEND,SCHOOL_CD) VALUES (?,?,?,?,?,?)";
 			    PreparedStatement st = con.prepareStatement(insertSql);
 
 			    st.setString(1,student.getNo());

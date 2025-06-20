@@ -12,7 +12,7 @@
 
 		<%-- フォーム本体 --%>
 		<div class="card-body">
-			<form action="/student/student_create_done" method="post">
+			<form action="student_create_done" method="post">
 				<%-- 入学年度 --%>
 				<div class="mb-3">
 					<br><label for="ent_year" class="form-label">
@@ -23,7 +23,7 @@
 					<option value="0">
 									--------
 								</option>
-						<c:forEach var="year" items="${yearList}">
+						<c:forEach var="year" items="${entYear}">
 							<option value="${year}"
 								<c:if test="${year == ent_year}">selected</c:if>>${year}
 							</option>
@@ -58,7 +58,7 @@
 						<div class="text-warning mt-1">
 							${error_no}
 						</div>
-						<p>学生番号が重複しています</p>
+
 					</c:if>
 				</div>
 
@@ -91,9 +91,9 @@
 							id="class_num"
 							name="class_num">
 						<c:forEach var="class_num" items="${classList}">
-							<option value="${class_num.classNum}"
-								<c:if test="${class_num.classNum == classNum}">selected
-								</c:if>>${class_num.classNum}
+							<option value="${class_num.class_num}"
+								<c:if test="${class_num.class_num == classNum}">selected
+								</c:if>>${class_num.class_num}
 							</option>
 						</c:forEach>
 					</select>

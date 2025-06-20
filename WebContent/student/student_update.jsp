@@ -56,11 +56,11 @@
 					<%-- プルダウン式 --%>
 					<select class="form-select" id="class_num" name="classNum">
 						<c:forEach var="classItem" items="${classList}">
-							<option value="${classItem}"
-								<c:if test="${classItem == fClassNum}">
+							<option value="${classItem.class_num}"
+								<c:if test="${classItem.class_num == fClassNum}">
 									selected
 								</c:if>>
-								${classItem}
+								${classItem.class_num}
 							</option>
 						</c:forEach>
 					</select>
