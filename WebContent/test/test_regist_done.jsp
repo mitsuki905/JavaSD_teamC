@@ -6,8 +6,8 @@
 
 	<c:param name="body">
 
-		<h2>　成績管理</h2>
-		<p style="background-color: #008b8b;text-align: center">　登録が完了しました</p>
+		<h2>　成績管理(登録)</h2>
+		<p class="p1"text-align: center">　登録が完了しました</p>
 
 		<br><br>
 		<%-- 成績管理一覧画面に遷移 --%>
