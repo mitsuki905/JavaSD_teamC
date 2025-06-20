@@ -67,8 +67,6 @@ public class TestListSubjectDao extends DAO {
     public List<TestListSubject> filter(int entYear, String classNum, Subject subject, School school) throws Exception {
 
         List<TestListSubject> list = new ArrayList<>();
-        // パラメータを格納するリスト
-        List<Object> params = new ArrayList<>();
 
         // SQL文の骨格を定義。STUDENTテーブルを主軸にする
         StringBuilder sql = new StringBuilder(
@@ -81,7 +79,6 @@ public class TestListSubjectDao extends DAO {
         // 【修正点】科目条件をLEFT JOINのON句に追加。これにより、成績がない学生も結果に含まれるようになる
         if (subject != null && subject.getCd() != null && !subject.getCd().isEmpty()) {
             sql.append("AND t.SUBJECT_CD = ? ");
-            params.add(subject.getCd());
         }
 
         // WHERE句の条件をリストで管理
@@ -89,17 +86,14 @@ public class TestListSubjectDao extends DAO {
 
         // 学校コードは必須条件
         whereClauses.add("s.SCHOOL_CD = ?");
-        params.add(school.getCd());
 
         // 入学年度が指定されている場合
         if (entYear != 0) {
             whereClauses.add("s.ENT_YEAR = ?");
-            params.add(entYear);
         }
         // クラス番号が指定されている場合
         if (classNum != null && !classNum.isEmpty() && !classNum.equals("0")) {
             whereClauses.add("s.CLASS_NUM = ?");
-            params.add(classNum);
         }
 
         // WHERE句をSQL文に結合
@@ -115,9 +109,19 @@ public class TestListSubjectDao extends DAO {
             Connection con = getConnection();
             PreparedStatement st = con.prepareStatement(sql.toString())
         ) {
-            // パラメータをPreparedStatementにセット
-            for (int i = 0; i < params.size(); i++) {
-                st.setObject(i + 1, params.get(i));
+            int paramIndex = 1;
+
+            if (subject != null && subject.getCd() != null && !subject.getCd().isEmpty()) {
+                st.setString(paramIndex++, subject.getCd());
+            }
+
+            st.setString(paramIndex++, school.getCd());
+
+            if (entYear != 0) {
+                st.setInt(paramIndex++, entYear);
+            }
+            if (classNum != null && !classNum.isEmpty() && !classNum.equals("0")) {
+                st.setString(paramIndex++, classNum);
             }
 
             // SQLを実行し、結果セットを取得
