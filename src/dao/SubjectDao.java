@@ -15,7 +15,6 @@ public class SubjectDao extends DAO {
 	public Subject get(String cd,School school){
 		Subject subject =null;
 
-
 		try {
 			Connection con = getConnection();
 

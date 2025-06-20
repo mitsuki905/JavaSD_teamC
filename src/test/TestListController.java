@@ -15,15 +15,20 @@ import javax.servlet.http.HttpSession;
 import bean.School;
 import bean.Student;
 import bean.Subject;
+import bean.Teacher;
+import bean.TestListStudent;
+import bean.TestListSubject;
 import dao.StudentDao;
 import dao.SubjectDao;
+import dao.TestListStudentDao;
+import dao.TestListSubjectDao;
 import tool.CommonServlet;
 
 /**
  * 成績管理機能の検索画面（test_search.jsp）に関する処理を行うサーブレットです。
  * 検索条件として使用するドロップダウンリストのデータを準備し、画面に表示します。
  */
-@WebServlet(urlPatterns = { "/test/test_list" })
+@WebServlet(urlPatterns = { "/test/test_list","/test/test_list_student","/test/test_list_subject"})
 public class TestListController extends CommonServlet {
 
 	/**
@@ -38,8 +43,6 @@ public class TestListController extends CommonServlet {
 	 */
 	@Override
 	protected void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // デバッグ用出力
-		System.out.println("test;;;;;;");
 
         // セッションからログインユーザーの学校情報を取得
         HttpSession session = request.getSession();
@@ -96,7 +99,7 @@ public class TestListController extends CommonServlet {
         }
 
         // 検索条件をセットしたリクエストをJSPにフォワードし、画面を表示
-        request.getRequestDispatcher("test_search.jsp").forward(request, response);
+        request.getRequestDispatcher("test_list.jsp").forward(request, response);
     }
 
 	/**
@@ -112,15 +115,87 @@ public class TestListController extends CommonServlet {
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// TODO: フォームから送信された検索条件を受け取り、成績データを検索して
 		//       結果画面に渡す処理を実装します。
+
+		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html; charset=UTF-8");
+
+		HttpSession session = req.getSession(false);
+
+		if (session == null) {
+		    // セッションが切れている、ログインしていない等の対処
+		    resp.sendRedirect("/login.jsp");
+		    return;
+		}
+
+		Teacher teacher = (Teacher) session.getAttribute("teacher");
+
+		if (teacher == null) {
+//			不正アクセス
+		    resp.sendRedirect("/login.jsp");
+		    return;
+		}
+
+
+		// teacherからschoolを取得
+		School school = teacher.getSchool();
+
+//      特定の学生の成績参照（下の検索欄）
+      String studentNum = req.getParameter("f4");
+      if (studentNum != null){
+
+      	TestListStudentDao studao = new TestListStudentDao();
+      	StudentDao sdao = new StudentDao();
+
+      	Student student = sdao.get(studentNum);
+	      	if (student == null) {
+	              req.setAttribute("error", "学生が見つかりませんでした");
+	              req.getRequestDispatcher("test_list_student.jsp").forward(req, resp);
+	              return;
+	          }
+
+      	List<TestListStudent> list = studao.filter(student);
+      	req.setAttribute("students", list);
+			req.getRequestDispatcher("test_list_student.jsp").forward(req, resp);
+
+      }else{
+
+
+          String entyear = req.getParameter("f1");
+//          intに変換
+          int entYear = Integer.parseInt(entyear);
+          String sub = req.getParameter("f2");
+
+          SubjectDao subdao = new SubjectDao();
+          Subject subject = subdao.get(sub, school);
+
+//          jspの順番が逆になってたからjspに合わせてます
+          String classNum = req.getParameter("f3");
+
+
+
+
+//          (上の検索欄)どれか一つでも入力があれば
+          if(entYear != 0 || subject != null || classNum != null){
+
+          	TestListSubjectDao subjectdao = new TestListSubjectDao();
+      		List<TestListSubject> list = subjectdao.filter(entYear, classNum, subject, school);
+
+      		req.setAttribute("subjects", list);
+  			req.getRequestDispatcher("test_list_student.jsp").forward(req, resp);
+          }
+//          特定の学生検索
+          else {
+          	System.out.println("例外");
+  			}
+
+  		}
 	}
 
-	/**
-	 * (現在未使用のプライベートメソッド)
-	 */
-	private void setTestListSubject(HttpServletRequest req, HttpServletResponse resp) throws Exception {}
+	private void setTestListSubject(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-	/**
-	 * (現在未使用のプライベートメソッド)
-	 */
+
+	}
+
+
 	private void setTestListStudent(HttpServletRequest req, HttpServletResponse resp) throws Exception {}
 }

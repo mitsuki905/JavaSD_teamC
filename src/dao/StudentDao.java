@@ -52,6 +52,7 @@ public class StudentDao extends DAO {
 			}
 
 
+
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
@@ -59,7 +60,6 @@ public class StudentDao extends DAO {
 
 		return student;
 	}
-
 
 	public List<Student> getList(){
 
