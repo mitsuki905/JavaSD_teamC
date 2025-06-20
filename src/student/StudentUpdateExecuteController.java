@@ -29,11 +29,12 @@ public class StudentUpdateExecuteController extends CommonServlet {
 
 //		beanを使って学生の情報をまとめる
 		Student student = new Student();
-		student.setSchool(school);
-		student.setEntYear(entYear);
 		student.setNo(no);
 		student.setName(name);
+		student.setEntYear(entYear);
 		student.setClassNum(classNum);
+		student.setSchool(school);
+		
 		System.out.println(entYear);
 		System.out.println(classNum);
 

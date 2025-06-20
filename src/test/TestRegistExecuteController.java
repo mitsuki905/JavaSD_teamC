@@ -69,14 +69,12 @@ public class TestRegistExecuteController extends CommonServlet {
         // 科目オブジェクトを取得
         Subject subject = subDao.get(subjectCd, school);
 
-        // ★★★ パフォーマンス改善のための修正箇所 ★★★
         // 1. 必要な学生情報をDBから一度にまとめて取得する
         List<Student> students = sDao.filter(school, entYear, classNum, true);
 
         // 2. 学生番号をキーにしたMapに変換し、ループ内で高速に検索できるようにする
         Map<String, Student> studentMap = students.stream()
             .collect(Collectors.toMap(Student::getNo, s -> s));
-        // ★★★ ここまで ★★★
 
         // バリデーション用Mapと登録用List
         Map<String, String> errors = new HashMap<>();
@@ -94,10 +92,8 @@ public class TestRegistExecuteController extends CommonServlet {
                         if (point < 0 || point > 100) {
                             errors.put(studentNo, "0～100の整数を入力してください");
                         } else {
-                            // ★★★ パフォーマンス改善のための修正箇所 ★★★
                             // 3. DBアクセスではなく、メモリ上のMapから学生情報を取得する
                             Student student = studentMap.get(studentNo);
-                            // ★★★ ここまで ★★★
 
                             if (student != null) {
                                 Test test = new Test();

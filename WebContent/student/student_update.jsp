@@ -1,7 +1,7 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 <c:import url="/base.jsp">
 
 	<c:param name="body">
@@ -56,11 +56,11 @@
 					<%-- プルダウン式 --%>
 					<select class="form-select" id="class_num" name="classNum">
 						<c:forEach var="classItem" items="${classList}">
-							<option value="${classItem}"
-								<c:if test="${classItem == fClassNum}">
+							<option value="${classItem.class_num}"
+								<c:if test="${classItem.class_num == fClassNum}">
 									selected
 								</c:if>>
-								${classItem}
+								${classItem.class_num}
 							</option>
 						</c:forEach>
 					</select>

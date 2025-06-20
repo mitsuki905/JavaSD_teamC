@@ -12,13 +12,12 @@ import bean.TestListSubject;
 
 public class TestListSubjectDao extends DAO {
 
-    private String baseSql = "SELECT s.ENT_YEAR, s.CLASS_NUM, s.NO AS STUDENT_NO, s.NAME AS STUDENT_NAME, "
-                         + "t.NO AS TEST_NO, t.POINT, t.SUBJECT_CD "
-                         + "FROM STUDENT s "
-                         + "LEFT JOIN TEST t ON s.NO = t.STUDENT_NO AND s.SCHOOL_CD = t.SCHOOL_CD";
-
     /**
-     * ResultSetをTestListSubjectのリストに変換する。
+     * ResultSetをTestListSubjectのリストに変換します。
+     * このメソッドは、学生一人に対して複数のテスト結果（点数）を紐付けます。
+     * @param rSet データベースからの結果セット
+     * @return TestListSubjectオブジェクトのリスト
+     * @throws Exception ResultSetの処理中にエラーが発生した場合
      */
     private List<TestListSubject> postFilter(ResultSet rSet) throws Exception {
         List<TestListSubject> list = new ArrayList<>();
@@ -28,9 +27,9 @@ public class TestListSubjectDao extends DAO {
         while (rSet.next()) {
             String studentNo = rSet.getString("STUDENT_NO");
 
+            // 学生番号が切り替わったタイミングで、新しいTestListSubjectオブジェクトを生成
             if (!studentNo.equals(currentStudentNo)) {
                 currentStudent = new TestListSubject();
-                // 正しい型とカラム名で値を取得
                 currentStudent.setEntYear(rSet.getInt("ENT_YEAR"));
                 currentStudent.setClassNum(rSet.getString("CLASS_NUM"));
                 currentStudent.setStudentNo(rSet.getString("STUDENT_NO"));
@@ -39,10 +38,11 @@ public class TestListSubjectDao extends DAO {
                 currentStudentNo = studentNo;
             }
 
+            // テスト結果が存在する場合（LEFT JOINでTEST側のカラムがNULLでない場合）のみ点数をセット
             if (rSet.getObject("TEST_NO") != null) {
                 int testNo = rSet.getInt("TEST_NO");
                 int point = rSet.getInt("POINT");
-                // テストの結果を追加
+                // テストの回数と点数をMapに追加
                 currentStudent.putPoint(testNo, point);
             }
         }
@@ -50,50 +50,87 @@ public class TestListSubjectDao extends DAO {
     }
 
     /**
-     * 学生のテストリストを検索する。
+     * 指定された条件で成績情報をフィルタリング検索します。
+     *
+     * 【重要：修正点】
+     * 元のコードではWHERE句で科目CDを絞っていたため、指定科目の成績がない学生が表示されませんでした。
+     * 仕様通り、指定クラスの全学生を表示し、成績の有無を別途表示するために、
+     * 科目CDの条件をLEFT JOINのON句に移動しました。
+     *
+     * @param entYear 入学年度
+     * @param classNum クラス番号
+     * @param subject 絞り込み対象の科目オブジェクト
+     * @param school 学生が所属する学校オブジェクト
+     * @return 検索結果のTestListSubjectのリスト
+     * @throws Exception データベースアクセス中にエラーが発生した場合
      */
     public List<TestListSubject> filter(int entYear, String classNum, Subject subject, School school) throws Exception {
 
         List<TestListSubject> list = new ArrayList<>();
-        //SQLを結合する
-        StringBuilder sql = new StringBuilder(baseSql);
-        List<String> whereClauses = new ArrayList<>();
-        List<Object> params = new ArrayList<>();
 
+        // SQL文の骨格を定義。STUDENTテーブルを主軸にする
+        StringBuilder sql = new StringBuilder(
+            "SELECT s.ENT_YEAR, s.CLASS_NUM, s.NO AS STUDENT_NO, s.NAME AS STUDENT_NAME, " +
+            "t.NO AS TEST_NO, t.POINT " +
+            "FROM STUDENT s " +
+            "LEFT JOIN TEST t ON s.NO = t.STUDENT_NO AND s.SCHOOL_CD = t.SCHOOL_CD "
+        );
+
+        // 【修正点】科目条件をLEFT JOINのON句に追加。これにより、成績がない学生も結果に含まれるようになる
+        if (subject != null && subject.getCd() != null && !subject.getCd().isEmpty()) {
+            sql.append("AND t.SUBJECT_CD = ? ");
+        }
+
+        // WHERE句の条件をリストで管理
+        List<String> whereClauses = new ArrayList<>();
+
+        // 学校コードは必須条件
         whereClauses.add("s.SCHOOL_CD = ?");
-        params.add(school.getCd());
-        //条件に応じてWHERE句を組み立てる
+
+        // 入学年度が指定されている場合
         if (entYear != 0) {
             whereClauses.add("s.ENT_YEAR = ?");
-            params.add(entYear);
         }
-        if (classNum != null && !classNum.isEmpty()) {
+        // クラス番号が指定されている場合
+        if (classNum != null && !classNum.isEmpty() && !classNum.equals("0")) {
             whereClauses.add("s.CLASS_NUM = ?");
-            params.add(classNum);
-        }
-        if (subject != null && subject.getCd() != null && !subject.getCd().isEmpty()) {
-            whereClauses.add("t.SUBJECT_CD = ?");
-            params.add(subject.getCd());
-        }
-        //最終的にここで組み立てを行う
-        if (!whereClauses.isEmpty()) {
-            sql.append(" WHERE ").append(String.join(" AND ", whereClauses));
         }
 
-        sql.append(" ORDER BY s.ENT_YEAR, s.CLASS_NUM, s.NO");
-        //DBに接続
+        // WHERE句をSQL文に結合
+        if (!whereClauses.isEmpty()) {
+            sql.append("WHERE ").append(String.join(" AND ", whereClauses));
+        }
+
+        // 表示順を学生番号でソート
+        sql.append(" ORDER BY s.NO");
+
+        // データベースに接続してSQLを実行
         try (
             Connection con = getConnection();
             PreparedStatement st = con.prepareStatement(sql.toString())
         ) {
-            for (int i = 0; i < params.size(); i++) {
-                st.setObject(i + 1, params.get(i));
+            int paramIndex = 1;
+
+            if (subject != null && subject.getCd() != null && !subject.getCd().isEmpty()) {
+                st.setString(paramIndex++, subject.getCd());
             }
+
+            st.setString(paramIndex++, school.getCd());
+
+            if (entYear != 0) {
+                st.setInt(paramIndex++, entYear);
+            }
+            if (classNum != null && !classNum.isEmpty() && !classNum.equals("0")) {
+                st.setString(paramIndex++, classNum);
+            }
+
+            // SQLを実行し、結果セットを取得
             try (ResultSet rs = st.executeQuery()) {
-                // ここで型が一致するので、コンパイルエラーが解消される
+                // 結果セットをオブジェクトのリストに変換
                 list = postFilter(rs);
             }
         } catch (Exception e) {
+            // エラーログを出力し、呼び出し元に例外をスロー
             e.printStackTrace();
             throw e;
         }

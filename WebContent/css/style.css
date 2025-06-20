@@ -101,13 +101,15 @@ h2{
 
 
 .test-r{
-	 width: 200px !important;
+	 width: 150px !important;
 }
 
 .table-uniform{
 	 table-layout: fixed;
 	 width: 100%;
 }
+
+
 
 .delete{
 	width: 5%;

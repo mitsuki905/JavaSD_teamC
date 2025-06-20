@@ -1,6 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 <c:import url="/base.jsp">
 
 	<c:param name="body">
@@ -12,7 +12,7 @@
 		<%-- 学生登録画面に遷移 --%>
 		<a href="${pageContext.request.contextPath}/student/student_create">戻る</a>
 		<%-- 学生管理一覧画面に遷移 --%>
-		<a href="${pageContext.request.contextPath}/studebt/student_list" class="link-spacing" >学生一覧</a>
+		<a href="${pageContext.request.contextPath}/student/student_list" class="link-spacing" >学生一覧</a>
 	</c:param>
 
 </c:import>

@@ -1,11 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 <c:import url="/base.jsp">
     <c:param name="body">
 
         <h2>　成績管理</h2><br>
+
+        <%-- 「削除して再度入力」が実行された際に表示 --%>
+        <p>${ rechance }</p>
 
 
         <%-- 検索フォーム --%>
@@ -51,7 +54,7 @@
                         <label for="f_num" class="form-label">回数</label>
                         <select name="f_num" id="f_num" class="form-select">
                             <option value="0">--------</option>
-                            <c:forEach var="i" begin="1" end="5">
+                            <c:forEach var="i" begin="1" end="2">
                                 <option value="${i}" <c:if test="${i == f_num}">selected</c:if>>${i}</option>
                             </c:forEach>
                         </select>
@@ -124,7 +127,7 @@
 
 						    <%-- 削除モード用のボタン (最初は非表示: d-none) --%>
 						    <button type="submit" id="delete-finish-btn" name="submit_action" value="delete_finish" class="btn btn-danger d-none">削除して終了</button>
-						    <button type="submit" id="delete-again-btn" name="submit_action" value="delete_again" class="btn btn-info d-none">削除して再度検索</button>
+						    <button type="submit" id="delete-again-btn" name="submit_action" value="delete_again" class="btn btn-warning d-none">削除して再度検索</button>
 						</div>
 	                </div>
 	        	</form>
@@ -133,67 +136,67 @@
 
 
 			<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // フォームが存在しない場合は処理を終了
-        const gradeForm = document.getElementById('grade-form');
-        if (!gradeForm) {
-            return;
-        }
+    			document.addEventListener('DOMContentLoaded', function() {
+		        // フォームが存在しない場合は処理を終了
+		        const gradeForm = document.getElementById('grade-form');
+		        if (!gradeForm) {
+		            return;
+		        }
 
-        // 必要なDOM要素を取得
-        const registerBtn = document.getElementById('register-btn');
-        const deleteFinishBtn = document.getElementById('delete-finish-btn');
-        const deleteAgainBtn = document.getElementById('delete-again-btn');
-        const checkboxes = document.querySelectorAll('.delete-check');
-        const pointInputs = document.querySelectorAll('.point-input');
+		        // 必要なDOM要素を取得
+		        const registerBtn = document.getElementById('register-btn');
+		        const deleteFinishBtn = document.getElementById('delete-finish-btn');
+		        const deleteAgainBtn = document.getElementById('delete-again-btn');
+		        const checkboxes = document.querySelectorAll('.delete-check');
+		        const pointInputs = document.querySelectorAll('.point-input');
 
-        // フォームの状態を更新する関数
-        function updateFormState() {
-            // チェックされたチェックボックスの数を取得
-            const checkedCount = document.querySelectorAll('.delete-check:checked').length;
+		        // フォームの状態を更新する関数
+		        function updateFormState() {
+		            // チェックされたチェックボックスの数を取得
+		            const checkedCount = document.querySelectorAll('.delete-check:checked').length;
 
-            if (checkedCount > 0) {
-                // --- 削除モード (チェックボックスが1つ以上選択されている) ---
+		            if (checkedCount > 0) {
+		                // --- 削除モード (チェックボックスが1つ以上選択されている) ---
 
-                // フォームの送信先を削除用アクションに設定
-                gradeForm.action = 'test_delete_execute';
+		                // フォームの送信先を削除用アクションに設定
+		                gradeForm.action = 'test_delete_execute';
 
-                // 登録ボタンを隠し、削除ボタンを表示
-                registerBtn.classList.add('d-none');
-                deleteFinishBtn.classList.remove('d-none');
-                deleteAgainBtn.classList.remove('d-none');
+		                // 登録ボタンを隠し、削除ボタンを表示
+		                registerBtn.classList.add('d-none');
+		                deleteFinishBtn.classList.remove('d-none');
+		                deleteAgainBtn.classList.remove('d-none');
 
-                // 点数入力欄を無効化
-                pointInputs.forEach(input => {
-                    input.disabled = true;
-                });
+		                // 点数入力欄を無効化
+		                pointInputs.forEach(input => {
+		                    input.disabled = true;
+		                });
 
-            } else {
-                // --- 登録モード (チェックボックスが選択されていない) ---
+		            } else {
+		                // --- 登録モード (チェックボックスが選択されていない) ---
 
-                // フォームの送信先を登録用アクションに設定
-                gradeForm.action = 'test_regist_execute';
+		                // フォームの送信先を登録用アクションに設定
+		                gradeForm.action = 'test_regist_execute';
 
-                // 削除ボタンを隠し、登録ボタンを表示
-                registerBtn.classList.remove('d-none');
-                deleteFinishBtn.classList.add('d-none');
-                deleteAgainBtn.classList.add('d-none');
+		                // 削除ボタンを隠し、登録ボタンを表示
+		                registerBtn.classList.remove('d-none');
+		                deleteFinishBtn.classList.add('d-none');
+		                deleteAgainBtn.classList.add('d-none');
 
-                // 点数入力欄を有効化
-                pointInputs.forEach(input => {
-                    input.disabled = false;
-                });
-            }
-        }
+		                // 点数入力欄を有効化
+		                pointInputs.forEach(input => {
+		                    input.disabled = false;
+		                });
+		            }
+		        }
 
-        // 各チェックボックスの変更を監視し、変更があればフォームの状態を更新
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', updateFormState);
-        });
+		        // 各チェックボックスの変更を監視し、変更があればフォームの状態を更新
+		        checkboxes.forEach(checkbox => {
+		            checkbox.addEventListener('change', updateFormState);
+		        });
 
-        // ページ読み込み時に一度実行して初期状態を設定
-        updateFormState();
-    });
-</script>
+		        // ページ読み込み時に一度実行して初期状態を設定
+		        updateFormState();
+		    });
+		</script>
     </c:param>
 </c:import>

@@ -6,30 +6,22 @@ import java.util.Map;
 
 /**
  * 成績一覧（科目別）の学生一人分のデータを格納するBeanクラス。
- * このクラスはUMLクラス図に基づいて生成されました。
  */
 public class TestListSubject implements Serializable {
 
     // --- フィールド ---
-
     private int entYear;
     private String studentNo;
     private String studentName;
     private String classNum;
-    // Map<テスト回数, 点数>
     private Map<Integer, Integer> points;
 
     // --- コンストラクタ ---
-
-    /**
-     * デフォルトコンストラクタ。
-     * pointsマップを初期化します。
-     */
     public TestListSubject() {
         this.points = new HashMap<>();
     }
 
-    // --- メソッド (getter/setter) ---
+    // --- 既存のメソッド (getter/setter) ---
 
     public int getEntYear() {
         return entYear;
@@ -71,28 +63,34 @@ public class TestListSubject implements Serializable {
         this.points = points;
     }
 
-    /**
-     * 指定されたキー（テスト回数）に対応する点数を文字列として取得します。
-     * JSPなどでの表示を容易にするためのヘルパーメソッドです。
-     * 点数が存在しない場合は空文字列を返します。
-     *
-     * @param key テストの回数
-     * @return 点数を表す文字列。存在しない場合は空文字列。
-     */
+    public void putPoint(int key, int value) {
+        this.points.put(key, value);
+    }
+
+    // このメソッドは現在直接使われていませんが、残しておいても問題ありません。
     public String getPoint(int key) {
         Integer point = this.points.get(key);
-        // 点数が存在すればStringに変換、存在しなければ空文字を返す
         return point != null ? String.valueOf(point) : "";
     }
 
+
+    // --- ここからがエラー解決のための追加メソッド ---
+
     /**
-     * pointsマップにテスト結果（回数と点数）を追加します。
-     * DAOからこのメソッドを呼び出すことで、学生一人に対して複数の成績を蓄積できます。
-     *
-     * @param key テストの回数
-     * @param value 点数
+     * JSPで ${student.point1} によって1回目のテストの点数を取得するためのメソッドです。
+     * EL式は自動的にこの `getPoint1()` メソッドを呼び出します。
+     * @return 1回目の点数。存在しない場合はnullを返します。
      */
-    public void putPoint(int key, int value) {
-        this.points.put(key, value);
+    public Integer getPoint1() {
+        return this.points.get(1);
+    }
+
+    /**
+     * JSPで ${student.point2} によって2回目のテストの点数を取得するためのメソッドです。
+     * EL式は自動的にこの `getPoint2()` メソッドを呼び出します。
+     * @return 2回目の点数。存在しない場合はnullを返します。
+     */
+    public Integer getPoint2() {
+        return this.points.get(2);
     }
 }
