@@ -1,9 +1,3 @@
-/**
- * TestListStudentDao.java
- * 特定の学生の成績一覧を取得するためのデータアクセスオブジェクト(DAO)です。
- * 学生一人を軸として、その学生が受けた全科目のテスト結果をリスト形式で返します。
- * 主に学生個人の成績詳細ページなどで使用されます。
- */
 package dao;
 
 import java.sql.Connection;
@@ -25,7 +19,7 @@ public class TestListStudentDao extends DAO {
      * testテーブルとsubjectテーブルをJOINして、科目名(subject_name)を取得できるようにしています。
      * WHERE句以降はfilterメソッド内で動的に追加します。
      */
-    private String baseSql = "SELECT t.subject_cd, sub.name as subject_name, t.no, t.point "
+    private static final String baseSql = "SELECT t.subject_cd, sub.name as subject_name, t.no, t.point "
                            + "FROM test t "
                            + "JOIN subject sub ON t.subject_cd = sub.cd AND t.school_cd = sub.school_cd ";
 
@@ -83,11 +77,11 @@ public class TestListStudentDao extends DAO {
             // 1行分のデータを入れるための新しいBeanオブジェクト(TestListStudent)を生成
             TestListStudent testListStudent = new TestListStudent();
 
-            // ResultSetから各カラムの値を、別名をキーにして取得し、Beanの各フィールドにセットしていく
-            testListStudent.setSubjectCd(rs.getString("subject_cd"));
-            testListStudent.setSubjectName(rs.getString("subject_name"));
-            testListStudent.setNum(rs.getInt("no"));
-            testListStudent.setPoint(rs.getInt("point"));
+            // ResultSetから各カラムの値を、列インデックスをキーにして取得し、Beanの各フィールドにセットしていく
+            testListStudent.setSubjectCd(rs.getString(1));
+            testListStudent.setSubjectName(rs.getString(2));
+            testListStudent.setNum(rs.getInt(3));
+            testListStudent.setPoint(rs.getInt(4));
 
             // 完成したBeanをリストに追加する
             list.add(testListStudent);
