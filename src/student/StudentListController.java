@@ -80,19 +80,52 @@ public class StudentListController extends CommonServlet {
 		String isattendParam = req.getParameter("isAttend"); // JSPから送られてくる名前
 
 		boolean isAttend = "TRUE".equalsIgnoreCase(isattendParam);
-		System.out.println(isAttend);
 
 		List<Student> students = null;
 
 		// DAOのインスタンスを生成
 		StudentDao studao = new StudentDao();
 
+		// 再取得用のリストを設定
+
+		try {
+			// 学生リストを取得
+			List<Student> studentList = studao.getList();
+
+			// --- 1. 入学年度リストの作成 ---
+			// JSPの items="${yearList}" に合わせる
+			Set<Integer> yearSet = new TreeSet<>();
+			for (Student s : studentList) {
+				yearSet.add(s.getEntYear());
+			}
+			List<Integer> entYearList = new ArrayList<>(yearSet);
+			// ★JSPに合わせて "yearList" という名前でセット
+			req.setAttribute("yearList", entYearList);
+
+			// --- 2. クラス番号リストの作成 ---
+			// JSPの items="${classList}" に合わせる
+			Set<String> classSet = new TreeSet<>();
+			for (Student s : studentList) {
+				classSet.add(s.getClassNum());
+			}
+			List<String> classList = new ArrayList<>();
+			for (String c : classSet) {
+				classList.add(String.valueOf(c));
+			}
+			// ★JSPに合わせて "classList" という名前でセット
+			req.setAttribute("classList", classList);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			// エラーハンドリング
+		}
 
 		if (year == 0 && "0".equals(classItem) && !isAttend) {
 			// studentsに全学生リスト
 			students = studao.getList();
 		} else if (!"0".equals(classItem)){
-			students =studao.filter(school, year, classItem, isAttend);
+			students = studao.filter(school, year, classItem, isAttend);
+
 		} else if (year != 0) {
 			students = studao.filter(school, year, isAttend);
 		} else {
@@ -101,43 +134,10 @@ public class StudentListController extends CommonServlet {
 
 		req.setAttribute("fEntYear", year);      // JSPの ${fEntYear} に対応
 		req.setAttribute("fClassNum", classItem);    // JSPの ${fClassNum} に対応
-		req.setAttribute("isAttend", isAttend);     // JSPの ${isattend} に対応
-
+		req.setAttribute("isAttend", isAttend);     // JSPの ${isAttend} に対応
 		req.setAttribute("students", students);
 
-		// 再取得用のリストを設定
 
-        try {
-            // 学生リストを取得
-            List<Student> studentList = studao.getList();
-
-            // --- 1. 入学年度リストの作成 ---
-            // JSPの items="${yearList}" に合わせる
-            Set<Integer> yearSet = new TreeSet<>();
-            for (Student s : studentList) {
-                yearSet.add(s.getEntYear());
-            }
-            List<Integer> entYearList = new ArrayList<>(yearSet);
-            // ★JSPに合わせて "yearList" という名前でセット
-            req.setAttribute("yearList", entYearList);
-
-            // --- 2. クラス番号リストの作成 ---
-            // JSPの items="${classList}" に合わせる
-            Set<String> classSet = new TreeSet<>();
-            for (Student s : studentList) {
-                classSet.add(s.getClassNum());
-            }
-            List<String> classList = new ArrayList<>();
-            for (String c : classSet) {
-                classList.add(String.valueOf(c));
-            }
-            // ★JSPに合わせて "classList" という名前でセット
-            req.setAttribute("classList", classList);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            // エラーハンドリング
-        }
 
         req.getRequestDispatcher("student_list.jsp").forward(req, resp);
 
