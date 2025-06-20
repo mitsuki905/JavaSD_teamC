@@ -227,35 +227,49 @@ public class StudentDao extends DAO {
 
 // 学生登録
 	public boolean save (Student student){
-
+		boolean flag = false;
 		School school = new School();
 
 
-		try {
-			Connection con = getConnection();
+		try (Connection con = getConnection();){
+			Student stuget = get(student.getNo());
 
-			// 学生を挿入
-		    String insertSql = "INSERT INTO STUDENT (NO,NAME,ENT_YEAR,CLASS_NUM,IS_ATTEND,SCHOOL_CD) VALUES (?,?,?,?.?,?)";
-		    PreparedStatement st = con.prepareStatement(insertSql);
+			if (stuget == null){
+				// 学生を挿入
+			    String insertSql = "INSERT INTO STUDENT (NO,NAME,ENT_YEAR,CLASS_NUM,IS_ATTEND,SCHOOL_CD) VALUES (?,?,?,?.?,?)";
+			    PreparedStatement st = con.prepareStatement(insertSql);
 
-		    st.setString(1,student.getNo());
-		    st.setString(2, student.getName());
-		    st.setInt(3,student.getEntYear());
-		    st.setString(4,student.getClassNum());
-		    st.setBoolean(5, student.getisAttend());
-		    st.setString(6, school.getCd());
+			    st.setString(1,student.getNo());
+			    st.setString(2, student.getName());
+			    st.setInt(3,student.getEntYear());
+			    st.setString(4,student.getClassNum());
+			    st.setBoolean(5, student.getisAttend());
+			    st.setString(6, school.getCd());
+			    st.executeUpdate();
+			    flag= true;
+			} else {
+				String sql = "UPDATE STUDENT SET "
+						+ "NAME = ?,"
+						+ "ENT_YEAR = ?,"
+						+ "CLASS_NUM = ?,"
+						+ "IS_ATTEND = ? "
+						+ "WHERE NO = ?";
+				PreparedStatement st = con.prepareStatement(sql);
 
-		    if( st.executeUpdate() == 1){
-		    	return true;
-		    }
-		    else{
-		    	return false;
-		    }
 
-		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-		return false;
+				st.setString(1, student.getName());
+				st.setInt(2,student.getEntYear());
+				st.setString(3,student.getClassNum());
+				st.setBoolean(4, student.getisAttend());
+				st.setString(5, student.getNo());
+				st.executeUpdate();
+				flag= true;
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+
+
+		return flag;
 	}
 }
