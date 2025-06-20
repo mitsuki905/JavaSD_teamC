@@ -28,7 +28,7 @@ import tool.CommonServlet;
  * 成績管理機能の検索画面（test_search.jsp）に関する処理を行うサーブレットです。
  * 検索条件として使用するドロップダウンリストのデータを準備し、画面に表示します。
  */
-@WebServlet(urlPatterns = { "/test/test_list" })
+@WebServlet(urlPatterns = { "/test/test_list","/test/test_list_student","/test/test_list_subject"})
 public class TestListController extends CommonServlet {
 
 	/**
@@ -99,7 +99,7 @@ public class TestListController extends CommonServlet {
         }
 
         // 検索条件をセットしたリクエストをJSPにフォワードし、画面を表示
-        request.getRequestDispatcher("test_search.jsp").forward(request, response);
+        request.getRequestDispatcher("test_list.jsp").forward(request, response);
     }
 
 	/**
@@ -138,49 +138,57 @@ public class TestListController extends CommonServlet {
 		// teacherからschoolを取得
 		School school = teacher.getSchool();
 
+//      特定の学生の成績参照（下の検索欄）
+      String studentNum = req.getParameter("f4");
+      if (studentNum != null){
 
-        String entyear = req.getParameter("f1");
-//        intに変換
-        int entYear = Integer.parseInt(entyear);
-        String sub = req.getParameter("f2");
+      	TestListStudentDao studao = new TestListStudentDao();
+      	StudentDao sdao = new StudentDao();
 
-        SubjectDao subdao = new SubjectDao();
-        Subject subject = subdao.get(sub, school);
+      	Student student = sdao.get(studentNum);
+	      	if (student == null) {
+	              req.setAttribute("error", "学生が見つかりませんでした");
+	              req.getRequestDispatcher("test_list_student.jsp").forward(req, resp);
+	              return;
+	          }
 
-//        jspの順番が逆になってたからjspに合わせてます
-        String classNum = req.getParameter("f3");
-
-//        特定の学生の成績参照（下の検索欄）
-        String studentNum = req.getParameter("f4");
-
-//        (上の検索欄)どれか一つでも入力があれば
-        if(entYear != 0 || subject != null || classNum != null){
-
-        	TestListSubjectDao subjectdao = new TestListSubjectDao();
-    		List<TestListSubject> list = subjectdao.filter(entYear, classNum, subject, school);
-
-    		req.setAttribute("subjects", list);
-			req.getRequestDispatcher("test_list_subject.jsp").forward(req, resp);
-        }
-//        特定の学生検索
-        else if (studentNum != null){
-
-        	TestListStudentDao studao = new TestListStudentDao();
-        	StudentDao sdao = new StudentDao();
-
-        	Student student = sdao.get(studentNum);
-
-        	List<TestListStudent> list = studao.filter(student);
-        	req.setAttribute("studnets", list);
+      	List<TestListStudent> list = studao.filter(student);
+      	req.setAttribute("students", list);
 			req.getRequestDispatcher("test_list_student.jsp").forward(req, resp);
 
-        }
-        else {
-        	System.out.println("例外");
-		}
+      }else{
 
+
+          String entyear = req.getParameter("f1");
+//          intに変換
+          int entYear = Integer.parseInt(entyear);
+          String sub = req.getParameter("f2");
+
+          SubjectDao subdao = new SubjectDao();
+          Subject subject = subdao.get(sub, school);
+
+//          jspの順番が逆になってたからjspに合わせてます
+          String classNum = req.getParameter("f3");
+
+
+
+
+//          (上の検索欄)どれか一つでも入力があれば
+          if(entYear != 0 || subject != null || classNum != null){
+
+          	TestListSubjectDao subjectdao = new TestListSubjectDao();
+      		List<TestListSubject> list = subjectdao.filter(entYear, classNum, subject, school);
+
+      		req.setAttribute("subjects", list);
+  			req.getRequestDispatcher("test_list_student.jsp").forward(req, resp);
+          }
+//          特定の学生検索
+          else {
+          	System.out.println("例外");
+  			}
+
+  		}
 	}
-
 
 	private void setTestListSubject(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 

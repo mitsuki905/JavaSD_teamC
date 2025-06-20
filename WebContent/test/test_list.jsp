@@ -9,7 +9,7 @@
 
 		<%-- 検索フォーム（科目） --%>
 		<div class="bg-light p-3 rounded mb-4">
-			<form action="/test/test_list_subject" method="post">
+			<form action="/JavaSD/test/test_list_subject" method="post">
 				<div class="row g-3 align-items-end">科目情報　　　　　
 					<div class="col-md-2">
 						<label  for="f_ent_year"
@@ -75,7 +75,7 @@
 
 		<%-- 検索フォーム（学生） --%>
 		<div class="bg-light p-3 rounded mb-4">
-			<form action="/test/test_list_student" method="post">
+			<form action="/JavaSD/test/test_list_student" method="post">
 				<div class="row g-3 align-items-end">学生情報　　　　　
 					<div class="col-md-3">
 							<label  for="f_class_num"
