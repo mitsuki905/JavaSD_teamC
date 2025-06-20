@@ -7,6 +7,9 @@
 
         <h2>　成績管理</h2><br>
 
+        <%-- 「削除して再度入力」が実行された際に表示 --%>
+        <p>${ rechance }</p>
+
 
         <%-- 検索フォーム --%>
         <div class="bg-light p-3 rounded mb-4">
