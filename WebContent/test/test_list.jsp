@@ -72,7 +72,6 @@
 		</div>
 
 
-
 		<%-- 検索フォーム（学生） --%>
 		<div class="bg-light p-3 rounded mb-4">
 			<form action="/JavaSD/test/test_list_student" method="post">

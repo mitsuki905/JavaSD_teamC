@@ -135,6 +135,7 @@ public class TestListController extends CommonServlet {
 		    return;
 		}
 
+
 		// teacherからschoolを取得
 		School school = teacher.getSchool();
 
