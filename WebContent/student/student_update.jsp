@@ -15,11 +15,12 @@
 
 		<%-- フォーム本体 --%>
 		<div class="card-body">
-			<form action="/student/student_update_done" method="post">
+			<form action="student_update_done" method="post">
 				<%-- 変更不可 --%>
 				<div class="mb-3">
 					<br><label class="form-label">入学年度</label>
-					<p class="form-control-plaintext" readonly>${student.ent_year}</p>
+					<p class="form-control-plaintext" >${entYear}</p>
+					<input type="hidden" name="entYear" value="${entYear}" readonly>
 				</div>
 
 
@@ -27,9 +28,9 @@
 				<%-- 学生番号 変更不可 --%>
 				<div class="mb-3">
 					<label class="form-label">学生番号</label>
-					<p class="form-control-plaintext">${student.no}</p>
+					<p class="form-control-plaintext">${no}</p>
 					<%-- どの学生を更新するかをサーバーに伝えるためにhiddenフィールドで送信する --%>
-					<input type="hidden" name="no" value="${student.no}" readonly>
+					<input type="hidden" name="no" value="${no}" readonly>
 				</div>
 
 
@@ -42,7 +43,7 @@
 						class="form-control"
 						id="name"
 						name="name"
-						value="${student.name}"
+						value="${name}"
 						maxlength="30"
 					required>
 				</div>
@@ -53,13 +54,13 @@
 				<div class="mb-3">
 					<label for="class_num" class="form-label">クラス</label>
 					<%-- プルダウン式 --%>
-					<select class="form-select" id="class_num" name="class_num">
+					<select class="form-select" id="class_num" name="classNum">
 						<c:forEach var="classItem" items="${classList}">
-							<option value="${classItem.num}"
-								<c:if test="${classItem.num == student.num}">
+							<option value="${classItem}"
+								<c:if test="${classItem == fClassNum}">
 									selected
 								</c:if>>
-								${classItem.num}
+								${classItem}
 							</option>
 						</c:forEach>
 					</select>
@@ -74,9 +75,9 @@
 						class="form-check-input"
 						type="checkbox"
 						id="is_attend"
-						name="is_attend"
+						name="isAttend"
 						value="true"
-						<c:if test="${student.isattend}">
+						<c:if test="${isAttend}">
 							checked
 						</c:if>>
 				</div>
