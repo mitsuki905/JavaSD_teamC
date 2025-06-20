@@ -11,113 +11,88 @@ import bean.Subject;
 
 public class SubjectDao extends DAO {
 
-// 指定した科目を取得する関数
-	public Subject get(String cd,School school){
-		Subject subject =null;
+    public Subject get(String cd, School school) {
+        Subject subject = null;
+        String sql = "SELECT * FROM SUBJECT WHERE CD = ? AND SCHOOL_CD = ?";
 
-		try {
-			Connection con = getConnection();
+        try (Connection con = getConnection();
+             PreparedStatement st = con.prepareStatement(sql)) {
 
-			//データベースから学校情報を持ってきてSubjectオブジェクトを作る
-			String sqlsubject = "SELECT * FROM SUBJECT WHERE CD = ?";
+            st.setString(1, cd);
+            st.setString(2, school.getCd());
 
-			PreparedStatement st1 = con.prepareStatement(sqlsubject);
-			st1.setString(1, cd);
-			ResultSet rs1 = st1.executeQuery();
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    subject = new Subject();
+                    subject.setCd(rs.getString("cd"));
+                    subject.setName(rs.getString("name"));
+                    subject.setSchool(school);
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("科目情報の取得に失敗しました。", e);
+        }
+        return subject;
+    }
 
-			if (rs1.next()) {
-			    subject = new Subject();
-			    subject.setCd(rs1.getString("cd"));
-			    subject.setName(rs1.getString("name"));
-			    subject.setSchool(school);
-			}
-			else{
-				return null;
-			}
-			}catch (Exception e) {
-				e.printStackTrace();
-				return null;
-			}return subject;
-	}
+    public List<Subject> filter(School school) {
+        List<Subject> list = new ArrayList<>();
+        String sql = "SELECT * FROM SUBJECT WHERE SCHOOL_CD = ? ORDER BY CD";
 
+        try (Connection con = getConnection();
+             PreparedStatement st = con.prepareStatement(sql)) {
 
-//  科目をリスト型で返す
-	public List<Subject> filter(School school) {
-	    List<Subject> list = new ArrayList<>();
+            st.setString(1, school.getCd());
 
-	    try (Connection con = getConnection()) {
-	        String sql = "SELECT * FROM SUBJECT WHERE SCHOOL_CD = ? ORDER BY CD";
-	        PreparedStatement st = con.prepareStatement(sql);
-	        st.setString(1, school.getCd()); // 学校コードで絞る
-	        ResultSet rs = st.executeQuery();
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    Subject sub = new Subject();
+                    sub.setCd(rs.getString("cd"));
+                    sub.setName(rs.getString("name"));
+                    sub.setSchool(school);
+                    list.add(sub);
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("科目一覧の取得に失敗しました。", e);
+        }
+        return list;
+    }
 
-	        while (rs.next()) {
-	            Subject sub = new Subject();
-	            sub.setCd(rs.getString("cd"));
-	            sub.setName(rs.getString("name"));
-	            sub.setSchool(school); // 参照で渡せばOK
-	            list.add(sub);
-	        }
+    public boolean save(Subject subject) {
+        String sql = "MERGE INTO SUBJECT (SCHOOL_CD, CD, NAME) KEY(SCHOOL_CD, CD) VALUES(?, ?, ?)";
+        int count = 0;
 
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
+        try (Connection con = getConnection();
+             PreparedStatement st = con.prepareStatement(sql)) {
 
-	    return list;
-	}
+            st.setString(1, subject.getSchool().getCd());
+            st.setString(2, subject.getCd());
+            st.setString(3, subject.getName());
 
-//	科目追加　科目更新
-	public boolean save(Subject subject)  {
-		boolean flag = false;
-		try (Connection con = getConnection()) {
-	         Subject subget = get(subject.getCd(), subject.getSchool());
+            count = st.executeUpdate();
 
+        } catch (Exception e) {
+            throw new RuntimeException("科目情報の保存に失敗しました。", e);
+        }
+        return count > 0;
+    }
 
-	         	//追加の処理
-		        if(subget == null){
-		        	String sql = "INSERT INTO SUBJECT (school_cd, cd, name) VALUES(?,?,?)";
-		        	PreparedStatement st = con.prepareStatement(sql);
-		        	st.setString(1, subject.getSchool().getCd()); // 外部キー school_cd
-		        	st.setString(2, subject.getCd());             // 科目コード
-		        	st.setString(3, subject.getName());           // 科目名
-		        	st.executeUpdate();
-		        	flag = true;
-		        } else {
-		        //更新の処理
-		        	String sql = "UPDATE SUBJECT SET school_cd = ? ,"
-		        			+ " cd = ? ,"
-		        			+ " name= ? "
-		        			+ "WHERE CD = ?";
-		        	PreparedStatement st = con.prepareStatement(sql);
-		        	st.setString(1, subject.getSchool().getCd()); // 外部キー school_cd
-		        	st.setString(2, subject.getCd());             // 科目コード
-		        	st.setString(3, subject.getName());           // 科目名
-		        	st.setString(4, subject.getCd());
-		        	st.executeUpdate();
-		        	flag = true;
-		        	}
-		         }catch (Exception e) {
-		        	// TODO 自動生成された catch ブロック
-		        	e.printStackTrace();
-		        	}
+    public boolean delete(Subject subject) {
+        String sql = "DELETE FROM SUBJECT WHERE CD = ? AND SCHOOL_CD = ?";
+        int count = 0;
 
-		return flag;
-	}
+        try (Connection con = getConnection();
+             PreparedStatement st = con.prepareStatement(sql)) {
 
-//	科目削除
-	public boolean delete(Subject subject) {
-		boolean flag = false;
+            st.setString(1, subject.getCd());
+            st.setString(2, subject.getSchool().getCd());
 
-		try (Connection con = getConnection()){
-			String sql = "DELETE FROM SUBJECT WHERE CD = ? ";
-        	PreparedStatement st = con.prepareStatement(sql);
-        	st.setString(1, subject.getCd());           // 科目名
-        	st.executeUpdate();
-        	flag = true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return flag;
-	}
+            count = st.executeUpdate();
 
+        } catch (Exception e) {
+            throw new RuntimeException("科目情報の削除に失敗しました。", e);
+        }
+        return count > 0;
+    }
 }
