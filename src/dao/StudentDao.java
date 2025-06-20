@@ -41,7 +41,7 @@ public class StudentDao extends DAO {
 				student.setName(rs.getString("name"));
 				student.setEntYear(rs.getInt("ent_year"));
 				student.setClassNum(rs.getString("class_num"));
-				student.setAttend(rs.getBoolean("is_attend"));
+				student.setIsAttend(rs.getBoolean("is_attend"));
 
 				school = dao.get(rs.getString("school_cd"));
 
@@ -52,7 +52,6 @@ public class StudentDao extends DAO {
 			}
 
 
-
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
@@ -60,6 +59,7 @@ public class StudentDao extends DAO {
 
 		return student;
 	}
+
 
 	public List<Student> getList(){
 
@@ -84,7 +84,7 @@ public class StudentDao extends DAO {
 				student.setName(rs.getString("name"));
 				student.setEntYear(rs.getInt("ent_year"));
 				student.setClassNum(rs.getString("class_num"));
-				student.setAttend(rs.getBoolean("is_attend"));
+				student.setIsAttend(rs.getBoolean("is_attend"));
 
 				school = dao.get(rs.getString("school_cd"));
 
@@ -119,7 +119,7 @@ public class StudentDao extends DAO {
 					student.setName(rSet.getString("name"));
 					student.setEntYear(rSet.getInt("ent_year"));
 					student.setClassNum(rSet.getString("class_num"));
-					student.setAttend(rSet.getBoolean("is_attend"));
+					student.setIsAttend(rSet.getBoolean("is_attend"));
 
 					school = dao.get(rSet.getString("school_cd"));
 
@@ -241,7 +241,7 @@ public class StudentDao extends DAO {
 		    st.setString(1,student.getNo());
 		    st.setString(2, student.getName());
 		    st.setInt(3,student.getEntYear());
-		    st.setBoolean(4, student.isAttend());
+		    st.setBoolean(4, student.getisAttend());
 		    st.setString(5, String.valueOf(student.getClassNum()));
 		    st.setString(6, school.getCd());
 

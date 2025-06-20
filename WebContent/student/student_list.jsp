@@ -119,7 +119,7 @@
 					        <%-- 変更リンクのURLに、キーとなるentyear,no,name,numをパラメータとして追加 --%>
 					        <td>
 					            <a href="${pageContext.request.contextPath}/student/student_update?
-					            		entyear=${student.entYear}&no=${student.no}&name=${student.name}&num=${student.classNum}">変更</a>
+					            	entyear=${student.entYear}&no=${student.no}&name=${student.name}&classNum=${student.classNum}">変更</a>
 					        </td>
 					    </tr>
 					</c:forEach>
