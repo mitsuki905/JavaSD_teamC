@@ -60,7 +60,6 @@ public class StudentDao extends DAO {
 		return student;
 	}
 
-
 	public List<Student> getList(){
 
 		Connection con;
