@@ -10,7 +10,7 @@
 
 		<br><br>
 		<%-- 学生管理一覧画面に遷移 --%>
-		<a href="${pageContext.request.contextPath}/studebt/student_list">学生一覧</a>
+		<a href="${pageContext.request.contextPath}/student/student_list">学生一覧</a>
 	</c:param>
 
 </c:import>
