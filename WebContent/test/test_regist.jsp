@@ -51,7 +51,7 @@
                         <label for="f_num" class="form-label">回数</label>
                         <select name="f_num" id="f_num" class="form-select">
                             <option value="0">--------</option>
-                            <c:forEach var="i" begin="1" end="5">
+                            <c:forEach var="i" begin="1" end="2">
                                 <option value="${i}" <c:if test="${i == f_num}">selected</c:if>>${i}</option>
                             </c:forEach>
                         </select>
