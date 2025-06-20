@@ -241,8 +241,8 @@ public class StudentDao extends DAO {
 		    st.setString(1,student.getNo());
 		    st.setString(2, student.getName());
 		    st.setInt(3,student.getEntYear());
-		    st.setBoolean(4, student.getisAttend());
-		    st.setString(5, String.valueOf(student.getClassNum()));
+		    st.setString(4,student.getClassNum());
+		    st.setBoolean(5, student.getisAttend());
 		    st.setString(6, school.getCd());
 
 		    if( st.executeUpdate() == 1){

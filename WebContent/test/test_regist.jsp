@@ -65,61 +65,135 @@
 
 	        <%-- エラーメッセージ表示エリア --%>
 	        <c:if test="${not empty error}">
-	            <div class="text-warning small">${error}</div>
+	        <div class="text-warning small">${error}</div>
+	        	</c:if>
+       		</div>
+
+		    <%-- 検索後、該当者がいなかった場合にメッセージ表示 --%>
+		    <c:if test="${not empty f_ent_year && f_ent_year != 0 && empty students}">
+	            <p>該当する学生は見つかりませんでした</p>
 	        </c:if>
-        </div>
 
-        <%-- 検索後、該当者がいなかった場合にメッセージ表示 --%>
-        <c:if test="${not empty f_ent_year && f_ent_year != 0 && empty students}">
-            <p>該当する学生は見つかりませんでした</p>
-        </c:if>
+	        <%-- 検索結果の表示 --%>
+	        <c:if test="${not empty students}">
+	    		<form action="test_regist_execute" method="post" id="grade-form">
+	                <p>科目：${subject.name} (${num}回)</p>
+	                <div class="table-responsive">
+	                    <table class="table table-striped table-hover table-uniform">
+						    <thead>
+						        <tr>
+						            <th>入学年度</th>
+						            <th>クラス</th>
+						            <th>学生番号</th>
+						            <th>氏名</th>
+						            <th>点数</th>
+						            <th class="text-center delete" >削除</th>
+						        </tr>
+						    </thead>
+						    <tbody>
+						        <c:forEach var="student" items="${students}">
+						            <tr>
+							                <td>${student.entYear}</td>
+							                <td>${student.classNum}</td>
+							                <td>${student.no}</td>
+							                <td>${student.name}</td>
+							                <td>
+						                    <input type="text" name="point_${student.no}" class="form-control test-r point-input" value="${points[student.no]}">
+						                    <c:if test="${not empty errors[student.no]}">
+						                        <div class="text-warning small">${errors[student.no]}</div>
+						                    </c:if>
+						                </td>
+						            <input type="hidden" name="student_no" value="${student.no}">
+						                <td class="text-center">
+						                    <input class="form-check-input delete-check" type="checkbox" name="delete_student_no" value="${student.no}">
+							            </td>
+							        </tr>
+						    	</c:forEach>
+							</tbody>
+						</table>
 
-        <%-- 検索結果の表示 --%>
-        <c:if test="${not empty students}">
-            <form action="test_regist_execute" method="post">
-                <p>科目：${subject.name} (${num}回)</p>
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover table-uniform">
-                        <thead>
-                            <tr>
-                                <th>入学年度</th>
-                                <th>クラス</th>
-                                <th>学生番号</th>
-                                <th>氏名</th>
-                                <th>点数</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="student" items="${students}">
-                                <tr>
-                                    <td>${student.entYear}</td>
-                                    <td>${student.classNum}</td>
-                                    <td>${student.no}</td>
-                                    <td>${student.name}</td>
-                                    <td>
-                                        <input type="text" name="point_${student.no}" class="form-control test-r" value="${points[student.no]}">
-                                        <c:if test="${not empty errors[student.no]}">
-                                            <div class="text-warning small">${errors[student.no]}</div>
-                                        </c:if>
-                                    </td>
-                                    <input type="hidden" name="student_no" value="${student.no}">
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
+	                    <%-- 登録処理に必要な共通情報をhiddenで送信 --%>
+	                    <input type="hidden" name="subject_cd" value="${subject.cd}">
+	                    <input type="hidden" name="num" value="${num}">
+	                    <input type="hidden" name="ent_year" value="${f_ent_year}">
+	                    <input type="hidden" name="class_num" value="${f_class_num}">
 
-                    <%-- 登録処理に必要な共通情報をhiddenで送信 --%>
-                    <input type="hidden" name="subject_cd" value="${subject.cd}">
-                    <input type="hidden" name="num" value="${num}">
-                    <input type="hidden" name="ent_year" value="${f_ent_year}">
-                    <input type="hidden" name="class_num" value="${f_class_num}">
+	                    <div class="mt-4" id="button-area">
+						    <%-- 登録モード用のボタン (最初は表示) --%>
+						    <button type="submit" id="register-btn" name="submit_action" value="register_finish" class="btn btn-secondary">登録して終了</button>
 
-                    <div class="mt-4">
-                        <button type="submit" class="btn btn-secondary">登録して終了</button>
-                    </div>
-                </div>
-            </form>
-        </c:if>
+						    <%-- 削除モード用のボタン (最初は非表示: d-none) --%>
+						    <button type="submit" id="delete-finish-btn" name="submit_action" value="delete_finish" class="btn btn-danger d-none">削除して終了</button>
+						    <button type="submit" id="delete-again-btn" name="submit_action" value="delete_again" class="btn btn-info d-none">削除して再度検索</button>
+						</div>
+	                </div>
+	        	</form>
+	    	</c:if>
 
+
+
+			<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // フォームが存在しない場合は処理を終了
+        const gradeForm = document.getElementById('grade-form');
+        if (!gradeForm) {
+            return;
+        }
+
+        // 必要なDOM要素を取得
+        const registerBtn = document.getElementById('register-btn');
+        const deleteFinishBtn = document.getElementById('delete-finish-btn');
+        const deleteAgainBtn = document.getElementById('delete-again-btn');
+        const checkboxes = document.querySelectorAll('.delete-check');
+        const pointInputs = document.querySelectorAll('.point-input');
+
+        // フォームの状態を更新する関数
+        function updateFormState() {
+            // チェックされたチェックボックスの数を取得
+            const checkedCount = document.querySelectorAll('.delete-check:checked').length;
+
+            if (checkedCount > 0) {
+                // --- 削除モード (チェックボックスが1つ以上選択されている) ---
+
+                // フォームの送信先を削除用アクションに設定
+                gradeForm.action = 'test_delete_execute';
+
+                // 登録ボタンを隠し、削除ボタンを表示
+                registerBtn.classList.add('d-none');
+                deleteFinishBtn.classList.remove('d-none');
+                deleteAgainBtn.classList.remove('d-none');
+
+                // 点数入力欄を無効化
+                pointInputs.forEach(input => {
+                    input.disabled = true;
+                });
+
+            } else {
+                // --- 登録モード (チェックボックスが選択されていない) ---
+
+                // フォームの送信先を登録用アクションに設定
+                gradeForm.action = 'test_regist_execute';
+
+                // 削除ボタンを隠し、登録ボタンを表示
+                registerBtn.classList.remove('d-none');
+                deleteFinishBtn.classList.add('d-none');
+                deleteAgainBtn.classList.add('d-none');
+
+                // 点数入力欄を有効化
+                pointInputs.forEach(input => {
+                    input.disabled = false;
+                });
+            }
+        }
+
+        // 各チェックボックスの変更を監視し、変更があればフォームの状態を更新
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateFormState);
+        });
+
+        // ページ読み込み時に一度実行して初期状態を設定
+        updateFormState();
+    });
+</script>
     </c:param>
 </c:import>
