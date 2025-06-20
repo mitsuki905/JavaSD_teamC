@@ -7,10 +7,6 @@
 
         <h2>　成績管理</h2><br>
 
-        <%-- エラーメッセージ表示エリア --%>
-        <c:if test="${not empty error}">
-            <div class="alert alert-warning">${error}</div>
-        </c:if>
 
         <%-- 検索フォーム --%>
         <div class="bg-light p-3 rounded mb-4">
@@ -66,6 +62,11 @@
                     </div>
                 </div>
             </form>
+
+	        <%-- エラーメッセージ表示エリア --%>
+	        <c:if test="${not empty error}">
+	            <div class="text-warning small">${error}</div>
+	        </c:if>
         </div>
 
         <%-- 検索後、該当者がいなかった場合にメッセージ表示 --%>
@@ -78,7 +79,7 @@
             <form action="test_regist_execute" method="post">
                 <p>科目：${subject.name} (${num}回)</p>
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover table-uniform">
                         <thead>
                             <tr>
                                 <th>入学年度</th>
@@ -96,11 +97,9 @@
                                     <td>${student.no}</td>
                                     <td>${student.name}</td>
                                     <td>
-                                        <input type="text" name="point_${student.no}" class="form-control" value="${points[student.no]}">
-                                        <%-- 不要なエラー表示(liタグ)を削除しました --%>
+                                        <input type="text" name="point_${student.no}" class="form-control test-r" value="${points[student.no]}">
                                         <c:if test="${not empty errors[student.no]}">
-                                            <%-- エラーメッセージの色を text-danger (赤色) に変更しました --%>
-                                            <div class="text-danger small">${errors[student.no]}</div>
+                                            <div class="text-warning small">${errors[student.no]}</div>
                                         </c:if>
                                     </td>
                                     <input type="hidden" name="student_no" value="${student.no}">
@@ -116,8 +115,7 @@
                     <input type="hidden" name="class_num" value="${f_class_num}">
 
                     <div class="mt-4">
-                        <%-- ボタンのクラス名を btn-primary に戻しました --%>
-                        <button type="submit" class="btn btn-primary">登録して終了</button>
+                        <button type="submit" class="btn btn-secondary">登録して終了</button>
                     </div>
                 </div>
             </form>

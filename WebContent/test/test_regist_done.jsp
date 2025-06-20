@@ -11,7 +11,7 @@
 
 		<br><br>
 		<%-- 成績管理一覧画面に遷移 --%>
-		<a href="${pageContext.request.contextPath}/test/test_create" class="link-spacing" >戻る</a>
+		<a href="${pageContext.request.contextPath}/test/test_regist">戻る</a>
 		<%-- 成績参照検索画面に遷移 --%>
 		<a href="${pageContext.request.contextPath}/test/test_list" class="link-spacing" >成績参照</a>
 

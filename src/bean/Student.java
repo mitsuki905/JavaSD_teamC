@@ -32,13 +32,13 @@ public class Student implements Serializable{
 	public String getClassNum() {
 		return classNum;
 	}
-	public void setClassNum(String c) {
-		this.classNum = c;
+	public void setClassNum(String classNum) {
+		this.classNum = classNum;
 	}
 	public boolean isAttend() {
 		return isAttend;
 	}
-	public void setisAttend(boolean isAttend) {
+	public void setIsAttend(boolean isAttend) {
 		this.isAttend = isAttend;
 	}
 	public School getSchool() {
@@ -47,5 +47,6 @@ public class Student implements Serializable{
 	public void setSchool(School school) {
 		this.school = school;
 	}
+
 
 }

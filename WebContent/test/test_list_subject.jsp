@@ -54,7 +54,7 @@
 			</form>
 
 			<%-- 検索条件不足エラー --%>
-        	<li style="list-style: none;" class="text-warning">${ errorMessage }</li>
+        	<li class="text-warning error-message-item">${ errorMessage }</li>
 		</div>
 
 
@@ -93,63 +93,67 @@
 
 
 		<%-- 検索結果表示 --%>
-		<div class="mt-4">
-			<%-- 検索された科目名を表示（コントローラーから subjectName で渡されると仮定） --%>
-			<c:if test="${not empty subjectName}">
-				<h3 class="h5 mb-3" id="subject-name">科目：<c:out value="${subjectName}" /></h3>
-			</c:if>
+				<%-- 検索結果表示 --%>
+		<%-- ★★★ studentsがnullでない場合（＝検索が実行された後）にのみ、このブロック全体を表示する ★★★ --%>
+		<c:if test="${students != null}">
+			<div class="mt-4">
+				<%-- 検索された科目名を表示 --%>
+				<c:if test="${not empty subjectName}">
+					<h3 class="h5 mb-3" id="subject-name">科目：<c:out value="${subjectName}" /></h3>
+				</c:if>
 
-			<%-- 検索結果テーブル --%>
-			<div class="table-responsive">
-				<table class="table table-striped table-hover">
-					<%-- テーブルヘッダー --%>
-					<thead>
-						<tr>
-							<th>入学年度</th>
-							<th>クラス</th>
-							<th>学生番号</th>
-							<th>氏名</th>
-							<th>1回</th>
-							<th>2回</th>
-						</tr>
-					</thead>
-					<%-- テーブルデータを設計書通りに修正 --%>
-					<tbody>
-						<%-- リストが空でない場合にのみループ処理 --%>
-						<c:forEach var="student" items="${students}">
-						    <tr>
-						        <td>${student.entYear}</td>
-						        <td>${student.classNum}</td>
-						        <td>${student.no}</td>
-						        <td>${student.name}</td>
-						        <%-- 1回目の点数。ない場合はハイフンを表示 --%>
-						        <td>
-						            <c:choose>
-						                <c:when test="${student.point1 != null && student.point1 >= 0}">
-						                    ${student.point1}
-						                </c:when>
-						                <c:otherwise>
-						                    -
-						                </c:otherwise>
-						            </c:choose>
-						        </td>
-						        <%-- 2回目の点数。ない場合はハイフンを表示 --%>
-						        <td>
-						            <c:choose>
-						                <c:when test="${student.point2 != null && student.point2 >= 0}">
-						                    ${student.point2}
-						                </c:when>
-						                <c:otherwise>
-						                    -
-						                </c:otherwise>
-						            </c:choose>
-						        </td>
-						    </tr>
-						</c:forEach>
-					</tbody>
-				</table>
+				<%-- 検索結果テーブル --%>
+				<div class="table-responsive">
+					<table class="table table-striped table-hover">
+						<%-- テーブルヘッダー --%>
+						<thead>
+							<tr>
+								<th>入学年度</th>
+								<th>クラス</th>
+								<th>学生番号</th>
+								<th>氏名</th>
+								<th>1回</th>
+								<th>2回</th>
+							</tr>
+						</thead>
+						<%-- テーブルデータ --%>
+						<tbody>
+							<%-- リストが空でない場合にのみループ処理 --%>
+							<c:forEach var="student" items="${students}">
+								<tr>
+									<td>${student.entYear}</td>
+									<td>${student.classNum}</td>
+									<td>${student.no}</td>
+									<td>${student.name}</td>
+									<%-- 1回目の点数。ない場合はハイフンを表示 --%>
+									<td>
+										<c:choose>
+											<c:when test="${student.point1 != null && student.point1 >= 0}">
+												${student.point1}
+											</c:when>
+											<c:otherwise>
+												-
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<%-- 2回目の点数。ない場合はハイフンを表示 --%>
+									<td>
+										<c:choose>
+											<c:when test="${student.point2 != null && student.point2 >= 0}">
+												${student.point2}
+											</c:when>
+											<c:otherwise>
+												-
+											</c:otherwise>
+										</c:choose>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+
 			</div>
-		</div>
-
+		</c:if>
 	</c:param>
 </c:import>

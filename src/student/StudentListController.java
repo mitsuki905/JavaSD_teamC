@@ -65,8 +65,47 @@ public class StudentListController extends CommonServlet {
     @Override
     protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
+
+//		現在のsessionを取得
+        HttpSession session = req.getSession();
+        School school = (School) session.getAttribute("school");
+
+
+
+//		画面から送られてきた値を取得する
+		int year = Integer.parseInt(req.getParameter("year"));
+		String classItem = req.getParameter("classItem");
+
+		// StudentListController.java (doPost メソッド内)
+		String isattendParam = req.getParameter("isAttend"); // JSPから送られてくる名前
+
+		boolean isAttend = "TRUE".equalsIgnoreCase(isattendParam);
+		System.out.println(isAttend);
+
+		List<Student> students = null;
+
 		// DAOのインスタンスを生成
-        StudentDao studao = new StudentDao();
+		StudentDao studao = new StudentDao();
+
+
+		if (year == 0 && "0".equals(classItem) && !isAttend) {
+			// studentsに全学生リスト
+			students = studao.getList();
+		} else if (!"0".equals(classItem)){
+			students =studao.filter(school, year, classItem, isAttend);
+		} else if (year != 0) {
+			students = studao.filter(school, year, isAttend);
+		} else {
+			students = studao.filter(school, isAttend);
+		}
+
+		req.setAttribute("fEntYear", year);      // JSPの ${fEntYear} に対応
+		req.setAttribute("fClassNum", classItem);    // JSPの ${fClassNum} に対応
+		req.setAttribute("isAttend", isAttend);     // JSPの ${isattend} に対応
+
+		req.setAttribute("students", students);
+
+		// 再取得用のリストを設定
 
         try {
             // 学生リストを取得
@@ -100,48 +139,7 @@ public class StudentListController extends CommonServlet {
             // エラーハンドリング
         }
 
-//		現在のsessionを取得
-        HttpSession session = req.getSession();
-        School school = (School) session.getAttribute("school");
-
-
-//		画面から送られてきた値を取得する
-		int year = Integer.parseInt(req.getParameter("year"));
-		String classItem = req.getParameter("classItem");
-		String isattend = req.getParameter("isattend");
-
-		boolean isAttend = "TRUE".equalsIgnoreCase(isattend);
-
-		List<Student> students = null;
-//
-
-		if (classItem == "0") {
-
-			if (year == 0) {
-				if (isattend != "TRUE") {
-					// 何も条件が指定されていない時jspに同じ情報を送り返す
-					req.getRequestDispatcher("student_list.jsp").forward(req, resp);
-
-				} else {
-					// 在籍中のみの絞り込み
-					students = studao.filter(school, isAttend);
-					}
-
-				// 在籍中＋入学年度の絞り込み
-			} else {
-				students = studao.filter(school, year, isAttend);
-			}
-
-				// 在籍中＋入学年度＋クラス番号の絞り込み
-		} else {
-			students = studao.filter(school, year, classItem, isAttend);
-		}
-
-		req.setAttribute("fEntYear", year);      // JSPの ${fEntYear} に対応
-        req.setAttribute("fClassNum", classItem);    // JSPの ${fClassNum} に対応
-        req.setAttribute("isattend", isAttend);     // JSPの ${isattend} に対応
-
-		req.setAttribute("students", students);
+        req.getRequestDispatcher("student_list.jsp").forward(req, resp);
 
 
 
