@@ -72,6 +72,20 @@ public class StudentCreateExecuteController extends CommonServlet {
 				req.getRequestDispatcher("student_create.jsp").forward(req, resp);
 			}
 
+		} else if (entYear == 0){
+			// 入学年度を指定していない場合
+			req.setAttribute("no", no);
+			req.setAttribute("name", name);
+			req.setAttribute("class_num", classNum);
+			req.setAttribute("ent_year", entYear);
+
+			// エラー時にドロップダウンリストを再設定
+			this.setLists(req, school);
+
+			// エラーメッセージをリクエストに追加 (JSP側のc:ifのキーに合わせる)
+			req.setAttribute("error_ent_year", "入学年度を指定してください");
+			// 登録画面に戻る
+			req.getRequestDispatcher("student_create.jsp").forward(req, resp);
 		} else {
 			// 学生番号が重複していた場合
 			req.setAttribute("no", no);
