@@ -34,7 +34,8 @@ public class StudentDao extends DAO {
         }
         return list;
     }
-
+    
+//  特定の学生情報の取得  
     public Student get(String no) {
         Student student = null;
         String sql = BASE_SQL + "WHERE s.NO = ?";
@@ -56,6 +57,7 @@ public class StudentDao extends DAO {
         return student;
     }
 
+//    学生一覧リストの取得
     public List<Student> getList() {
         List<Student> list = new ArrayList<>();
         String sql = BASE_SQL + "ORDER BY s.NO";
@@ -72,6 +74,7 @@ public class StudentDao extends DAO {
         return list;
     }
 
+//    オブジェクトをリストに格納
     private List<Student> postfilter(ResultSet rSet, School school) {
         List<Student> list = new ArrayList<>();
         Student student = null;
@@ -96,6 +99,7 @@ public class StudentDao extends DAO {
         return list;
     }
 
+//   
     public List<Student> filter(School school, int entYear, String classNum, boolean isAttend) {
         List<Student> list = new ArrayList<>();
         String sql = BASE_SQL + "WHERE s.ENT_YEAR = ? AND s.CLASS_NUM = ? AND s.IS_ATTEND = ? AND s.SCHOOL_CD = ?";
