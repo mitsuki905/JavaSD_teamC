@@ -53,6 +53,8 @@ public class TestRegistExecuteController extends CommonServlet {
         String numStr = req.getParameter("num");
         String entYearStr = req.getParameter("ent_year");
         String classNum = req.getParameter("class_num");
+     // どのボタンが押されたかを取得
+        String submitAction = req.getParameter("submit_action");
 
         int num = 0;
         int entYear = 0;
@@ -139,6 +141,21 @@ public class TestRegistExecuteController extends CommonServlet {
         } else {
             req.setAttribute("error", "データベースエラーが発生しました。");
             req.getRequestDispatcher("test_regist.jsp").forward(req, resp);
+        }
+
+        // 押されたボタンに応じて遷移先を分岐
+        if ("register_finish".equals(submitAction)) {
+            // 「削除して終了」の場合 -> 完了画面へ
+            req.getRequestDispatcher("test_regist_done.jsp").forward(req, resp);
+        } else if ("register_again".equals(submitAction)) {
+            // 「登録して再度入力」の場合 -> 再検索して成績登録画面へ
+            // POSTリクエストとしてTestRegistControllerにフォワードすることで、再検索を実行させる
+        	req.setAttribute("rechance", "登録は完了しました");
+            req.getRequestDispatcher("test_regist").forward(req, resp);
+        } else {
+            // 想定外のアクションの場合
+            req.setAttribute("error", "不正な操作が行われました。");
+            req.getRequestDispatcher("test_regist").forward(req, resp);
         }
     }
 
