@@ -99,7 +99,7 @@ public class StudentDao extends DAO {
         return list;
     }
 
-//
+//   一番細かい絞り込み
     public List<Student> filter(School school, int entYear, String classNum, boolean isAttend) {
         List<Student> list = new ArrayList<>();
         String sql = BASE_SQL + "WHERE s.ENT_YEAR = ? AND s.CLASS_NUM = ? AND s.IS_ATTEND = ? AND s.SCHOOL_CD = ?";
@@ -141,6 +141,7 @@ public class StudentDao extends DAO {
         return list;
     }
 
+//    一番ゆるい絞り込み
     public List<Student> filter(School school, boolean isAttend) {
         List<Student> list = new ArrayList<>();
         String sql = BASE_SQL + "WHERE s.IS_ATTEND = ? AND s.SCHOOL_CD = ?";
@@ -160,6 +161,7 @@ public class StudentDao extends DAO {
         return list;
     }
 
+//    学生追加
     public boolean save(Student student) {
         String sql = "MERGE INTO STUDENT (NO, NAME, ENT_YEAR, CLASS_NUM, IS_ATTEND, SCHOOL_CD) "
                    + "KEY(NO) "
