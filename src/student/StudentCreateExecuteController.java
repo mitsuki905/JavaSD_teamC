@@ -31,8 +31,7 @@ public class StudentCreateExecuteController extends CommonServlet {
 		String classNum = req.getParameter("class_num");
 		boolean isAttend = true;
 
-		System.out.println(classNum);
-		System.out.println(entYear);
+
 
 
 		StudentDao dao = new StudentDao();
