@@ -12,7 +12,7 @@ import bean.School;
 public class ClassNumDao extends DAO {
 
     /**
-     * 指定された学校に所属するクラスの情報をリストで取得します。
+     * 指定された学校に所属するクラスの情報をリストで取得する。
      * @param school 検索対象の学校情報
      * @return ClassNumオブジェクトのリスト。見つからない場合は空のリストを返します。
      */
@@ -46,7 +46,6 @@ public class ClassNumDao extends DAO {
                 }
             }
         } catch (Exception e) {
-            // 実際にはロギングフレームワークを使うのが望ましい
             e.printStackTrace();
         }
 

@@ -9,19 +9,16 @@ import java.util.Map;
  */
 public class TestListSubject implements Serializable {
 
-    // --- フィールド ---
     private int entYear;
     private String studentNo;
     private String studentName;
     private String classNum;
     private Map<Integer, Integer> points;
 
-    // --- コンストラクタ ---
     public TestListSubject() {
         this.points = new HashMap<>();
     }
 
-    // --- 既存のメソッド (getter/setter) ---
 
     public int getEntYear() {
         return entYear;
@@ -67,7 +64,6 @@ public class TestListSubject implements Serializable {
         this.points.put(key, value);
     }
 
-    // このメソッドは現在直接使われていませんが、残しておいても問題ありません。
     public String getPoint(int key) {
         Integer point = this.points.get(key);
         return point != null ? String.valueOf(point) : "";
