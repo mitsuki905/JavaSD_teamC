@@ -106,7 +106,7 @@
 						                        <div class="text-warning small">${errors[student.no]}</div>
 						                    </c:if>
 						                </td>
-						            	<input type="hidden" name="student_no" value="${student.no}">
+						            <input type="hidden" name="student_no" value="${student.no}">
 						                <td class="text-center">
 						                    <input class="form-check-input delete-check" type="checkbox" name="delete_student_no" value="${student.no}">
 							            </td>
@@ -123,7 +123,8 @@
 
 	                    <div class="mt-4" id="button-area">
 						    <%-- 登録モード用のボタン (最初は表示) --%>
-						    <button type="submit" id="register-btn" name="submit_action" value="register_finish" class="btn btn-secondary">登録して終了</button>
+						    <button type="submit" id="register-finish-btn" name="submit_action" value="register_finish" class="btn btn-secondary">登録して終了</button>
+						    <button type="submit" id="register-again-btn" name="submit_action" value="register_again" class="btn btn-primary">登録して再度入力</button>
 
 						    <%-- 削除モード用のボタン (最初は非表示: d-none) --%>
 						    <button type="submit" id="delete-finish-btn" name="submit_action" value="delete_finish" class="btn btn-danger d-none">削除して終了</button>
@@ -144,7 +145,8 @@
 		        }
 
 		        // 必要なDOM要素を取得
-		        const registerBtn = document.getElementById('register-btn');
+		        const registerFinishBtn = document.getElementById('register-finish-btn');
+		        const registerAgainBtn = document.getElementById('register-again-btn');
 		        const deleteFinishBtn = document.getElementById('delete-finish-btn');
 		        const deleteAgainBtn = document.getElementById('delete-again-btn');
 		        const checkboxes = document.querySelectorAll('.delete-check');
@@ -162,7 +164,8 @@
 		                gradeForm.action = 'test_delete_execute';
 
 		                // 登録ボタンを隠し、削除ボタンを表示
-		                registerBtn.classList.add('d-none');
+		               registerFinishBtn.classList.add('d-none');
+		                registerAgainBtn.classList.add('d-none');
 		                deleteFinishBtn.classList.remove('d-none');
 		                deleteAgainBtn.classList.remove('d-none');
 
@@ -178,7 +181,8 @@
 		                gradeForm.action = 'test_regist_execute';
 
 		                // 削除ボタンを隠し、登録ボタンを表示
-		                registerBtn.classList.remove('d-none');
+		                registerFinishBtn.classList.remove('d-none');
+		                registerAgainBtn.classList.remove('d-none');
 		                deleteFinishBtn.classList.add('d-none');
 		                deleteAgainBtn.classList.add('d-none');
 
