@@ -9,9 +9,9 @@ import bean.School;
 public class SchoolDao extends DAO {
 
     /**
-     * 指定された学校コードに一致する学校情報を取得します。
+     * 指定された学校コードに一致する学校情報を取得する
      *
-     * @param cd 学校コード (例: "oom")
+     * @param cd 学校コード
      * @return 見つかった場合はSchoolオブジェクト、見つからない場合やエラー発生時はnullを返します。
      */
     public School get(String cd) {
@@ -37,7 +37,6 @@ public class SchoolDao extends DAO {
             }
         } catch (Exception e) {
             // エラーが発生した場合は、ログに出力する
-            // 実際にはSLF4Jなどのロギングフレームワークを使うのが望ましい
             e.printStackTrace();
 
             // エラーが発生したことを明確にするため、schoolはnullのままになる
