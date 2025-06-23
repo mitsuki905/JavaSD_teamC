@@ -75,6 +75,7 @@
 						</button>
 					</div>
 				</div>
+				<li class="text-warning error-message-item">${ errorMessage }</li>
 			</form>
 		</div>
 

@@ -124,6 +124,9 @@ public class StudentListController extends CommonServlet {
 			// studentsに全学生リスト
 			students = studao.getList();
 		} else if (!"0".equals(classItem)){
+			if (year == 0) {
+				req.setAttribute("errorMessage", "クラスを指定する場合は入学年度も指定してください");
+			}
 			students = studao.filter(school, year, classItem, isAttend);
 
 		} else if (year != 0) {
