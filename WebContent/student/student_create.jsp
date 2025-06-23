@@ -33,7 +33,6 @@
 					<!-- エラー表示 -->
 					<c:if test="${not empty error_ent_year}">
 						<div class="text-warning mt-1">${error_ent_year}</div>
-						<p>入学年度を選択してください</p>
 					</c:if>
 				</div>
 
