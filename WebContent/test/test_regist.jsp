@@ -106,7 +106,7 @@
 						                        <div class="text-warning small">${errors[student.no]}</div>
 						                    </c:if>
 						                </td>
-						            <input type="hidden" name="student_no" value="${student.no}">
+						            	<input type="hidden" name="student_no" value="${student.no}">
 						                <td class="text-center">
 						                    <input class="form-check-input delete-check" type="checkbox" name="delete_student_no" value="${student.no}">
 							            </td>
