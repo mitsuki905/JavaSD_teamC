@@ -38,7 +38,6 @@ public class TeacherDao extends DAO {
 					school = dao.get(rs.getString("school_cd"));
 					teacher.setSchool(school);
 				}
-				// else節は不要。teacherがnullのまま返されるため
 			}
 
 		} catch (Exception e) {

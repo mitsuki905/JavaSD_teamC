@@ -12,6 +12,7 @@ import bean.Student;
 
 public class StudentDao extends DAO {
 
+//ベースSQL
     private static final String BASE_SQL = "SELECT s.NO, s.NAME, s.ENT_YEAR, s.CLASS_NUM, s.IS_ATTEND, s.SCHOOL_CD, sc.NAME AS SCHOOL_NAME FROM STUDENT s LEFT JOIN SCHOOL sc ON s.SCHOOL_CD = sc.CD ";
 
     private List<Student> postFilter(ResultSet rs) throws SQLException {
