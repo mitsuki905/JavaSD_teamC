@@ -5,72 +5,72 @@
 <c:import url="/base.jsp">
     <c:param name="body">
 
-        <h2>　成績管理</h2><br>
+		<h2>　成績管理</h2><br>
 
-        <%-- 「削除して再度入力」が実行された際に表示 --%>
-        <p>${ rechance }</p>
+	    <%-- 「削除して再度入力」が実行された際に表示 --%>
+	    <p>${ rechance }</p>
 
 
-        <%-- 検索フォーム --%>
-        <div class="bg-light p-3 rounded mb-4">
-            <form action="test_regist" method="post">
-                <div class="row g-3 align-items-end">
+	    <%-- 検索フォーム --%>
+	    <div class="bg-light p-3 rounded mb-4">
+	        <form action="test_regist" method="post">
+	            <div class="row g-3 align-items-end">
 
-                    <%-- 入学年度 --%>
-                    <div class="col-md-2">
-                        <label for="f_ent_year" class="form-label">入学年度</label>
-                        <select name="f_ent_year" id="f_ent_year" class="form-select">
-                            <option value="0">--------</option>
-                            <c:forEach var="year" items="${entYearSet}">
+	                <%-- 入学年度 --%>
+	                <div class="col-md-2">
+	                    <label for="f_ent_year" class="form-label">入学年度</label>
+	                    <select name="f_ent_year" id="f_ent_year" class="form-select">
+	                        <option value="0">--------</option>
+	                        <c:forEach var="year" items="${entYearSet}">
 								<option value="${year}" <c:if test="${year == f_ent_year}">selected</c:if>>${year}</option>
 							</c:forEach>
-                        </select>
-                    </div>
+	                    </select>
+	                </div>
 
-                    <%-- クラス --%>
-                    <div class="col-md-2">
-                        <label for="f_class_num" class="form-label">クラス</label>
-                        <select name="f_class_num" id="f_class_num" class="form-select">
-                            <option value="0">--------</option>
-                            <c:forEach var="classItem" items="${classList}">
-                                <option value="${classItem}" <c:if test="${classItem == f_class_num}">selected</c:if>>${classItem}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
+	                <%-- クラス --%>
+	                <div class="col-md-2">
+	                    <label for="f_class_num" class="form-label">クラス</label>
+	                    <select name="f_class_num" id="f_class_num" class="form-select">
+	                        <option value="0">--------</option>
+	                        <c:forEach var="classItem" items="${classList}">
+	                            <option value="${classItem}" <c:if test="${classItem == f_class_num}">selected</c:if>>${classItem}</option>
+	                        </c:forEach>
+	                    </select>
+	                </div>
 
-                    <%-- 科目 --%>
-                    <div class="col-md-3">
-                        <label for="f_subject_cd" class="form-label">科目</label>
-                        <select name="f_subject_cd" id="f_subject_cd" class="form-select">
-                            <option value="0">--------</option>
-                            <c:forEach var="subjectItem" items="${subjectList}">
-                                <option value="${subjectItem.cd}" <c:if test="${subjectItem.cd == f_subject_cd}">selected</c:if>>${subjectItem.name}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
+	                <%-- 科目 --%>
+	                <div class="col-md-3">
+	                    <label for="f_subject_cd" class="form-label">科目</label>
+	                    <select name="f_subject_cd" id="f_subject_cd" class="form-select">
+	                        <option value="0">--------</option>
+	                        <c:forEach var="subjectItem" items="${subjectList}">
+	                            <option value="${subjectItem.cd}" <c:if test="${subjectItem.cd == f_subject_cd}">selected</c:if>>${subjectItem.name}</option>
+	                        </c:forEach>
+	                    </select>
+	                </div>
 
-                    <%-- 回数 --%>
-                    <div class="col-md-2">
-                        <label for="f_num" class="form-label">回数</label>
-                        <select name="f_num" id="f_num" class="form-select">
-                            <option value="0">--------</option>
-                            <c:forEach var="i" begin="1" end="2">
-                                <option value="${i}" <c:if test="${i == f_num}">selected</c:if>>${i}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
+	                <%-- 回数 --%>
+	                <div class="col-md-2">
+	                    <label for="f_num" class="form-label">回数</label>
+	                    <select name="f_num" id="f_num" class="form-select">
+	                        <option value="0">--------</option>
+	                        <c:forEach var="i" begin="1" end="2">
+	                            <option value="${i}" <c:if test="${i == f_num}">selected</c:if>>${i}</option>
+	                        </c:forEach>
+	                    </select>
+	                </div>
 
-                    <div class="col-md-2 d-flex justify-content-end">
-                        <button type="submit" class="btn btn-secondary">検索</button>
-                    </div>
-                </div>
-            </form>
+	                <div class="col-md-2 d-flex justify-content-end">
+	                    <button type="submit" class="btn btn-secondary">検索</button>
+	                </div>
+	            </div>
+	        </form>
 
 	        <%-- エラーメッセージ表示エリア --%>
 	        <c:if test="${not empty error}">
 	        <div class="text-warning small">${error}</div>
 	        	</c:if>
-       		</div>
+	   		</div>
 
 		    <%-- 検索後、該当者がいなかった場合にメッセージ表示 --%>
 		    <c:if test="${not empty f_ent_year && f_ent_year != 0 && empty students}">
@@ -106,7 +106,7 @@
 						                        <div class="text-warning small">${errors[student.no]}</div>
 						                    </c:if>
 						                </td>
-						            <input type="hidden" name="student_no" value="${student.no}">
+						            	<input type="hidden" name="student_no" value="${student.no}">
 						                <td class="text-center">
 						                    <input class="form-check-input delete-check" type="checkbox" name="delete_student_no" value="${student.no}">
 							            </td>
@@ -137,7 +137,7 @@
 
 
 			<script>
-    			document.addEventListener('DOMContentLoaded', function() {
+				document.addEventListener('DOMContentLoaded', function() {
 		        // フォームが存在しない場合は処理を終了
 		        const gradeForm = document.getElementById('grade-form');
 		        if (!gradeForm) {
@@ -202,5 +202,5 @@
 		        updateFormState();
 		    });
 		</script>
-    </c:param>
+	</c:param>
 </c:import>
