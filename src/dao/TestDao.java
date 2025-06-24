@@ -34,17 +34,19 @@ public class TestDao extends DAO {
      * @param subject 科目情報を持つSubjectオブジェクト
      * @param school 学校情報を持つSchoolオブジェクト
      * @param no テストの回数
+     * @param point テストの点数
      * @return 検索結果のTestオブジェクト。見つからない場合はnullを返します。
      */
-    public Test get(Student student, Subject subject, School school, int no) {
+    public Test get(Student student, Subject subject, School school, int no, int point) {
         Test test = null;
-        String sql = baseSql + "WHERE t.student_no = ? AND t.subject_cd = ? AND t.school_cd = ? AND t.no = ?";
+        String sql = baseSql + "WHERE t.student_no = ? AND t.subject_cd = ? AND t.school_cd = ? AND t.no = ? AND t.point = ?";
 
         try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
             pstmt.setString(1, student.getNo());
             pstmt.setString(2, subject.getCd());
             pstmt.setString(3, school.getCd());
             pstmt.setInt(4, no);
+            pstmt.setInt(5, point);
 
             try (ResultSet rs = pstmt.executeQuery()) {
                 List<Test> list = postFilter(rs, school);

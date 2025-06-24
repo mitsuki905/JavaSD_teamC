@@ -101,7 +101,13 @@
 							                <td>${student.no}</td>
 							                <td>${student.name}</td>
 							                <td>
-						                    <input type="text" name="point_${student.no}" class="form-control test-r point-input" value="${points[1]}">
+						                    <input type="text"
+											       name="point_${student.no}"
+											       class="form-control test-r point-input"
+											       value="<c:forEach var='test' items='${testList}'>
+											                  <c:if test='${test.student.no == student.no}'>${test.point}</c:if>
+											              </c:forEach>">
+
 						                    <c:if test="${not empty errors[student.no]}">
 						                        <div class="text-warning small">${errors[student.no]}</div>
 						                    </c:if>
@@ -187,7 +193,7 @@
 		                deleteAgainBtn.classList.add('d-none');
 
 		                // 点数入力欄を有効化
-		                pointInputs.forEach(input => {
+		            	   pointInputs.forEach(input => {
 		                    input.disabled = false;
 		                });
 		            }

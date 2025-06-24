@@ -12,16 +12,18 @@ import bean.School;
 import bean.Student;
 import bean.Subject;
 import bean.Teacher;
+import bean.Test;
 import dao.ClassNumDao;
 import dao.StudentDao;
 import dao.SubjectDao;
+import dao.TestDao;
 import tool.CommonServlet;
 
 @WebServlet(urlPatterns = { "/test/test_regist" })
 public class TestRegistController extends CommonServlet {
 
     /**
-     * フォームに必要なプルダウンリストをリクエストスコープに設定するヘルパーメソッド
+     * フォームに必要なプルダウンリストをリクエストスコープに設定するメソッド
      * @param req HttpServletRequest
      * @param school Schoolオブジェクト
      * @throws Exception
@@ -114,27 +116,28 @@ public class TestRegistController extends CommonServlet {
         // DAOのインスタンス化
         StudentDao sDao = new StudentDao();
         SubjectDao subDao = new SubjectDao();
+        TestDao tDao = new TestDao();
 
 
-
-        // 入学年度、クラス、科目がすべて選択されている場合のみ検索
+//         入学年度、クラス、科目がすべて選択されている場合のみ検索
         if (entYear > 0 && classNum != null && !classNum.equals("0") && subjectCd != null && !subjectCd.equals("0") && num > 0) {
-            // 在学中の学生リストを取得
+//          在学中の学生リストを取得
             List<Student> students = sDao.filter(school, entYear, classNum, true);
-            // 選択された科目情報を取得
+//          選択された科目情報を取得
             Subject subject = subDao.get(subjectCd, school);
+//          既に登録されているテスト結果を取得（点数用）
+            List<Test> testList  = tDao.filter(entYear, classNum, subject, num, school);
 
-            // 検索結果と選択された情報をリクエストスコープにセット
+
+//          検索結果と選択された情報をリクエストスコープにセット
             req.setAttribute("students", students);
             req.setAttribute("subject", subject);
             req.setAttribute("num", num);
+            req.setAttribute("testList", testList);
 
-            // 登録処理で使うため、元の検索条件もセット
+//          登録処理で使うため、元の検索条件もセット
             req.setAttribute("ent_year", entYear);
             req.setAttribute("class_num", classNum);
-
-//          ループ処理
-
 
 
         } else {
