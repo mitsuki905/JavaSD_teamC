@@ -122,6 +122,20 @@ public class TestDeleteExecuteController extends CommonServlet {
             // 「削除して再度入力」の場合 -> 再検索して成績登録画面へ
             // POSTリクエストとしてTestRegistControllerにフォワードすることで、再検索を実行させる
         	req.setAttribute("rechance", "削除は完了しました");
+
+        	// 検索条件のセット
+            req.setAttribute("f_ent_year", entYear);
+            req.setAttribute("f_class_num", classNum);
+            req.setAttribute("f_subject_cd", subjectCd);
+            req.setAttribute("f_num", num);
+
+            // 検索用hiddenにも同じ値をセットしておく
+            req.setAttribute("ent_year", entYear);
+            req.setAttribute("class_num", classNum);
+            req.setAttribute("subject_cd", subjectCd);
+            req.setAttribute("num", num);
+
+
             req.getRequestDispatcher("test_regist").forward(req, resp);
         } else {
             // 想定外のアクションの場合

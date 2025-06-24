@@ -16,7 +16,6 @@ import bean.Student;
 import bean.Subject;
 import bean.Teacher;
 import bean.Test;
-import dao.ClassNumDao;
 import dao.StudentDao;
 import dao.SubjectDao;
 import dao.TestDao;
@@ -114,31 +113,12 @@ public class TestRegistExecuteController extends CommonServlet {
             }
         }
 
-        if (!errors.isEmpty()) {
-            req.setAttribute("errors", errors);
-            req.setAttribute("points", points);
-            // 画面再表示のため、最初に取得した学生リストをセット
-            req.setAttribute("students", students);
-            req.setAttribute("subject", subject);
-            req.setAttribute("num", num);
-            req.setAttribute("f_ent_year", entYear);
-            req.setAttribute("f_class_num", classNum);
-            req.setAttribute("f_subject_cd", subjectCd);
-            req.setAttribute("f_num", num);
-            req.setAttribute("ent_year", entYear);
-            req.setAttribute("class_num", classNum);
-            setRequestAttributesForForm(req, school);
-            req.getRequestDispatcher("test_regist.jsp").forward(req, resp);
-            return;
-        }
-
         // エラーがない場合、DBに保存
         boolean result = tDao.save(testList);
 
-        if (result) {
-            req.getRequestDispatcher("test_regist_done.jsp").forward(req, resp);
-        } else {
+        if (!result) {
             req.setAttribute("error", "データベースエラーが発生しました。");
+            // 元の検索画面にフォワード
             req.getRequestDispatcher("test_regist").forward(req, resp);
             return;
         }
@@ -151,33 +131,24 @@ public class TestRegistExecuteController extends CommonServlet {
             // 「登録して再度入力」の場合 -> 再検索して成績登録画面へ
             // POSTリクエストとしてTestRegistControllerにフォワードすることで、再検索を実行させる
         	req.setAttribute("rechance", "登録は完了しました");
+
+        	// 検索条件のセット
+            req.setAttribute("f_ent_year", entYear);
+            req.setAttribute("f_class_num", classNum);
+            req.setAttribute("f_subject_cd", subjectCd);
+            req.setAttribute("f_num", num);
+
+            // 検索用hiddenにも同じ値をセットしておく
+            req.setAttribute("ent_year", entYear);
+            req.setAttribute("class_num", classNum);
+            req.setAttribute("subject_cd", subjectCd);
+            req.setAttribute("num", num);
+
             req.getRequestDispatcher("test_regist").forward(req, resp);
         } else {
             // 想定外のアクションの場合
             req.setAttribute("error", "不正な操作が行われました。");
             req.getRequestDispatcher("test_regist").forward(req, resp);
         }
-    }
-
-    private void setRequestAttributesForForm(HttpServletRequest req, School school) throws Exception {
-        StudentDao sDao = new StudentDao();
-        ClassNumDao cDao = new ClassNumDao();
-        SubjectDao subDao = new SubjectDao();
-
-        List<Integer> entYearSet = sDao.filter(school, true).stream()
-            .map(Student::getEntYear)
-            .distinct()
-            .sorted((y1, y2) -> y2.compareTo(y1))
-            .collect(Collectors.toList());
-        req.setAttribute("entYearSet", entYearSet);
-
-        List<String> classList = cDao.filter(school).stream()
-            .map(cn -> cn.getClass_num())
-            .sorted()
-            .collect(Collectors.toList());
-        req.setAttribute("classList", classList);
-
-        List<Subject> subjectList = subDao.filter(school);
-        req.setAttribute("subjectList", subjectList);
     }
 }

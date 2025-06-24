@@ -270,4 +270,37 @@ public class TestDao extends DAO {
             return affectedRows > 0;
         }
     }
+
+//  削除機能が追加によりクラス図にない
+    public Test get(School school, String studentNo, String subjectCd, int num) {
+        try (Connection conn = getConnection()) {
+            String sql = "SELECT * FROM test WHERE school_cd = ? AND student_no = ? AND subject_cd = ? AND num = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, school.getCd());
+            stmt.setString(2, studentNo);
+            stmt.setString(3, subjectCd);
+            stmt.setInt(4, num);
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                Test test = new Test();
+                test.setSchool(school);
+                Student student = new Student();
+                student.setNo(studentNo);
+                test.setStudent(student);
+                Subject subject = new Subject();
+                subject.setCd(subjectCd);
+                test.setSubject(subject);
+                test.setNo(num);
+                test.setPoint(rs.getInt("point"));
+                test.setClassNum(rs.getString("class_num"));
+                return test;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }

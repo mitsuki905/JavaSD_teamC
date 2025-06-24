@@ -101,18 +101,28 @@
 							                <td>${student.no}</td>
 							                <td>${student.name}</td>
 							                <td>
-						                    <%-- この学生に対応する点数を検索して表示 --%>
+						                    <%-- 初期化 --%>
 											<c:set var="pointValue" value="" />
-											<c:forEach var="test" items="${testList}">
-											    <c:if test="${test.student.no == student.no}">
-											        <c:set var="pointValue" value="${test.point}" />
-											    </c:if>
-											</c:forEach>
+
+											<%-- pointMapが存在する場合（再登録・再削除後） --%>
+											<c:if test="${not empty pointMap}">
+											    <c:set var="pointValue" value="${pointMap[student.no]}" />
+											</c:if>
+
+											<%-- 上記がない場合は testList をループして検索（初回検索時） --%>
+											<c:if test="${empty pointMap}">
+											    <c:forEach var="test" items="${testList}">
+											        <c:if test="${test.student.no == student.no}">
+											            <c:set var="pointValue" value="${test.point}" />
+											        </c:if>
+											    </c:forEach>
+											</c:if>
 
 											<input type="text"
 											       name="point_${student.no}"
 											       class="form-control point-input"
 											       value="${pointValue}">
+
 
 						                    <c:if test="${not empty errors[student.no]}">
 						                        <div class="text-warning small">${errors[student.no]}</div>
