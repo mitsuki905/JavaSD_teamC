@@ -27,7 +27,54 @@ public class TestRegistExecuteController extends CommonServlet {
 
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        resp.sendRedirect(req.getContextPath() + "/test/test_regist");
+
+
+        HttpSession session = req.getSession();
+        Teacher teacher = (Teacher) session.getAttribute("teacher");
+
+        if (teacher == null) {
+            resp.sendRedirect(req.getContextPath() + "/login/login.jsp");
+            return;
+        }
+
+        School school = teacher.getSchool();
+
+        // パラメータ取得（もしあれば）
+        String entYearStr = req.getParameter("ent_year");
+        String classNum = req.getParameter("class_num");
+        String subjectCd = req.getParameter("subject_cd");
+        String numStr = req.getParameter("num");
+
+        int entYear = 0;
+        int num = 0;
+
+        try {
+            if (entYearStr != null) entYear = Integer.parseInt(entYearStr);
+            if (numStr != null) num = Integer.parseInt(numStr);
+        } catch (NumberFormatException e) {
+            // パラメータ不正時は0のまま（絞り込みなし）
+        }
+
+        SubjectDao subDao = new SubjectDao();
+        TestDao tDao = new TestDao();
+
+        Subject subject = null;
+        if (subjectCd != null && !subjectCd.isEmpty()) {
+            subject = subDao.get(subjectCd, school);
+        }
+
+        List<Test> testList = new ArrayList<>();
+        if (school != null) {
+            testList = tDao.filter(entYear, classNum, subject, num, school);
+        }
+
+        req.setAttribute("testList", testList);
+
+        // フォームに必要なその他の属性セットは別メソッドを使うかここで行う
+        setRequestAttributesForForm(req, school);
+
+        req.getRequestDispatcher("test_regist.jsp").forward(req, resp);
+
     }
 
     @Override
