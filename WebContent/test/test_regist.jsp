@@ -101,12 +101,18 @@
 							                <td>${student.no}</td>
 							                <td>${student.name}</td>
 							                <td>
-						                    <input type="text"
+						                    <%-- この学生に対応する点数を検索して表示 --%>
+											<c:set var="pointValue" value="" />
+											<c:forEach var="test" items="${testList}">
+											    <c:if test="${test.student.no == student.no}">
+											        <c:set var="pointValue" value="${test.point}" />
+											    </c:if>
+											</c:forEach>
+
+											<input type="text"
 											       name="point_${student.no}"
-											       class="form-control test-r point-input"
-											       value="<c:forEach var='test' items='${testList}'>
-											                  <c:if test='${test.student.no == student.no}'>${test.point}</c:if>
-											              </c:forEach>">
+											       class="form-control point-input"
+											       value="${pointValue}">
 
 						                    <c:if test="${not empty errors[student.no]}">
 						                        <div class="text-warning small">${errors[student.no]}</div>
