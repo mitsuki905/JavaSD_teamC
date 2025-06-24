@@ -25,6 +25,7 @@ import tool.CommonServlet;
 @WebServlet(urlPatterns = { "/test/test_regist_execute" })
 public class TestRegistExecuteController extends CommonServlet {
 
+
     @Override
     protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
