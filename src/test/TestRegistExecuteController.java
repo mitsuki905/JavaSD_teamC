@@ -132,31 +132,38 @@ public class TestRegistExecuteController extends CommonServlet {
             return;
         }
 
-        // エラーがない場合、DBに保存
+     // エラーがない場合、DBに保存
         boolean result = tDao.save(testList);
 
-        if (result) {
-            req.getRequestDispatcher("test_regist_done.jsp").forward(req, resp);
-        } else {
+        if (!result) {
             req.setAttribute("error", "データベースエラーが発生しました。");
             req.getRequestDispatcher("test_regist").forward(req, resp);
             return;
         }
 
-        // 押されたボタンに応じて遷移先を分岐
+        // ボタンの種類で分岐（result が true の場合のみ）
         if ("register_finish".equals(submitAction)) {
-            // 「登録して終了」の場合 -> 完了画面へ
-            req.getRequestDispatcher("test_regist_done").forward(req, resp);
+            req.getRequestDispatcher("test_regist_done.jsp").forward(req, resp);
         } else if ("register_again".equals(submitAction)) {
-            // 「登録して再度入力」の場合 -> 再検索して成績登録画面へ
-            // POSTリクエストとしてTestRegistControllerにフォワードすることで、再検索を実行させる
-        	req.setAttribute("rechance", "登録は完了しました");
-            req.getRequestDispatcher("test_regist").forward(req, resp);
+            // 成功後、再度同じ条件で検索して表示
+            List<Student> student = sDao.filter(school, entYear, classNum, true);
+            req.setAttribute("rechance", "登録は完了しました");
+            req.setAttribute("students", student);
+            req.setAttribute("subject", subject);
+            req.setAttribute("num", num);
+            req.setAttribute("f_ent_year", entYear);
+            req.setAttribute("f_class_num", classNum);
+            req.setAttribute("f_subject_cd", subjectCd);
+            req.setAttribute("f_num", num);
+            req.setAttribute("ent_year", entYear);
+            req.setAttribute("class_num", classNum);
+            setRequestAttributesForForm(req, school);
+            req.getRequestDispatcher("test_regist.jsp").forward(req, resp);
         } else {
-            // 想定外のアクションの場合
             req.setAttribute("error", "不正な操作が行われました。");
             req.getRequestDispatcher("test_regist").forward(req, resp);
         }
+
     }
 
     private void setRequestAttributesForForm(HttpServletRequest req, School school) throws Exception {
