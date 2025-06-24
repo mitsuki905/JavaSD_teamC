@@ -101,7 +101,7 @@
 							                <td>${student.no}</td>
 							                <td>${student.name}</td>
 							                <td>
-						                    <input type="text" name="point_${student.no}" class="form-control test-r point-input" value="${points[student.no]}">
+						                    <input type="text" name="point_${student.no}" class="form-control test-r point-input" value="${points[1]}">
 						                    <c:if test="${not empty errors[student.no]}">
 						                        <div class="text-warning small">${errors[student.no]}</div>
 						                    </c:if>

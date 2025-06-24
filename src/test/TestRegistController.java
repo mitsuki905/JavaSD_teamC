@@ -115,6 +115,8 @@ public class TestRegistController extends CommonServlet {
         StudentDao sDao = new StudentDao();
         SubjectDao subDao = new SubjectDao();
 
+
+
         // 入学年度、クラス、科目がすべて選択されている場合のみ検索
         if (entYear > 0 && classNum != null && !classNum.equals("0") && subjectCd != null && !subjectCd.equals("0") && num > 0) {
             // 在学中の学生リストを取得
@@ -130,6 +132,10 @@ public class TestRegistController extends CommonServlet {
             // 登録処理で使うため、元の検索条件もセット
             req.setAttribute("ent_year", entYear);
             req.setAttribute("class_num", classNum);
+
+//          ループ処理
+
+
 
         } else {
             // 検索条件が不完全な場合のエラーメッセージ

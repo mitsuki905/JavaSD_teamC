@@ -140,7 +140,7 @@ public class TestRegistExecuteController extends CommonServlet {
             req.getRequestDispatcher("test_regist_done.jsp").forward(req, resp);
         } else {
             req.setAttribute("error", "データベースエラーが発生しました。");
-            req.getRequestDispatcher("test_regist.jsp").forward(req, resp);
+            req.getRequestDispatcher("test_regist").forward(req, resp);
         }
 
         // 押されたボタンに応じて遷移先を分岐
@@ -151,7 +151,7 @@ public class TestRegistExecuteController extends CommonServlet {
             // 「登録して再度入力」の場合 -> 再検索して成績登録画面へ
             // POSTリクエストとしてTestRegistControllerにフォワードすることで、再検索を実行させる
         	req.setAttribute("rechance", "登録は完了しました");
-            req.getRequestDispatcher("test_regist").forward(req, resp);
+            req.getRequestDispatcher("test_regist.jsp").forward(req, resp);
         } else {
             // 想定外のアクションの場合
             req.setAttribute("error", "不正な操作が行われました。");
