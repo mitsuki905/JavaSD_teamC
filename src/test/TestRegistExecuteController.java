@@ -126,7 +126,7 @@ public class TestRegistExecuteController extends CommonServlet {
         // 押されたボタンに応じて遷移先を分岐
         if ("register_finish".equals(submitAction)) {
             // 「登録して終了」の場合 -> 完了画面へ
-            req.getRequestDispatcher("test_regist_done").forward(req, resp);
+            req.getRequestDispatcher("test_regist_done.jsp").forward(req, resp);
         } else if ("register_again".equals(submitAction)) {
             // 「登録して再度入力」の場合 -> 再検索して成績登録画面へ
             // POSTリクエストとしてTestRegistControllerにフォワードすることで、再検索を実行させる
