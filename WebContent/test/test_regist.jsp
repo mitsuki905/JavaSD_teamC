@@ -125,8 +125,8 @@
 											       value="${pointValue}">
 
 
-						                    <c:if test="${not empty errors[student.no]}">
-						                        <div class="text-warning small">${errors[student.no]}</div>
+						                    <c:if test="${not empty studentNo}">
+						                        <div class="text-warning small">${studentNo}</div>
 						                    </c:if>
 						                </td>
 						            	<input type="hidden" name="student_no" value="${student.no}">
