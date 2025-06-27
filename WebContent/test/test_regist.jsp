@@ -119,13 +119,13 @@
 											    </c:forEach>
 											</c:if>
 
-											<form id="scoreForm">
-											  <input type="text"
-											         name="point_001"
+<!-- 											<form id="scoreForm">
+ -->											  <input type="text"
+											         name="point_${ student.no }"
 											         class="form-control point-input"
 											         value="${pointValue}">
 											  <div class="text-warning small error-message"></div>
-											</form>
+										<!-- 	</form> -->
 
 
 
