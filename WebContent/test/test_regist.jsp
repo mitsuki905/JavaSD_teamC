@@ -119,14 +119,19 @@
 											    </c:forEach>
 											</c:if>
 
-											<input type="text"
-											       name="point_${student.no}"
-											       class="form-control point-input"
-											       value="${pointValue}">
+											<form id="scoreForm">
+											  <input type="text"
+											         name="point_001"
+											         class="form-control point-input"
+											         value="${pointValue}">
+											  <div class="text-warning small error-message"></div>
+											</form>
 
 
-						                    <c:if test="${not empty errors[student.no]}">
-						                        <div class="text-warning small">${errors[student.no]}</div>
+
+						                    <c:if test="${not empty errors}">
+						                        <%-- <div class="text-warning small">${errors}</div> --%>
+							                    <li class="text-warning error-message-item">${ errors }</li>
 						                    </c:if>
 						                </td>
 						            	<input type="hidden" name="student_no" value="${student.no}">
@@ -160,70 +165,87 @@
 
 
 			<script>
-				document.addEventListener('DOMContentLoaded', function() {
-		        // フォームが存在しない場合は処理を終了
-		        const gradeForm = document.getElementById('grade-form');
-		        if (!gradeForm) {
-		            return;
-		        }
+				document.addEventListener('DOMContentLoaded', function () {
+				    const gradeForm = document.getElementById('grade-form');
+				    if (!gradeForm) return;
 
-		        // 必要なDOM要素を取得
-		        const registerFinishBtn = document.getElementById('register-finish-btn');
-		        const registerAgainBtn = document.getElementById('register-again-btn');
-		        const deleteFinishBtn = document.getElementById('delete-finish-btn');
-		        const deleteAgainBtn = document.getElementById('delete-again-btn');
-		        const checkboxes = document.querySelectorAll('.delete-check');
-		        const pointInputs = document.querySelectorAll('.point-input');
+				    const registerFinishBtn = document.getElementById('register-finish-btn');
+				    const registerAgainBtn = document.getElementById('register-again-btn');
+				    const deleteFinishBtn = document.getElementById('delete-finish-btn');
+				    const deleteAgainBtn = document.getElementById('delete-again-btn');
+				    const checkboxes = document.querySelectorAll('.delete-check');
+				    const pointInputs = document.querySelectorAll('.point-input');
 
-		        // フォームの状態を更新する関数
-		        function updateFormState() {
-		            // チェックされたチェックボックスの数を取得
-		            const checkedCount = document.querySelectorAll('.delete-check:checked').length;
+				    function validatePoints() {
+				        let isValid = true;
 
-		            if (checkedCount > 0) {
-		                // --- 削除モード (チェックボックスが1つ以上選択されている) ---
+				        // すでにあるエラーを削除
+				        document.querySelectorAll('.point-error-message').forEach(el => el.remove());
 
-		                // フォームの送信先を削除用アクションに設定
-		                gradeForm.action = 'test_delete_execute';
+				        pointInputs.forEach(input => {
+				            const value = input.value.trim();
+				            const parent = input.parentElement;
 
-		                // 登録ボタンを隠し、削除ボタンを表示
-		               registerFinishBtn.classList.add('d-none');
-		                registerAgainBtn.classList.add('d-none');
-		                deleteFinishBtn.classList.remove('d-none');
-		                deleteAgainBtn.classList.remove('d-none');
+				            if (value === '') return;
+				            const num = Number(value);
+				            let errorMessage = '';
 
-		                // 点数入力欄を無効化
-		                pointInputs.forEach(input => {
-		                    input.disabled = true;
-		                });
+				            // ^\d+$  文字列全体が数字だけで構成されている
+				            if (!/^\d+$/.test(value)) {
+				                errorMessage = '整数を入力してください';
+				                isValid = false;
+				            } else if (num < 0 || num > 100) {
+				                errorMessage = '0～100の整数を入力してください';
+				                isValid = false;
+				            }
 
-		            } else {
-		                // --- 登録モード (チェックボックスが選択されていない) ---
+				            if (errorMessage) {
+				                const errorDiv = document.createElement('div');
+				                errorDiv.className = 'text-warning small point-error-message';
+				                errorDiv.innerText = errorMessage;
+				                parent.appendChild(errorDiv);
+				            }
+				        });
 
-		                // フォームの送信先を登録用アクションに設定
-		                gradeForm.action = 'test_regist_execute';
+				        return isValid;
+				    }
 
-		                // 削除ボタンを隠し、登録ボタンを表示
-		                registerFinishBtn.classList.remove('d-none');
-		                registerAgainBtn.classList.remove('d-none');
-		                deleteFinishBtn.classList.add('d-none');
-		                deleteAgainBtn.classList.add('d-none');
+				    // 登録 or 再入力ボタンのクリック時バリデーション
+				    [registerFinishBtn, registerAgainBtn].forEach(button => {
+				        button.addEventListener('click', function (e) {
+				            if (!validatePoints()) {
+				                e.preventDefault(); // フォーム送信ストップ
+				            }
+				        });
+				    });
 
-		                // 点数入力欄を有効化
-		            	   pointInputs.forEach(input => {
-		                    input.disabled = false;
-		                });
-		            }
-		        }
+				    function updateFormState() {
+				        const checkedCount = document.querySelectorAll('.delete-check:checked').length;
 
-		        // 各チェックボックスの変更を監視し、変更があればフォームの状態を更新
-		        checkboxes.forEach(checkbox => {
-		            checkbox.addEventListener('change', updateFormState);
-		        });
+				        if (checkedCount > 0) {
+				            gradeForm.action = 'test_delete_execute';
+				            registerFinishBtn.classList.add('d-none');
+				            registerAgainBtn.classList.add('d-none');
+				            deleteFinishBtn.classList.remove('d-none');
+				            deleteAgainBtn.classList.remove('d-none');
+				            pointInputs.forEach(input => input.disabled = true);
+				        } else {
+				            gradeForm.action = 'test_regist_execute';
+				            registerFinishBtn.classList.remove('d-none');
+				            registerAgainBtn.classList.remove('d-none');
+				            deleteFinishBtn.classList.add('d-none');
+				            deleteAgainBtn.classList.add('d-none');
+				            pointInputs.forEach(input => input.disabled = false);
+				        }
+				    }
 
-		        // ページ読み込み時に一度実行して初期状態を設定
-		        updateFormState();
-		    });
-		</script>
+				    checkboxes.forEach(checkbox => {
+				        checkbox.addEventListener('change', updateFormState);
+				    });
+
+				    updateFormState(); // 初期設定
+				});
+				</script>
+
 	</c:param>
 </c:import>
