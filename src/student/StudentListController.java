@@ -24,10 +24,12 @@ public class StudentListController extends CommonServlet {
 
 		// DAOのインスタンスを生成
         StudentDao studao = new StudentDao();
+        HttpSession session = req.getSession();
+		School school = (School) session.getAttribute("school");
 
         try {
             // 学生リストを取得
-            List<Student> studentList = studao.getList();
+            List<Student> studentList = studao.getList(school);
 
             // --- 1. 入学年度リストの作成 ---
             // JSPの items="${yearList}" に合わせる
@@ -54,6 +56,7 @@ public class StudentListController extends CommonServlet {
 
 
 
+
         } catch (Exception e) {
             e.printStackTrace();
             // エラーハンドリング
@@ -69,7 +72,6 @@ public class StudentListController extends CommonServlet {
 //		現在のsessionを取得
         HttpSession session = req.getSession();
         School school = (School) session.getAttribute("school");
-
 
 
 //		画面から送られてきた値を取得する
@@ -90,7 +92,8 @@ public class StudentListController extends CommonServlet {
 
 		try {
 			// 学生リストを取得
-			List<Student> studentList = studao.getList();
+			List<Student> studentList = studao.getList(school);
+			System.out.println(school.getCd());
 
 			// --- 1. 入学年度リストの作成 ---
 			// JSPの items="${yearList}" に合わせる
@@ -122,7 +125,7 @@ public class StudentListController extends CommonServlet {
 
 		if (year == 0 && "0".equals(classItem) && !isAttend) {
 			// studentsに全学生リスト
-			students = studao.getList();
+			students = studao.getList(school);
 		} else if (!"0".equals(classItem)){
 			if (year == 0) {
 				req.setAttribute("errorMessage", "クラスを指定する場合は入学年度も指定してください");
@@ -139,8 +142,6 @@ public class StudentListController extends CommonServlet {
 		req.setAttribute("fClassNum", classItem);    // JSPの ${fClassNum} に対応
 		req.setAttribute("isAttend", isAttend);     // JSPの ${isAttend} に対応
 		req.setAttribute("students", students);
-
-
 
         req.getRequestDispatcher("student_list.jsp").forward(req, resp);
 
