@@ -22,7 +22,10 @@ public class StudentCreateExecuteController extends CommonServlet {
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// 現在のsessionを取得
 		HttpSession session = req.getSession();
+
 		School school = (School) session.getAttribute("school");
+
+		System.out.println(school.getCd());
 
 		// JSPのフォームのname属性に合わせてパラメータを取得
 		int entYear = Integer.parseInt(req.getParameter("ent_year"));
@@ -55,6 +58,8 @@ public class StudentCreateExecuteController extends CommonServlet {
 			// beanを使って学生の情報をまとめる
 			Student student = new Student();
 			student.setSchool(school);
+			String i = school.getCd(); 
+			System.out.println(i);
 			student.setEntYear(entYear);
 			student.setClassNum(classNum);
 			student.setNo(no);
@@ -68,6 +73,7 @@ public class StudentCreateExecuteController extends CommonServlet {
 				// messageに変更完了を渡す
 				req.setAttribute("message", "登録が完了しました");
 				// 変更完了ページへフォワード
+				System.out.println(i);
 				req.getRequestDispatcher("student_create_done.jsp").forward(req, resp);
 			} else {
 				// 認証失敗時：入力された値を再表示用にセット
