@@ -5,14 +5,13 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    margin-left: 20%;
 }
 
 .contents {
-	margin-left: 20%;
+	margin-left: 25%;
 	padding: 20px;
 	box-sizing: border-box;
-	width: 80%;
+	width: 75%;
 }
 
 /* ログイン画面用：sidebarなしで全幅表示 */
@@ -152,6 +151,7 @@ h2{
 /* 共通部分(メニュー) */
 .sidebar {
 	position: fixed;
+	margin-left:10%;
 	top: 71px;
 	left: 0;
 	width: 20%;
@@ -180,3 +180,28 @@ ul {
 }
 
 
+/* 追加：レスポンシブ対応のためのメディアクエリ */
+@media (max-width: 992px) {
+    /* タブレットサイズになったらサイドバーを細くする */
+    .sidebar {
+        width: 15%;
+    }
+    .contents {
+        width: 85%;
+        margin-left: 15%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* スマホサイズになったらサイドバーを非表示にし、コンテンツを全幅にする */
+    .sidebar {
+        display: none;
+    }
+    .contents {
+        width: 100%;
+        margin-left: 0;
+    }
+    .header h1 {
+        font-size: 20px;
+    }
+}

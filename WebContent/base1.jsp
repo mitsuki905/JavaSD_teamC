@@ -5,12 +5,13 @@
 <html>
 <head>
 	<title>得点管理システム</title>
-	<link rel="stylesheet" href="<c:url value='/css/style.css'/>">
+	<link rel="stylesheet" href="<c:url value='/css/style1.css'/>">
 </head>
 
-<body style="margin-left:10%;margin-right:10%;">
+<body>
 	<div class="header">
 		<h1>得点管理システム</h1>
+
 		<c:if test="${not empty teacher}">
 			<div class="user-info">
 				<span>${teacher.name} 様</span>
