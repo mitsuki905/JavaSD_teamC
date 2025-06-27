@@ -6,7 +6,7 @@
 
 	<c:param name="body">
 
-		<h2>　成績管理(削除)</h2>
+		<h2>　成績管理</h2>
 		<p class="p1" text-align: center">　削除が完了しました</p>
 
 		<br><br>
