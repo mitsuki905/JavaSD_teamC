@@ -228,7 +228,8 @@ public class StudentDao extends DAO {
 // 学生登録
 	public boolean save (Student student){
 		boolean flag = false;
-		School school = student.getSchool();
+		School school = new School();
+
 
 		try (Connection con = getConnection();){
 			Student stuget = get(student.getNo());
@@ -254,6 +255,7 @@ public class StudentDao extends DAO {
 						+ "IS_ATTEND = ? "
 						+ "WHERE NO = ?";
 				PreparedStatement st = con.prepareStatement(sql);
+
 
 				st.setString(1, student.getName());
 				st.setInt(2,student.getEntYear());
