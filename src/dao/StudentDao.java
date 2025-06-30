@@ -227,7 +227,7 @@ public class StudentDao extends DAO {
 // 学生登録
 	public boolean save (Student student){
 		boolean flag = false;
-		School school = new School();
+
 
 
 		try (Connection con = getConnection();){
@@ -243,6 +243,7 @@ public class StudentDao extends DAO {
 			    st.setInt(3,student.getEntYear());
 			    st.setString(4,student.getClassNum());
 			    st.setBoolean(5, student.getisAttend());
+			    School school = student.getSchool();
 			    st.setString(6, school.getCd());
 			    st.executeUpdate();
 			    flag= true;
