@@ -104,7 +104,7 @@
 				<div class="mt-4">
 					<button type="submit" class="btn btn-secondary" name="end">登録して終了</button>
 					<%-- 学生管理一覧画面に遷移 --%>
-					<a href="${pageContext.request.contextPath}/main/main" class="d-block mt-2">戻る</a>
+					<a href="${pageContext.request.contextPath}/student/student_list" class="d-block mt-2">戻る</a>
 				</div>
 			</form>
 		</div>
