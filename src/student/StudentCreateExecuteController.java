@@ -58,7 +58,7 @@ public class StudentCreateExecuteController extends CommonServlet {
 			// beanを使って学生の情報をまとめる
 			Student student = new Student();
 			student.setSchool(school);
-			String i = school.getCd(); 
+			String i = school.getCd();
 			System.out.println(i);
 			student.setEntYear(entYear);
 			student.setClassNum(classNum);
@@ -105,8 +105,6 @@ public class StudentCreateExecuteController extends CommonServlet {
 			// 登録画面に戻る
 			req.getRequestDispatcher("student_create.jsp").forward(req, resp);
 		}
-
-
 
 	}
 

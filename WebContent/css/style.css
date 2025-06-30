@@ -1,3 +1,4 @@
+
 body {
 	font-family: sans-serif;
 	position: relative;
@@ -30,12 +31,9 @@ body {
 	margin-top: 50px;
 }
 
-
 .student{
 	margin-left: 1em; text-indent: -1em;
 }
-
-
 
 .box_red,
 .box_green,
@@ -66,11 +64,9 @@ body {
   margin-left: 5em;
 }
 
-
 h2{
 	background-color: #f0f0f0 !important;
 }
-
 .p1 {
     background-color: #008b8b !important;
     text-align: center !important;
@@ -80,26 +76,21 @@ h2{
 	max-width: 500px; padding-top: 40px; margin: 0 auto; padding: 2rem;
 }
 
-
 .login-title{
 	background-color: #f0f0f0;
 }
-
 
 .login-btn{
 	max-width: 300px;
 }
 
-
 .error-message{
 	list-style: none;text-align: center;
 }
 
-
 .error-message-item{
- list-style: none;
+list-style: none;
 }
-
 
 .test-r{
 	 width: 150px !important;
@@ -109,8 +100,6 @@ h2{
 	 table-layout: fixed;
 	 width: 100%;
 }
-
-
 
 .delete{
 	width: 5%;
@@ -167,7 +156,6 @@ ul {
     padding-left: 0;
 }
 
-
 /* 共通部分(フッター) */
 .footer {
 	width: 100%;
@@ -178,5 +166,3 @@ ul {
 	background-color: #f0f0f0;
     padding: 10px 0;
 }
-
-
