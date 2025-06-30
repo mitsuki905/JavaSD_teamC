@@ -228,8 +228,6 @@ public class StudentDao extends DAO {
 	public boolean save (Student student){
 		boolean flag = false;
 
-
-
 		try (Connection con = getConnection();){
 			Student stuget = get(student.getNo());
 
