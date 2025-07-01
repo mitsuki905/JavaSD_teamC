@@ -12,10 +12,13 @@ public class LogoutController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+//		session情報を削除する
 		HttpSession session = req.getSession();
 		session.invalidate();
+
+//		logout完了ページにフォワード
         req.getRequestDispatcher("logout.jsp").forward(req, resp);
-		/*resp.sendRedirect(req.getContextPath() + "/accounts/login");*/
+
 
 	}
 

@@ -6,6 +6,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import tool.CommonServlet;
 
+/**
+ * ログインページ（ログイン画面）を表示するコントローラ。
+ * URLパターン /login にマッピングされている。
+ */
+
 @WebServlet(urlPatterns = { "/accounts/login" })
 public class LoginController extends CommonServlet {
 

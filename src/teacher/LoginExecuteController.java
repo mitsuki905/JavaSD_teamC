@@ -20,7 +20,7 @@ public class LoginExecuteController extends CommonServlet {
 
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-//		現在のセッションを取得「新規作成）
+//		現在のセッションを取得（新規作成）
 		HttpSession session = req.getSession();
 
 //		画面から送られてきた値を取得する
@@ -29,7 +29,6 @@ public class LoginExecuteController extends CommonServlet {
 
 
 //		データの追加処理を行う
-//		TeacherDAO(StudentDAO)に追加処理を行う
 		TeacherDao dao = new TeacherDao();
 		Teacher teacher = dao.login(id, password);
 		try{
