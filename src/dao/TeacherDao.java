@@ -21,7 +21,6 @@ public class TeacherDao extends DAO {
 		 */
 		String sql = "SELECT * FROM TEACHER WHERE ID = ?";
 
-		// try-with-resources構文を使用して、リソースが自動的にクローズされるように修正
 		try (
 			Connection con = getConnection();
 			PreparedStatement st = con.prepareStatement(sql)
@@ -41,8 +40,6 @@ public class TeacherDao extends DAO {
 			}
 
 		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
-			// アプリケーション全体でエラーをハンドリングできるように、実行時例外をスローする
 			throw new RuntimeException("教員データの取得に失敗しました。", e);
 		}
 		return teacher;

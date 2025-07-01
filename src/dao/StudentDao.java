@@ -60,7 +60,7 @@ public class StudentDao extends DAO {
 		return student;
 	}
 
-
+// 指定した学校に所属している学生リストの取得
 	public List<Student> getList(School school){
 
 		Connection con;
@@ -73,9 +73,9 @@ public class StudentDao extends DAO {
 			String sql = basesql +" WHERE SCHOOL_CD=?";
 
 			PreparedStatement st = con.prepareStatement(sql);
+//			引数で指定されたschoolオブジェクトから学校コードをget!!!
 			st.setString(1, school.getCd());
 			ResultSet rs = st.executeQuery();
-
 
 			while(rs.next()){
 
@@ -85,7 +85,6 @@ public class StudentDao extends DAO {
 				student.setEntYear(rs.getInt("ent_year"));
 				student.setClassNum(rs.getString("class_num"));
 				student.setIsAttend(rs.getBoolean("is_attend"));
-
 
 				student.setSchool(school);
 

@@ -35,7 +35,7 @@ public class TestDao extends DAO {
      * @param school 学校情報を持つSchoolオブジェクト
      * @param no テストの回数
      * @param point テストの点数
-     * @return 検索結果のTestオブジェクト。見つからない場合はnullを返します。
+     * @return 検索結果のTestオブジェクト。見つからない場合はnullを返す。
      */
     public Test get(Student student, Subject subject, School school, int no, int point) {
         Test test = null;

@@ -22,7 +22,7 @@ public class ClassNumDao extends DAO {
 
         // try-with-resources構文でリソースを自動的にクローズする
         try (Connection con = getConnection()) {
-            // テーブル名と列名は実際の設計に合わせてください
+            // class_numテーブルから学校コードに属するクラス番号を昇順で取得するsql
             String sql = "SELECT CLASS_NUM FROM CLASS_NUM WHERE SCHOOL_CD = ? ORDER BY CLASS_NUM";
 
             try (PreparedStatement st = con.prepareStatement(sql)) {
