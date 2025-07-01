@@ -16,7 +16,7 @@ public class StudentUpdateController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-
+//		現在のsessionを取得
 		HttpSession session = req.getSession();
 		School school = (School) session.getAttribute("school");
 
@@ -26,13 +26,14 @@ public class StudentUpdateController extends CommonServlet {
 		String name = req.getParameter("name");
 		String classNum = req.getParameter("classNum");
 
+//		取得した値を保存する
 		req.setAttribute("entYear", entYear);
 		req.setAttribute("no", no);
 		req.setAttribute("name", name);
 		req.setAttribute("classNum", classNum);
 
 
-
+//		Daoをインスタンス化する
 		ClassNumDao numdao = new ClassNumDao();
 
 
@@ -41,7 +42,7 @@ public class StudentUpdateController extends CommonServlet {
             List<ClassNum> classList = numdao.filter(school);
 
 
-            // ★JSPに合わせて "classList" という名前でセット
+            // JSPに合わせて "classList" という名前でセット
             req.setAttribute("classList", classList);
 
 

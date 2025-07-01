@@ -34,7 +34,7 @@ public class StudentUpdateExecuteController extends CommonServlet {
 		student.setEntYear(entYear);
 		student.setClassNum(classNum);
 		student.setSchool(school);
-		
+
 		System.out.println(entYear);
 		System.out.println(classNum);
 
@@ -59,7 +59,7 @@ public class StudentUpdateExecuteController extends CommonServlet {
 			req.getRequestDispatcher("student_update_done.jsp").forward(req, resp);
 		}else {
 
-			// 認証失敗時：入力された科目名を再表示用にセット
+			// 認証失敗時：入力された学生情報を再表示用にセット
 			req.setAttribute("entYear", entYear);
 	        req.setAttribute("no", no);
             req.setAttribute("name", name);

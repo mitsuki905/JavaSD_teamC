@@ -31,17 +31,17 @@ public class StudentListController extends CommonServlet {
             // 学生リストを取得
             List<Student> studentList = studao.getList(school);
 
-            // --- 1. 入学年度リストの作成 ---
+            // --- 入学年度リストの作成 ---
             // JSPの items="${yearList}" に合わせる
             Set<Integer> yearSet = new TreeSet<>();
             for (Student s : studentList) {
                 yearSet.add(s.getEntYear());
             }
             List<Integer> entYearList = new ArrayList<>(yearSet);
-            // ★JSPに合わせて "yearList" という名前でセット
+            // JSPに合わせて "yearList" という名前でセット
             req.setAttribute("yearList", entYearList);
 
-            // --- 2. クラス番号リストの作成 ---
+            // --- クラス番号リストの作成 ---
             // JSPの items="${classList}" に合わせる
             Set<String> classSet = new TreeSet<>();
             for (Student s : studentList) {
@@ -51,7 +51,7 @@ public class StudentListController extends CommonServlet {
             for (String c : classSet) {
                 classList.add(String.valueOf(c));
             }
-            // ★JSPに合わせて "classList" という名前でセット
+            // JSPに合わせて "classList" という名前でセット
             req.setAttribute("classList", classList);
 
 
@@ -95,17 +95,17 @@ public class StudentListController extends CommonServlet {
 			List<Student> studentList = studao.getList(school);
 			System.out.println(school.getCd());
 
-			// --- 1. 入学年度リストの作成 ---
+			// --- 入学年度リストの作成 ---
 			// JSPの items="${yearList}" に合わせる
 			Set<Integer> yearSet = new TreeSet<>();
 			for (Student s : studentList) {
 				yearSet.add(s.getEntYear());
 			}
 			List<Integer> entYearList = new ArrayList<>(yearSet);
-			// ★JSPに合わせて "yearList" という名前でセット
+			// JSPに合わせて "yearList" という名前でセット
 			req.setAttribute("yearList", entYearList);
 
-			// --- 2. クラス番号リストの作成 ---
+			// --- クラス番号リストの作成 ---
 			// JSPの items="${classList}" に合わせる
 			Set<String> classSet = new TreeSet<>();
 			for (Student s : studentList) {
@@ -115,7 +115,7 @@ public class StudentListController extends CommonServlet {
 			for (String c : classSet) {
 				classList.add(String.valueOf(c));
 			}
-			// ★JSPに合わせて "classList" という名前でセット
+			// JSPに合わせて "classList" という名前でセット
 			req.setAttribute("classList", classList);
 
 		} catch (Exception e) {
