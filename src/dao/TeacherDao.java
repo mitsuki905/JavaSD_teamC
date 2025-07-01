@@ -39,6 +39,7 @@ public class TeacherDao extends DAO {
 				}
 			}
 
+
 		} catch (Exception e) {
 			throw new RuntimeException("教員データの取得に失敗しました。", e);
 		}

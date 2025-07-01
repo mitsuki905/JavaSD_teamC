@@ -51,7 +51,6 @@ public class StudentDao extends DAO {
 				return null;
 			}
 
-
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

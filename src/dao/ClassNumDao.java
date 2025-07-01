@@ -11,6 +11,7 @@ import bean.School;
 
 public class ClassNumDao extends DAO {
 
+
     /**
      * 指定された学校に所属するクラスの情報をリストで取得する。
      * @param school 検索対象の学校情報

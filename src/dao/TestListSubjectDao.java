@@ -134,7 +134,6 @@ public class TestListSubjectDao extends DAO {
             e.printStackTrace();
             throw e;
         }
-
         return list;
     }
 }

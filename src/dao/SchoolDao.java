@@ -16,7 +16,6 @@ public class SchoolDao extends DAO {
      */
     public School get(String cd) {
         School school = null;
-
         // try-with-resources構文を使用
         // これにより、con, st, rs がブロックを抜ける際に自動的に close() される
         try (Connection con = getConnection()) {

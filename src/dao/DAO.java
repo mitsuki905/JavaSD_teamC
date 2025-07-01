@@ -15,7 +15,6 @@ public class DAO {
 
 			InitialContext ic = new InitialContext();
 			ds=(DataSource)ic.lookup("java:/comp/env/jdbc/JavaSD");
-
 		}
 		return ds.getConnection();
 	}
