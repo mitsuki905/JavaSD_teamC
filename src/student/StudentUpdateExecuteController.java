@@ -14,7 +14,6 @@ public class StudentUpdateExecuteController extends CommonServlet {
 
 	@Override
 	protected void post(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// TODO 自動生成されたメソッド・スタブ
 //		現在のsessionを取得
 		HttpSession session = req.getSession();
 		School school = (School) session.getAttribute("school");
@@ -34,9 +33,6 @@ public class StudentUpdateExecuteController extends CommonServlet {
 		student.setEntYear(entYear);
 		student.setClassNum(classNum);
 		student.setSchool(school);
-
-		System.out.println(entYear);
-		System.out.println(classNum);
 
 		// Stringをbooleanに変換
 		// パラメータが"true"（大文字小文字を区別しない）の場合にtrue、それ以外（nullや他の文字列）の場合はfalseになる
