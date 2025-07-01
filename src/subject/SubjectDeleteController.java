@@ -17,8 +17,7 @@ public class SubjectDeleteController extends CommonServlet {
 		String cd = req.getParameter("cd");
 		String name = req.getParameter("name");
 
-		System.out.println(cd);
-		System.out.println(name);
+//		取得した値を保存する
 		req.setAttribute("cd", cd);
 		req.setAttribute("name", name);
 

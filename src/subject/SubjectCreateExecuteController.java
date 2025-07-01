@@ -28,8 +28,6 @@ public class SubjectCreateExecuteController extends CommonServlet {
 //		画面から送られてきた値を取得する
 		String cd = req.getParameter("cd");
 		String name = req.getParameter("name");
-		System.out.println(cd);
-		System.out.println(name);
 
 //		重複データがあるか検索する
 		SubjectDao dao = new SubjectDao();

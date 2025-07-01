@@ -17,10 +17,11 @@ public class SubjectCreateController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+//		現在のsessionを取得
 		HttpSession session = req.getSession();
 		School school = (School) session.getAttribute("school");
 
-//		コース一覧を取得する
+//		科目一覧を取得する
 		SubjectDao dao = new SubjectDao();
 		List<Subject> subject = dao.filter(school);
 

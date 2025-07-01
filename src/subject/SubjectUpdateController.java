@@ -16,7 +16,7 @@ public class SubjectUpdateController extends CommonServlet {
 		String cd = req.getParameter("cd");
 		String name = req.getParameter("name");
 
-		System.out.println(cd);
+//		取得した値を保存する
 		req.setAttribute("cd", cd);
 		req.setAttribute("name", name);
 

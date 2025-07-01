@@ -17,6 +17,7 @@ public class SubjectListController extends CommonServlet {
 
 	@Override
 	protected void get(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+//		現在のsessionを取得する
 		HttpSession session = req.getSession();
 		School school = (School) session.getAttribute("school");
 
