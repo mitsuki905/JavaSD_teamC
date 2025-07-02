@@ -8,8 +8,7 @@
 	<link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 </head>
 
-<!-- <body style="margin-left:10%;margin-right:10%;"> -->
-<body>
+<body style="margin-left:10%;margin-right:10%;">
 	<div class="header">
 		<h1>得点管理システム</h1>
 		<c:if test="${not empty teacher}">

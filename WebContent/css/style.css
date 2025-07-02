@@ -1,4 +1,3 @@
-
 body {
 	font-family: sans-serif;
 	position: relative;
@@ -9,10 +8,10 @@ body {
 }
 
 .contents {
-	margin-left: 20%;
+	margin-left: 25%;
 	padding: 20px;
 	box-sizing: border-box;
-	width: 80%;
+	width: 75%;
 }
 
 /* ログイン画面用：sidebarなしで全幅表示 */
@@ -24,15 +23,19 @@ body {
 /* メニューページ(main.jsp)のボックス */
 .box-container {
     display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	grid-template-columns: repeat(3, 200px);
 	gap: 30px;
 	justify-content: center;
 	margin-top: 50px;
+
 }
+
 
 .student{
 	margin-left: 1em; text-indent: -1em;
 }
+
+
 
 .box_red,
 .box_green,
@@ -63,9 +66,11 @@ body {
   margin-left: 5em;
 }
 
+
 h2{
 	background-color: #f0f0f0 !important;
 }
+
 .p1 {
     background-color: #008b8b !important;
     text-align: center !important;
@@ -75,21 +80,26 @@ h2{
 	max-width: 500px; padding-top: 40px; margin: 0 auto; padding: 2rem;
 }
 
+
 .login-title{
 	background-color: #f0f0f0;
 }
+
 
 .login-btn{
 	max-width: 300px;
 }
 
+
 .error-message{
 	list-style: none;text-align: center;
 }
 
+
 .error-message-item{
-list-style: none;
+ list-style: none;
 }
+
 
 .test-r{
 	 width: 150px !important;
@@ -99,6 +109,8 @@ list-style: none;
 	 table-layout: fixed;
 	 width: 100%;
 }
+
+
 
 .delete{
 	width: 5%;
@@ -140,6 +152,7 @@ list-style: none;
 /* 共通部分(メニュー) */
 .sidebar {
 	position: fixed;
+	margin-left:10%;
 	top: 71px;
 	left: 0;
 	width: 20%;
@@ -155,6 +168,7 @@ ul {
     padding-left: 0;
 }
 
+
 /* 共通部分(フッター) */
 .footer {
 	width: 100%;
@@ -164,4 +178,31 @@ ul {
 	text-align: center;
 	background-color: #f0f0f0;
     padding: 10px 0;
+}
+
+
+/* 追加：レスポンシブ対応のためのメディアクエリ */
+@media (max-width: 992px) {
+    /* タブレットサイズになったらサイドバーを細くする */
+    .sidebar {
+        width: 15%;
+    }
+    .contents {
+        width: 85%;
+        margin-left: 15%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* スマホサイズになったらサイドバーを非表示にし、コンテンツを全幅にする */
+    .sidebar {
+        display: none;
+    }
+    .contents {
+        width: 100%;
+        margin-left: 0;
+    }
+    .header h1 {
+        font-size: 20px;
+    }
 }
