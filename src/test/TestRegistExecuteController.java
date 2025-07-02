@@ -90,7 +90,6 @@ public class TestRegistExecuteController extends CommonServlet {
                     try {
                         int point = Integer.parseInt(pointStr);
                         if (point < 0 || point > 100) {
-                        	System.out.println(point);
                             req.setAttribute("errors", "0～100の整数を入力してください");
                         } else {
                             // 3. DBアクセスではなく、メモリ上のMapから学生情報を取得する

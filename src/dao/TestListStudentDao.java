@@ -44,8 +44,7 @@ public class TestListStudentDao extends DAO {
             // 2番目の?に学校コードをセット (Studentオブジェクトが持つSchoolオブジェクトから取得)
             pstmt.setString(2, student.getSchool().getCd());
 
-            System.out.println("===================================================");
-            System.out.println("pstmt：" + pstmt);
+
 
             // SQLを実行し、結果セット(ResultSet)を取得
             try (ResultSet rs = pstmt.executeQuery()) {
