@@ -93,7 +93,6 @@ public class StudentListController extends CommonServlet {
 		try {
 			// 学生リストを取得
 			List<Student> studentList = studao.getList(school);
-			System.out.println(school.getCd());
 
 			// --- 入学年度リストの作成 ---
 			// JSPの items="${yearList}" に合わせる

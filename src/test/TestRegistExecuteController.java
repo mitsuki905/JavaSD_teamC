@@ -90,7 +90,6 @@ public class TestRegistExecuteController extends CommonServlet {
                     try {
                         int point = Integer.parseInt(pointStr);
                         if (point < 0 || point > 100) {
-                        	System.out.println(point);
                             req.setAttribute("errors", "0～100の整数を入力してください");
                         } else {
                             // 3. DBアクセスではなく、メモリ上のMapから学生情報を取得する
@@ -126,11 +125,10 @@ public class TestRegistExecuteController extends CommonServlet {
 
         // 押されたボタンに応じて遷移先を分岐
         if ("register_finish".equals(submitAction)) {
-        	System.out.println("error");
+
             // 「登録して終了」の場合 -> 完了画面へ
             req.getRequestDispatcher("test_regist_done.jsp").forward(req, resp);
         } else if ("register_again".equals(submitAction)) {
-        	System.out.println("error2");
             // 「登録して再度入力」の場合 -> 再検索して成績登録画面へ
             // POSTリクエストとしてTestRegistControllerにフォワードすることで、再検索を実行させる
         	req.setAttribute("rechance", "登録は完了しました");

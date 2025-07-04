@@ -45,6 +45,7 @@ public class StudentCreateExecuteController extends CommonServlet {
 			req.setAttribute("error_ent_year", "入学年度を選択してください");
 			// 登録画面に戻る
 			req.getRequestDispatcher("student_create.jsp").forward(req, resp);
+			return;
 		}
 
 		StudentDao dao = new StudentDao();
